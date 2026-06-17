@@ -11,228 +11,210 @@
 
     body{
       font-family:'Noto Sans JP','Hiragino Kaku Gothic Pro',sans-serif;
-      background:#04040e;
-      color:#fff;
+      background:#0a1428;
+      background-image:
+        radial-gradient(ellipse at 15% 60%,rgba(30,80,180,.45) 0%,transparent 55%),
+        radial-gradient(ellipse at 85% 20%,rgba(80,30,160,.3) 0%,transparent 50%),
+        repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(0,0,40,.45) 3px,rgba(0,0,40,.45) 4px);
       min-height:100vh;
-      overflow-x:hidden;
-      background-image:repeating-linear-gradient(
-        0deg,transparent 0,transparent 3px,
-        rgba(0,0,30,.5) 3px,rgba(0,0,30,.5) 4px
-      );
-    }
-
-    /* ─── チームヘッダー ─── */
-    .team-header{
-      background:linear-gradient(90deg,#08122e 0%,#0d1c55 50%,#08122e 100%);
-      border-bottom:2px solid #c8a000;
-      padding:8px 16px;
-      display:flex;align-items:center;gap:12px;
-    }
-    .team-emblem{
-      font-size:28px;
-      width:48px;height:48px;
-      background:linear-gradient(135deg,#dd3311,#aa2200);
-      border-radius:50%;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 0 12px rgba(220,50,10,.5),inset 0 1px 0 rgba(255,255,255,.2);
-      flex-shrink:0;
-    }
-    .team-name{font-size:22px;font-weight:900;color:#f0c800;letter-spacing:4px;text-shadow:0 0 10px rgba(240,200,0,.5);}
-    .team-sub{font-size:10px;color:#556;letter-spacing:3px;margin-top:2px;}
-    .team-count{
-      margin-left:auto;
-      background:#08082a;border:1px solid #2244aa;border-radius:3px;
-      padding:4px 10px;text-align:center;
-    }
-    .team-count .n{font-size:22px;font-weight:900;color:#fff;}
-    .team-count .l{font-size:9px;color:#446;letter-spacing:2px;}
-
-    /* ─── レイアウト ─── */
-    .layout{
-      display:grid;
-      grid-template-columns:240px 1fr;
-      height:calc(100vh - 68px);
-    }
-    @media(max-width:640px){
-      .layout{grid-template-columns:1fr;height:auto;}
-    }
-
-    /* ─── ロースターパネル（左） ─── */
-    .roster-panel{
-      border-right:1px solid #111130;
-      background:linear-gradient(180deg,#060618 0%,#040412 100%);
-      overflow-y:auto;
-      display:flex;flex-direction:column;
-    }
-    .roster-title{
-      padding:8px 12px;
-      font-size:10px;font-weight:900;letter-spacing:3px;color:#3355aa;
-      background:#050514;
-      border-bottom:1px solid #111130;
-      flex-shrink:0;
-    }
-    /* プレイヤー行 */
-    .p-row{
-      display:flex;align-items:center;gap:8px;
-      padding:9px 10px;
-      border-bottom:1px solid rgba(255,255,255,.04);
-      cursor:pointer;
-      transition:background .1s;
-      position:relative;
-    }
-    .p-row:hover{background:rgba(51,102,204,.12);}
-    .p-row.active{
-      background:linear-gradient(90deg,rgba(30,80,200,.35),rgba(10,30,80,.2));
-      border-left:3px solid #4488ff;
-    }
-    .p-row.active::after{
-      content:'▶';
-      position:absolute;right:8px;
-      font-size:10px;color:#4488ff;
-    }
-    /* 背番号 */
-    .p-num{
-      width:28px;height:28px;border-radius:3px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:13px;font-weight:900;
-      background:var(--pc,#2244aa);
-      color:#fff;flex-shrink:0;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
-    }
-    /* ポジションバッジ */
-    .p-pos{
-      font-size:10px;color:#445577;
-      width:36px;flex-shrink:0;
-    }
-    /* 名前 */
-    .p-name{font-size:13px;font-weight:700;color:#ddeeff;flex:1;}
-    /* 総合 */
-    .p-ov{
-      font-size:15px;font-weight:900;
-      color:var(--oc,#aabbcc);
-      flex-shrink:0;
-    }
-
-    /* ─── カードパネル（右） ─── */
-    .card-panel{
-      overflow-y:auto;
-      padding:14px;
-      background:linear-gradient(180deg,#05051a 0%,#030310 100%);
-    }
-    @media(max-width:640px){
-      .roster-panel{height:200px;}
-      .card-panel{min-height:calc(100vh - 268px);}
-    }
-
-    /* ─── プレイヤーカード ─── */
-    .player-card{
-      animation:cardIn .25s ease;
-    }
-    @keyframes cardIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-
-    .card-frame{
-      border:2px solid #2244aa;border-radius:4px;
-      box-shadow:0 0 0 1px #000,0 0 30px rgba(30,80,220,.2),
-        inset 0 1px 0 rgba(255,255,255,.05);
       overflow:hidden;
-      max-width:600px;
     }
 
-    /* カードヘッダー */
-    .c-header{
-      display:flex;align-items:stretch;
-      background:linear-gradient(90deg,#081440 0%,#0d1c60 40%,#0a1642 100%);
-      border-bottom:2px solid #1a2a6a;
-      min-height:62px;
+    /* ─── ゲームタイトルバー ─── */
+    .gtitle{
+      height:36px;
+      background:linear-gradient(90deg,#06102a 0%,#0d1a44 50%,#06102a 100%);
+      border-bottom:2px solid #b89000;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 14px;
     }
-    .c-accent{width:7px;flex-shrink:0;}
-    .c-hcenter{flex:1;padding:8px 12px;display:flex;align-items:center;gap:10px;}
-    .c-pos{
-      color:#fff;font-size:11px;font-weight:900;
-      padding:3px 9px;border-radius:3px;letter-spacing:1px;flex-shrink:0;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
-    }
-    .c-num-badge{
-      font-size:11px;font-weight:900;color:#aabbcc;
-      background:#080820;border:1px solid #2244aa;
-      padding:2px 7px;border-radius:3px;flex-shrink:0;
-    }
-    .c-name{font-size:clamp(18px,3.5vw,24px);font-weight:900;color:#fff;letter-spacing:3px;}
-    .c-kana{font-size:10px;color:#6677aa;letter-spacing:3px;margin-top:2px;}
-    .satei{
-      margin-left:auto;flex-shrink:0;
-      background:#08081e;border:1px solid #2244aa;border-radius:3px;
-      padding:4px 10px;min-width:64px;text-align:center;
-    }
-    .satei-l{font-size:9px;color:#4466aa;letter-spacing:2px;}
-    .satei-n{font-size:24px;font-weight:900;line-height:1;color:#f0c800;text-shadow:0 0 8px rgba(240,200,0,.5);}
-    .satei-u{font-size:9px;color:#4466aa;}
+    .gtitle-logo{font-size:14px;font-weight:900;color:#f0c800;letter-spacing:4px;text-shadow:0 0 10px rgba(240,200,0,.5);}
+    .gtitle-ver{font-size:10px;color:#4a5a7a;letter-spacing:2px;}
 
-    /* カードボディ */
-    .c-body{
-      display:grid;grid-template-columns:180px 1fr;
-      background:linear-gradient(180deg,#06061a 0%,#040412 100%);
+    /* ─── ページ全体レイアウト ─── */
+    .page{
+      display:flex;
+      height:calc(100vh - 36px);
     }
-    @media(max-width:480px){.c-body{grid-template-columns:1fr;}}
 
-    /* ポートレート */
-    .portrait{
-      border-right:1px solid #141430;
+    /* ─── 左サイドバー（選手ピル） ─── */
+    .sidebar{
+      width:94px;flex-shrink:0;
+      background:rgba(2,4,18,.7);
+      border-right:1px solid #1a2040;
       display:flex;flex-direction:column;
+      padding:6px 5px 6px;
+      gap:3px;
+      overflow-y:auto;
     }
-    .portrait-box{
-      aspect-ratio:1;
+    /* すべて + 矢印ナビ */
+    .sb-nav{
+      display:flex;align-items:center;gap:3px;
+      margin-bottom:4px;flex-shrink:0;
+    }
+    .sb-arrow{
+      width:18px;height:22px;
+      background:linear-gradient(180deg,#1a2a55,#0d1a3a);
+      border:1px solid #2a3a66;border-radius:2px;
       display:flex;align-items:center;justify-content:center;
-      position:relative;overflow:hidden;
-      border-bottom:1px solid #141430;
+      font-size:9px;color:#aac;cursor:pointer;flex-shrink:0;
     }
-    .portrait-box::before{
-      content:'';position:absolute;inset:0;
-      background:repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(255,255,255,.013) 10px,rgba(255,255,255,.013) 20px);
+    .sb-all{
+      flex:1;height:22px;
+      background:linear-gradient(180deg,#5588cc,#3366aa);
+      border:1px solid #6699dd;border-radius:3px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:11px;font-weight:900;color:#fff;cursor:pointer;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.25);
     }
-    .portrait-box::after{
-      content:'';position:absolute;
-      top:5px;left:5px;right:5px;bottom:5px;
-      border:1px solid rgba(51,102,204,.3);border-radius:2px;pointer-events:none;
+    /* 名前ピル（姓のみ） */
+    .npill{
+      height:30px;
+      background:linear-gradient(180deg,#f09090,#d06868);
+      border:1px solid #cc5555;border-radius:4px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:12px;font-weight:900;color:#fff;
+      cursor:pointer;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 1px 2px rgba(0,0,0,.3);
+      transition:filter .1s;
+      flex-shrink:0;
     }
-    .p-img{
-      position:relative;z-index:1;
-      width:100%;height:100%;object-fit:cover;object-position:top center;
-      display:none;
+    .npill:hover{filter:brightness(1.12);}
+    .npill.active{
+      background:linear-gradient(180deg,#ffe566,#ddcc33);
+      border-color:#ccaa00;color:#222;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 0 8px rgba(240,200,0,.4);
     }
-    .p-img.loaded{display:block;}
-    .p-emoji{position:relative;z-index:1;font-size:60px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.9));}
+    .npill.pitcher{
+      background:linear-gradient(180deg,#88cc77,#55aa44);
+      border-color:#44aa33;
+    }
 
-    /* 基本情報 */
-    .p-info{padding:7px 9px;}
-    .i-row{
-      display:flex;justify-content:space-between;
-      padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:10px;
+    /* ─── メインエリア ─── */
+    .main{
+      flex:1;display:flex;flex-direction:column;
+      overflow:hidden;
+      min-width:0;
     }
-    .i-row:last-child{border-bottom:none;}
-    .ik{color:#445566;}
-    .iv{color:#cce;font-weight:700;}
 
-    /* 右パネル */
-    .c-right{padding:11px;display:flex;flex-direction:column;gap:9px;}
+    /* ─── タブバー ─── */
+    .tabbar{
+      height:32px;
+      background:linear-gradient(180deg,#0a1a3a 0%,#060f26 100%);
+      border-bottom:2px solid #1a2a5a;
+      display:flex;align-items:flex-end;
+      padding:0 8px;gap:2px;
+      flex-shrink:0;
+    }
+    .tbbtn{
+      font-size:10px;color:#4a5a7a;
+      background:#081228;border:1px solid #1a2044;border-bottom:none;
+      padding:3px 8px 5px;border-radius:3px 3px 0 0;
+      cursor:pointer;white-space:nowrap;font-family:inherit;
+    }
+    .tbbtn.active{
+      color:#fff;font-weight:700;
+      background:linear-gradient(180deg,#1a4488,#0d2a66);
+      border-color:#3366cc;
+      box-shadow:0 0 8px rgba(50,100,220,.35);
+    }
+    .tb-lr{
+      font-size:9px;color:#2a3a55;
+      background:#080f22;border:1px solid #1a2044;
+      padding:2px 5px;border-radius:2px;margin-bottom:3px;
+    }
+    .tb-sp{flex:1;}
 
-    .sec{font-size:10px;font-weight:900;letter-spacing:3px;color:#3355aa;
-      background:linear-gradient(90deg,#08081a,transparent);
-      padding:2px 8px;border-left:3px solid #1a3388;margin-bottom:5px;}
+    /* ─── プレイヤーカード描画領域 ─── */
+    .cardwrap{
+      flex:1;overflow-y:auto;
+    }
 
-    /* 能力値 */
-    .stat-row{display:flex;align-items:center;gap:6px;margin-bottom:3px;}
-    .sn{font-size:11px;color:#99aacc;width:48px;flex-shrink:0;}
-    .sv{font-size:13px;font-weight:900;width:24px;text-align:right;flex-shrink:0;color:#ddeeff;}
+    /* ─── カードアニメ ─── */
+    .pcard{animation:ci .2s ease;}
+    @keyframes ci{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+    /* ─── カードヘッダー（暗い） ─── */
+    .ch{
+      background:linear-gradient(180deg,#1a3a6a 0%,#102850 100%);
+      border-bottom:2px solid #0a1a3a;
+      padding:8px 12px 7px;
+    }
+    /* 1行目: バッジ+名前+番号+★+ちびキャラ */
+    .ch-r1{display:flex;align-items:center;gap:9px;}
+    .tbadge{
+      width:40px;height:40px;border-radius:50%;flex-shrink:0;
+      background:linear-gradient(135deg,#dd3311,#991100);
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;
+      box-shadow:0 0 10px rgba(200,40,10,.5),inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    .pname{font-size:clamp(16px,3vw,22px);font-weight:900;color:#fff;letter-spacing:2px;}
+    .numbadge{
+      display:flex;align-items:center;gap:1px;
+      background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);
+      border-radius:3px;padding:1px 7px;
+      font-size:18px;font-weight:900;color:#fff;flex-shrink:0;
+    }
+    .numbadge .eq{font-size:13px;color:#8899bb;margin-right:2px;}
+    .starbox{
+      display:flex;align-items:center;gap:2px;margin-left:auto;
+    }
+    .star-ico{color:#f0c800;font-size:14px;}
+    .star-n{font-size:22px;font-weight:900;color:#f0c800;text-shadow:0 0 8px rgba(240,200,0,.5);}
+    .chibi{
+      width:50px;height:50px;border-radius:4px;flex-shrink:0;
+      background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);
+      display:flex;align-items:center;justify-content:center;
+      font-size:28px;overflow:hidden;
+    }
+    .chibi img{width:100%;height:100%;object-fit:cover;object-position:top;display:none;}
+    .chibi img.loaded{display:block;}
+
+    /* 2行目: 成績 */
+    .ch-r2{
+      display:flex;align-items:center;gap:5px;
+      margin-top:6px;padding:3px 8px;
+      background:rgba(0,0,0,.28);border-radius:3px;
+    }
+    .res-lbl{font-size:9px;color:#4a6a8a;letter-spacing:1px;margin-right:2px;}
+    .res-v{font-size:11px;font-weight:700;color:#cce;}
+    .res-sep{font-size:10px;color:#2a3a55;}
+
+    /* 3行目: フォーム/投打/守備位置 */
+    .ch-r3{
+      display:flex;gap:14px;margin-top:5px;
+      font-size:10px;
+    }
+    .mk{color:#4a6a8a;}
+    .mv{color:#cce;font-weight:700;margin-left:4px;}
+
+    /* ─── カードボディ（明るいクリーム色） ─── */
+    .cbody{
+      display:grid;grid-template-columns:165px 1fr;
+      background:#e8e4d8;
+    }
+    @media(max-width:520px){.cbody{grid-template-columns:1fr;}}
+
+    /* ── 能力値カラム（左） ── */
+    .scol{
+      padding:10px 10px;
+      border-right:1px solid #c8c2b0;
+    }
+    .srow{
+      display:flex;align-items:center;gap:5px;
+      margin-bottom:4px;padding:1px 0;
+    }
+    .sn{font-size:11px;font-weight:700;color:#2a3040;width:48px;flex-shrink:0;}
+
+    /* グレードボックス */
     .gb{
-      width:26px;height:19px;border-radius:2px;
+      width:22px;height:18px;border-radius:2px;
       display:flex;align-items:center;justify-content:center;
       font-size:12px;font-weight:900;color:#fff;flex-shrink:0;
       border-top:1px solid rgba(255,255,255,.3);
-      border-left:1px solid rgba(255,255,255,.12);
-      border-right:1px solid rgba(0,0,0,.4);
-      border-bottom:1px solid rgba(0,0,0,.5);
-      text-shadow:0 1px 2px rgba(0,0,0,.7);
+      border-bottom:1px solid rgba(0,0,0,.35);
+      text-shadow:0 1px 1px rgba(0,0,0,.5);
     }
     .g-S{background:linear-gradient(180deg,#ff1a1a,#bb0000);}
     .g-A{background:linear-gradient(180deg,#ff6600,#cc3300);}
@@ -240,384 +222,372 @@
     .g-C{background:linear-gradient(180deg,#22cc22,#118811);}
     .g-D{background:linear-gradient(180deg,#1166ee,#0044cc);}
     .g-E{background:linear-gradient(180deg,#7788aa,#445566);}
-    .g-F{background:linear-gradient(180deg,#445566,#223344);}
-    .g-G{background:linear-gradient(180deg,#333344,#111122);}
-    .sb-bg{flex:1;height:6px;background:rgba(0,0,0,.55);border-radius:3px;overflow:hidden;border:1px solid rgba(255,255,255,.04);}
-    .sb-fill{height:100%;border-radius:3px;transition:width .8s ease;}
-    .b-S{background:linear-gradient(90deg,#ff1a1a,#ff6666);}
-    .b-A{background:linear-gradient(90deg,#ff6600,#ffaa44);}
-    .b-B{background:linear-gradient(90deg,#cc9900,#ffdd22);}
-    .b-C{background:linear-gradient(90deg,#22bb22,#55ee55);}
-    .b-D{background:linear-gradient(90deg,#1166ee,#44aaff);}
-    .b-E{background:linear-gradient(90deg,#667788,#99aabb);}
-    .b-F{background:linear-gradient(90deg,#445566,#667788);}
-    .b-G{background:linear-gradient(90deg,#223344,#445566);}
+    .g-F{background:linear-gradient(180deg,#cc3322,#991111);}
+    .g-G{background:linear-gradient(180deg,#666,#444);}
 
-    /* 特殊能力チップ */
-    .chips{display:flex;flex-wrap:wrap;gap:4px;}
+    /* 弾道矢印 */
+    .trj{font-size:18px;color:#ee6600;flex-shrink:0;}
+    .sv{font-size:14px;font-weight:900;color:#1a2030;}
+
+    /* ── 特殊能力カラム（右） ── */
+    .acol{
+      padding:8px;
+      display:flex;flex-wrap:wrap;
+      gap:4px;align-content:flex-start;
+    }
+
+    /* 特殊能力チップ共通 */
     .chip{
-      display:flex;align-items:center;border-radius:2px;overflow:hidden;
-      border:1px solid rgba(0,0,0,.5);cursor:default;
-      position:relative;transition:filter .1s;
+      display:inline-flex;align-items:center;gap:3px;
+      padding:2px 6px;border-radius:3px;
+      font-size:11px;font-weight:700;
+      border:1px solid;cursor:default;
+      position:relative;
     }
-    .chip:hover{filter:brightness(1.25);}
-    .ci{width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
-    .cn{padding:0 6px;height:20px;display:flex;align-items:center;font-size:10px;font-weight:700;white-space:nowrap;}
-    .t-gold .ci{background:#7a5a00;border-right:1px solid #5a4000;}
-    .t-gold .cn{background:linear-gradient(90deg,#c8900a,#a87000);color:#fff8cc;}
-    .t-gold{border-color:#c09000!important;}
-    .t-red .ci{background:#8a1010;border-right:1px solid #5a0808;}
-    .t-red .cn{background:linear-gradient(90deg,#cc1a1a,#aa0a0a);color:#ffdddd;}
-    .t-red{border-color:#cc1a1a!important;}
-    .t-blue .ci{background:#0a2a88;border-right:1px solid #081a55;}
-    .t-blue .cn{background:linear-gradient(90deg,#1a44bb,#0f2a99);color:#ccdeff;}
-    .t-blue{border-color:#1a44bb!important;}
-    .t-green .ci{background:#0a4a1a;border-right:1px solid #083310;}
-    .t-green .cn{background:linear-gradient(90deg,#1a7730,#0f5520);color:#ccffdd;}
-    .t-green{border-color:#1a7730!important;}
-    .t-purple .ci{background:#440a66;border-right:1px solid #2a0544;}
-    .t-purple .cn{background:linear-gradient(90deg,#6622aa,#441188);color:#eeccff;}
-    .t-purple{border-color:#6622aa!important;}
-    .t-white .ci{background:#2a3a55;border-right:1px solid #1a2a44;}
-    .t-white .cn{background:linear-gradient(90deg,#3a4a66,#2a3a55);color:#cce;}
-    .t-white{border-color:#3a4a66!important;}
-    .chip-tip{
-      display:none;position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);
-      background:#08082a;border:1px solid #2244aa;color:#aabbcc;font-size:10px;font-weight:400;
-      padding:5px 8px;border-radius:3px;width:170px;white-space:normal;line-height:1.5;
-      z-index:200;pointer-events:none;
-    }
-    .chip:hover .chip-tip{display:block;}
+    .chip:hover{filter:brightness(.92);}
 
-    /* プロフィール */
-    .profile{
-      background:rgba(0,0,0,.35);border:1px solid #111130;border-radius:2px;
-      padding:8px 10px;font-size:10px;line-height:1.85;color:#99aacc;
+    /* グレード付きポジティブ（緑） */
+    .cg{background:#d4f0d4;border-color:#88bb88;color:#1a3a1a;}
+    /* グレード付きネガティブ（赤） */
+    .cr{background:#f8d8d8;border-color:#cc8888;color:#3a1a1a;}
+    /* ブール○（ベージュ） */
+    .cb{background:#f0ece0;border-color:#c0b888;color:#3a3020;}
+    /* マイナス能力（ピンク） */
+    .cm{background:#ffd4d4;border-color:#ff9999;color:#660000;}
+
+    /* 能力内グレードボックス */
+    .ag{
+      width:17px;height:15px;border-radius:2px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:10px;font-weight:900;color:#fff;flex-shrink:0;
+      border-top:1px solid rgba(255,255,255,.25);
+      border-bottom:1px solid rgba(0,0,0,.3);
+      text-shadow:0 1px 1px rgba(0,0,0,.4);
     }
 
-    /* キャッチコピー */
-    .catchphrase{
-      background:linear-gradient(90deg,#04040e,#080820,#04040e);
-      border-top:1px solid #111130;border-bottom:1px solid #111130;
-      padding:9px;text-align:center;
-      font-size:clamp(12px,2vw,15px);font-weight:900;
+    /* ツールチップ */
+    .tip{
+      display:none;position:absolute;
+      bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+      background:#111;border:1px solid #444;color:#ddd;
+      font-size:10px;font-weight:400;padding:5px 8px;border-radius:3px;
+      width:160px;white-space:normal;line-height:1.5;
+      z-index:300;pointer-events:none;
+    }
+    .chip:hover .tip{display:block;}
+
+    /* ─── キャッチコピー ─── */
+    .cphr{
+      background:linear-gradient(90deg,#06081e,#0c1430,#06081e);
+      border-top:1px solid #1a2040;
+      padding:8px;text-align:center;
+      font-size:clamp(11px,2vw,14px);font-weight:900;
       color:#f0c800;letter-spacing:2px;
-      text-shadow:0 0 10px rgba(240,200,0,.4);
+      text-shadow:0 0 8px rgba(240,200,0,.4);
     }
 
-    /* 投打 */
-    .handedness{
-      display:flex;gap:12px;padding:7px 11px;
-      background:#030310;border-top:1px solid #111130;
-    }
-    .hand-item{font-size:10px;}
-    .hand-l{color:#4466aa;letter-spacing:1px;}
-    .hand-v{color:#ddeeff;font-weight:700;margin-top:1px;}
-
-    /* スクロールバー */
-    ::-webkit-scrollbar{width:5px;}
+    /* ── スクロールバー ── */
+    ::-webkit-scrollbar{width:5px;height:5px;}
     ::-webkit-scrollbar-track{background:#06061a;}
-    ::-webkit-scrollbar-thumb{background:#1a3388;border-radius:3px;}
-
-    /* 空状態 */
-    .empty-card{
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      height:100%;color:#334;font-size:14px;gap:12px;
-    }
-    .empty-card .ic{font-size:48px;opacity:.3;}
+    ::-webkit-scrollbar-thumb{background:#1a2a66;border-radius:3px;}
   </style>
 </head>
 <body>
 
-<!-- チームヘッダー -->
-<header class="team-header">
-  <div class="team-emblem">⚾</div>
-  <div>
-    <div class="team-name">野球部</div>
-    <div class="team-sub">BASEBALL CLUB 2024</div>
-  </div>
-  <div class="team-count">
-    <div class="n" id="memberCount">0</div>
-    <div class="l">MEMBERS</div>
-  </div>
-</header>
+<!-- ゲームタイトルバー -->
+<div class="gtitle">
+  <div class="gtitle-logo">⚾ 野球部 選手名鑑</div>
+  <div class="gtitle-ver">PAWAFURU PUROYAKYU 2024 — 2025</div>
+</div>
 
-<!-- 2カラムレイアウト -->
-<div class="layout">
-  <!-- ロースター（左） -->
-  <div class="roster-panel">
-    <div class="roster-title">◆ 選手一覧</div>
-    <div id="rosterList"></div>
-  </div>
-  <!-- カード（右） -->
-  <div class="card-panel" id="cardPanel">
-    <div class="empty-card">
-      <div class="ic">⚾</div>
-      <div>選手を選択してください</div>
+<div class="page">
+  <!-- 左サイドバー -->
+  <div class="sidebar" id="sb">
+    <div class="sb-nav">
+      <div class="sb-arrow">◄</div>
+      <div class="sb-all">すべて</div>
+      <div class="sb-arrow">►</div>
     </div>
+    <!-- JS で npill を追加 -->
+  </div>
+
+  <!-- メイン -->
+  <div class="main">
+    <!-- タブバー -->
+    <div class="tabbar">
+      <div class="tb-lr">L1</div>
+      <div class="tbbtn active">選手能力</div>
+      <div class="tbbtn">投手能力</div>
+      <div class="tbbtn">野手能力</div>
+      <div class="tbbtn">守備・起用</div>
+      <div class="tbbtn">プロフィール</div>
+      <div class="tb-sp"></div>
+      <div class="tb-lr">R1</div>
+    </div>
+    <!-- カード描画エリア -->
+    <div class="cardwrap" id="cw"></div>
   </div>
 </div>
 
 <script>
-/* ──────────────────────────────────────────
-   グレード変換
-────────────────────────────────────────── */
+/* ── グレード変換 ── */
 function toG(v){
   if(v>=95)return'S';if(v>=82)return'A';if(v>=68)return'B';
   if(v>=53)return'C';if(v>=38)return'D';if(v>=23)return'E';
   if(v>=10)return'F';return'G';
 }
-function ovColor(v){
-  if(v>=90)return'#ff4444';
-  if(v>=80)return'#ff8800';
-  if(v>=70)return'#ddcc00';
-  if(v>=60)return'#44cc44';
-  return'#4488ee';
-}
 
-/* ──────────────────────────────────────────
-   選手データ　←　ここを実際のメンバーに変更！
-   photo: 'photos/ファイル名.jpg' で写真を設定
-────────────────────────────────────────── */
+/* ── 弾道矢印 ── */
+const TRJ=['','↓','↙','→','↗','↑'];
+
+/* ══════════════════════════════════════════
+   選手データ  ← ここを実際のメンバーに変更！
+   surname : 名前ピルに表示する姓
+   photo   : photos/ファイル名.jpg で写真設定
+   starRating : ★評価（パワプロ風査定値）
+   stats   : 能力値（v=数値、グレードは自動計算）
+   abilities:
+     type:'graded'  → グレード付き（gキーでグレード指定）
+     type:'bool'    → ○系（白/ベージュ）
+     type:'negative'→ マイナス（ピンク）
+══════════════════════════════════════════ */
 const PLAYERS=[
   {
-    id:1, num:'5', color:'#dd3311',
-    name:'田中 大輝', kana:'TANAKA DAIKI',
-    pos:'外野手', bat:'右', thr:'右',
-    overall:82,
-    photo:'photos/tanaka.jpg',
+    id:1,surname:'田中',num:'5',pitcher:false,
+    name:'田中 大輝',kana:'TANAKA DAIKI',
+    pos:'外野手',bat:'右',thr:'右',
+    starRating:280,
+    results:{avg:'.248',hr:3,rbi:12,sb:5},
+    form:'パワー型',defPos:'右翼',
+    photo:'photos/tanaka.jpg',chibi:'🧑',
     catchphrase:'「守れなくても、声は出る。」',
-    profile:'チームの魂にして最大の声量を誇るキャプテン。守備の穴は声でカバーする独自理論を持ち、3年連続でベンチを最も盛り上げた男として表彰される。打ち上げの一発目の乾杯は必ず彼が仕切る。',
-    info:[['所属部署','営業部'],['野球歴','8年'],['好きな球種','直球のみ']],
+    trajectory:3,
     stats:[
-      {n:'ミート',v:62},{n:'パワー',v:74},{n:'走力',v:55},
-      {n:'肩力',v:68},{n:'守備',v:41},{n:'宴会力',v:100},
+      {n:'ミート', v:62},{n:'パワー', v:74},{n:'走力',   v:55},
+      {n:'肩力',   v:68},{n:'守備力', v:41},{n:'捕球',   v:50},
     ],
     abilities:[
-      {i:'★',n:'精神的支柱',t:'gold',d:'チームが崩れかけたとき、不思議とまとまる。理由は不明だが全員が認める事実。'},
-      {i:'声',n:'野次将軍',t:'red',d:'ベンチからの声援が激しすぎて相手チームが笑い出すことがある。'},
-      {i:'杯',n:'乾杯マスター',t:'blue',d:'乾杯の音頭は全試合後必ず担当。所要時間は平均2分15秒。'},
-      {i:'鉄',n:'鉄板話術',t:'white',d:'同じエピソードを3年言い続けているが毎回ウケる謎のスキル。'},
+      {type:'graded',  n:'宴会力',   g:'S', d:'飲み会でのパフォーマンスは規格外。乾杯の音頭は毎回2分超え。'},
+      {type:'graded',  n:'チャンス', g:'B', d:'大事な場面で集中力が上がる。普段との差が激しい。'},
+      {type:'graded',  n:'声量',     g:'A', d:'ベンチからの声援が激しすぎて相手チームが笑い出す。'},
+      {type:'bool',    n:'キャプテン○', d:'不思議とチームがまとまる。理由は誰も説明できない。'},
+      {type:'bool',    n:'鉄板話術○',   d:'同じ話を3年言い続けているが毎回ウケる謎スキル。'},
+      {type:'negative',n:'守備難民',     d:'守備位置の希望が毎回バラバラ。毎試合じゃんけんで決まる。'},
     ],
   },
   {
-    id:2, num:'1', color:'#2266dd',
-    name:'佐藤 健太', kana:'SATO KENTA',
-    pos:'先発投手', bat:'右', thr:'右',
-    overall:88,
-    photo:'photos/sato.jpg',
+    id:2,surname:'佐藤',num:'1',pitcher:true,
+    name:'佐藤 健太',kana:'SATO KENTA',
+    pos:'先発投手',bat:'右',thr:'右',
+    starRating:341,
+    results:{avg:'---',hr:0,rbi:0,sb:0},
+    form:'スタンダード',defPos:'投手',
+    photo:'photos/sato.jpg',chibi:'🧑',
     catchphrase:'「ストライクは入らないが、ハートは入れる。」',
-    profile:'エースの称号を持ちながら制球に難がある浪漫型投手。四球で貯めたランナーを何とかしてきたここ4年の実績は本物。仕事では設計部の精密屋として知られる二面性の持ち主。',
-    info:[['所属部署','設計部'],['野球歴','12年'],['好きな球種','スローカーブ']],
+    trajectory:4,
     stats:[
-      {n:'球速',v:72},{n:'コントロール',v:38},{n:'スタミナ',v:80},
-      {n:'変化球',v:65},{n:'メンタル',v:90},{n:'宴会力',v:76},
+      {n:'球速',    v:72},{n:'コント',  v:38},{n:'スタミナ',v:80},
+      {n:'変化球',  v:65},{n:'メンタル',v:90},{n:'宴会力',  v:76},
     ],
     abilities:[
-      {i:'★',n:'浪漫の四球',t:'gold',d:'ピンチを作り自分で抑える。ハイリスクハイリターンを体現する生き様。'},
-      {i:'鋼',n:'鋼のメンタル',t:'red',d:'満塁でも顔色が変わらない。むしろ楽しんでいる節がある。'},
-      {i:'遅',n:'スローカーブ愛',t:'blue',d:'打者が「え、今の何？」と言う軌道を持つ独自変化球を保有。'},
-      {i:'暴',n:'暴投常習犯',t:'purple',d:'ウォームアップ中に最も多くの窓ガラスを割った記録を保持している（4枚）。'},
+      {type:'graded',  n:'メンタル', g:'S', d:'満塁でも顔色が変わらない。むしろ楽しんでいる節がある。'},
+      {type:'graded',  n:'スタミナ', g:'B', d:'長いイニングを投げられるが四球でスタミナを浪費しがち。'},
+      {type:'bool',    n:'浪漫投法○',    d:'ピンチを自ら作り自ら抑える。ハイリスクハイリターン体現者。'},
+      {type:'bool',    n:'スローカーブ○',d:'打者が「え、今の何？」と言う軌道の謎変化球を所持。'},
+      {type:'negative',n:'四球病',       d:'四球を出す確率がプロ以上。なぜかアウトも取れる謎の両極端。'},
+      {type:'negative',n:'暴投常習犯',   d:'ウォームアップで窓ガラスを最も多く割った記録保持者（4枚）。'},
     ],
   },
   {
-    id:3, num:'2', color:'#228844',
-    name:'鈴木 拓也', kana:'SUZUKI TAKUYA',
-    pos:'捕手', bat:'右', thr:'右',
-    overall:79,
-    photo:'photos/suzuki.jpg',
+    id:3,surname:'鈴木',num:'2',pitcher:false,
+    name:'鈴木 拓也',kana:'SUZUKI TAKUYA',
+    pos:'捕手',bat:'右',thr:'右',
+    starRating:310,
+    results:{avg:'.228',hr:1,rbi:8,sb:0},
+    form:'スタンダード',defPos:'捕手',
+    photo:'photos/suzuki.jpg',chibi:'🧑',
     catchphrase:'「受け止めるのが仕事。ボールも、愚痴も。」',
-    profile:'チームのまとめ役、正捕手。打者の配球を読む能力より、同僚の愚痴を聞く能力のほうが高いと言われる。総務部でも何でも引き受ける。休憩中に声をかけられた回数は社内トップ。',
-    info:[['所属部署','総務部'],['野球歴','6年'],['好きな球種','なんでも来い']],
+    trajectory:2,
     stats:[
-      {n:'ミート',v:58},{n:'パワー',v:55},{n:'走力',v:44},
-      {n:'肩力',v:76},{n:'守備',v:85},{n:'宴会力',v:88},
+      {n:'ミート', v:58},{n:'パワー', v:55},{n:'走力',   v:44},
+      {n:'肩力',   v:76},{n:'守備力', v:85},{n:'捕球',   v:90},
     ],
     abilities:[
-      {i:'★',n:'全員の父',t:'gold',d:'年齢関係なく相談を受ける。解決はしないが、聞いてくれるだけで楽になる。'},
-      {i:'止',n:'ワンバン必止',t:'red',d:'どんなワンバウンドも体で止める。ユニフォームの汚れ量が証明している。'},
-      {i:'配',n:'完璧なサイン',t:'green',d:'投手が首を振ることがほぼない。振られたときだけ顔が少し曇る。'},
-      {i:'重',n:'重量級走塁',t:'purple',d:'全力疾走でもペースが変わらない独自の物理法則を持っている。'},
+      {type:'graded',  n:'捕球',   g:'A', d:'どんなワンバウンドも体で止める。ユニフォームの汚れが証明。'},
+      {type:'graded',  n:'配球',   g:'A', d:'投手が首を振ることがほぼない。振られたときだけ顔が曇る。'},
+      {type:'graded',  n:'傾聴力', g:'S', d:'年齢関係なく相談を受ける。解決はしないが聞いてくれる。'},
+      {type:'bool',    n:'全員の父○',  d:'チームの精神的支柱。困ったらまず鈴木さんに相談する文化。'},
+      {type:'negative',n:'重量級走塁', d:'全力疾走でもペースが変わらない独自の物理法則。'},
     ],
   },
   {
-    id:4, num:'3', color:'#dd8800',
-    name:'山田 誠一', kana:'YAMADA SEIICHI',
-    pos:'一塁手', bat:'左', thr:'右',
-    overall:85,
-    photo:'photos/yamada.jpg',
+    id:4,surname:'山田',num:'3',pitcher:false,
+    name:'山田 誠一',kana:'YAMADA SEIICHI',
+    pos:'一塁手',bat:'左',thr:'右',
+    starRating:355,
+    results:{avg:'.262',hr:8,rbi:22,sb:0},
+    form:'パワー型',defPos:'一塁',
+    photo:'photos/yamada.jpg',chibi:'🧑',
     catchphrase:'「飛ばしたら勝ち。理屈はあとでいい。」',
-    profile:'チーム唯一の本物のホームランバッター。スイング軌道が独特すぎて誰も真似できない。企画部でも「考えるより動く」スタイルで成果を出す行動派。打ち上げでのお酒の量も一発本塁打。',
-    info:[['所属部署','企画部'],['野球歴','10年'],['好きな球種','甘い球全般']],
+    trajectory:5,
     stats:[
-      {n:'ミート',v:62},{n:'パワー',v:95},{n:'走力',v:48},
-      {n:'肩力',v:70},{n:'守備',v:55},{n:'宴会力',v:91},
+      {n:'ミート', v:62},{n:'パワー', v:95},{n:'走力',   v:48},
+      {n:'肩力',   v:70},{n:'守備力', v:55},{n:'捕球',   v:52},
     ],
     abilities:[
-      {i:'★',n:'一発長打',t:'gold',d:'凡打かホームランかの二択。その潔さをチームは愛している。'},
-      {i:'引',n:'引っ張り専門',t:'red',d:'逆方向に飛んだことが観測史上一度もない。本人も認めている。'},
-      {i:'振',n:'豪快三振',t:'purple',d:'空振りするとき必ずフルスイング。ハーフスイングという概念がない。'},
-      {i:'祭',n:'宴会の主役',t:'blue',d:'打ち上げが始まると本番が始まるタイプ。グラウンドより輝く。'},
+      {type:'graded',  n:'パワー', g:'S', d:'凡打かホームランかの二択。その潔さをチームは愛している。'},
+      {type:'graded',  n:'宴会力', g:'A', d:'打ち上げが始まると本番が始まる。グラウンドより輝く。'},
+      {type:'bool',    n:'一発長打○',   d:'スイング軌道が独特すぎて誰も真似できない天性のフォーム。'},
+      {type:'negative',n:'引っ張り専門',d:'逆方向に飛んだことが観測史上一度もない。本人も認めている。'},
+      {type:'negative',n:'豪快三振',    d:'空振りするとき必ずフルスイング。ハーフスイングという概念がない。'},
     ],
   },
   {
-    id:5, num:'6', color:'#9922cc',
-    name:'中村 翔', kana:'NAKAMURA SHO',
-    pos:'二塁手', bat:'右', thr:'右',
-    overall:76,
-    photo:'photos/nakamura.jpg',
+    id:5,surname:'中村',num:'6',pitcher:false,
+    name:'中村 翔',kana:'NAKAMURA SHO',
+    pos:'二塁手',bat:'右',thr:'右',
+    starRating:265,
+    results:{avg:'.198',hr:0,rbi:5,sb:3},
+    form:'スタンダード',defPos:'二塁',
+    photo:'photos/nakamura.jpg',chibi:'🧑',
     catchphrase:'「データは裏切らない。俺の打率も正直だ。」',
-    profile:'チームのスコアラー兼アナリスト。試合中にiPadでデータを記録しているが、守備位置を離れがちになる副作用がある。IT部門では社内システムの神として崇められている。',
-    info:[['所属部署','情報システム部'],['野球歴','4年'],['好きな球種','データ上の弱点球']],
+    trajectory:2,
     stats:[
-      {n:'ミート',v:52},{n:'パワー',v:44},{n:'走力',v:71},
-      {n:'肩力',v:59},{n:'守備',v:68},{n:'宴会力',v:60},
+      {n:'ミート', v:52},{n:'パワー', v:44},{n:'走力',   v:71},
+      {n:'肩力',   v:59},{n:'守備力', v:68},{n:'捕球',   v:60},
     ],
     abilities:[
-      {i:'★',n:'データの鬼',t:'gold',d:'全打者の攻略データを所持。なぜか自分の打率だけ都合よく除外される。'},
-      {i:'IT',n:'スコアラー',t:'blue',d:'リアルタイムでスコアを入力。ただし記録に夢中で守備に遅れることがある。'},
-      {i:'冷',n:'冷静沈着',t:'green',d:'ピンチでもデータを見て「理論上は抑えられます」と言える唯一の存在。'},
-      {i:'帰',n:'定時帰宅志向',t:'white',d:'打ち上げは2時間が限界。22時には必ず帰宅する。データがあるので。'},
+      {type:'graded',  n:'分析力', g:'S', d:'全打者の攻略データを所持。なぜか自分の打率だけ除外される。'},
+      {type:'graded',  n:'走塁',   g:'C', d:'足は速いが走るタイミングをためらう癖がある。'},
+      {type:'bool',    n:'スコアラー○',d:'リアルタイムでスコア入力。記録に夢中で守備に遅れることも。'},
+      {type:'bool',    n:'冷静沈着○',  d:'ピンチでも「理論上は抑えられます」と言える唯一の存在。'},
+      {type:'negative',n:'定時帰宅',   d:'打ち上げは2時間が限界。22時には必ず帰宅。データがあるので。'},
     ],
   },
   {
-    id:6, num:'8', color:'#11aacc',
-    name:'小林 亮太', kana:'KOBAYASHI RYOTA',
-    pos:'中堅手', bat:'左', thr:'左',
-    overall:81,
-    photo:'photos/kobayashi.jpg',
+    id:6,surname:'小林',num:'8',pitcher:false,
+    name:'小林 亮太',kana:'KOBAYASHI RYOTA',
+    pos:'中堅手',bat:'左',thr:'左',
+    starRating:298,
+    results:{avg:'.271',hr:0,rbi:6,sb:11},
+    form:'スピード型',defPos:'中堅',
+    photo:'photos/kobayashi.jpg',chibi:'🧑',
     catchphrase:'「追いついてみせる。打球も、締切も。」',
-    profile:'チームで最も足が速い俊足の中堅手。外野の守備範囲はチーム随一だが、打席に入ると途端に大人しくなる謎の変身能力を持つ。マーケ部ではデッドラインを颯爽と駆け抜ける仕事ぶりで有名。',
-    info:[['所属部署','マーケティング部'],['野球歴','7年'],['好きな球種','高めのストレート']],
+    trajectory:3,
     stats:[
-      {n:'ミート',v:55},{n:'パワー',v:42},{n:'走力',v:95},
-      {n:'肩力',v:72},{n:'守備',v:88},{n:'宴会力',v:78},
+      {n:'ミート', v:55},{n:'パワー', v:42},{n:'走力',   v:95},
+      {n:'肩力',   v:72},{n:'守備力', v:88},{n:'捕球',   v:82},
     ],
     abilities:[
-      {i:'★',n:'疾風の脚力',t:'gold',d:'内野ゴロで全力疾走。生き足として内野を揺さぶる唯一の存在。'},
-      {i:'広',n:'広大な守備範囲',t:'green',d:'他の外野手が諦めた打球まで追いつく。なぜか打席では足が使えない。'},
-      {i:'盗',n:'盗塁成功率',t:'blue',d:'盗塁を試みると9割成功する。なぜか毎回走るタイミングをためらう。'},
-      {i:'軟',n:'打席チキン',t:'purple',d:'打席に入ると足の速さが消える謎の体質。守備と打撃で別人。'},
+      {type:'graded',  n:'走力', g:'S', d:'内野ゴロで全力疾走。生き足でプレッシャーをかけ続ける。'},
+      {type:'graded',  n:'守備', g:'A', d:'他の外野手が諦めた打球まで追いつく。守備範囲が圧倒的。'},
+      {type:'graded',  n:'盗塁', g:'B', d:'盗塁成功率9割超。なぜか走るタイミングをためらう。'},
+      {type:'bool',    n:'疾風脚○',    d:'40m走タイムはチームダントツ1位。ユニフォームが常に風になびく。'},
+      {type:'negative',n:'打席チキン', d:'打席に入ると足の速さが消える謎の体質。守備と打撃で別人。'},
     ],
   },
 ];
 
-/* ──────────────────────────────────────────
-   ロースター描画
-────────────────────────────────────────── */
-let currentId=null;
-
-function renderRoster(){
-  const list=document.getElementById('rosterList');
-  document.getElementById('memberCount').textContent=PLAYERS.length;
-  list.innerHTML='';
+/* ── サイドバー描画 ── */
+function renderSidebar(){
+  const sb=document.getElementById('sb');
   PLAYERS.forEach(p=>{
-    const row=document.createElement('div');
-    row.className='p-row';
-    row.id='row-'+p.id;
-    row.style.setProperty('--pc',p.color);
-    const oc=ovColor(p.overall);
-    row.style.setProperty('--oc',oc);
-    row.innerHTML=`
-      <div class="p-num" style="background:${p.color}">${p.num}</div>
-      <div class="p-pos">${p.pos}</div>
-      <div class="p-name">${p.name}</div>
-      <div class="p-ov" style="color:${oc}">${p.overall}</div>
-    `;
-    row.addEventListener('click',()=>selectPlayer(p.id));
-    list.appendChild(row);
+    const el=document.createElement('div');
+    el.className='npill'+(p.pitcher?' pitcher':'');
+    el.id='pill-'+p.id;
+    el.textContent=p.surname;
+    el.addEventListener('click',()=>selectPlayer(p.id));
+    sb.appendChild(el);
   });
 }
 
-/* ──────────────────────────────────────────
-   カード描画
-────────────────────────────────────────── */
+/* ── カード描画 ── */
 function selectPlayer(id){
-  currentId=id;
-  document.querySelectorAll('.p-row').forEach(r=>r.classList.remove('active'));
-  const row=document.getElementById('row-'+id);
-  if(row)row.classList.add('active');
+  document.querySelectorAll('.npill').forEach(el=>el.classList.remove('active'));
+  const pill=document.getElementById('pill-'+id);
+  if(pill)pill.classList.add('active');
 
   const p=PLAYERS.find(x=>x.id===id);
   if(!p)return;
 
+  /* 能力値HTML */
   const statsHtml=p.stats.map(s=>{
     const g=toG(s.v);
-    return`<div class="stat-row">
+    return`<div class="srow">
       <span class="sn">${s.n}</span>
-      <span class="sv">${s.v}</span>
       <div class="gb g-${g}">${g}</div>
-      <div class="sb-bg"><div class="sb-fill b-${g}" style="width:0" data-w="${s.v}%"></div></div>
+      <span class="sv">${s.v}</span>
     </div>`;
   }).join('');
 
-  const chipsHtml=p.abilities.map(a=>`
-    <div class="chip t-${a.t}">
-      <div class="ci">${a.i}</div>
-      <div class="cn">${a.n}</div>
-      <div class="chip-tip">${a.d}</div>
-    </div>
-  `).join('');
+  /* 特殊能力HTML */
+  const abHtml=p.abilities.map(a=>{
+    if(a.type==='graded'){
+      const neg=(a.g==='F'||a.g==='G');
+      return`<div class="chip ${neg?'cr':'cg'}">
+        ${a.n}<div class="ag g-${a.g}">${a.g}</div>
+        <div class="tip">${a.d}</div>
+      </div>`;
+    }else if(a.type==='bool'){
+      return`<div class="chip cb">${a.n}<div class="tip">${a.d}</div></div>`;
+    }else{
+      return`<div class="chip cm">${a.n}<div class="tip">${a.d}</div></div>`;
+    }
+  }).join('');
 
-  const infoHtml=(p.info||[]).map(([k,v])=>`
-    <div class="i-row"><span class="ik">${k}</span><span class="iv">${v}</span></div>
-  `).join('');
+  /* 成績HTML */
+  const resHtml=p.results.avg==='---'
+    ?`<span class="res-v">投手</span>`
+    :`<span class="res-lbl">成績</span>
+      <span class="res-v">率${p.results.avg}</span>
+      <span class="res-sep">|</span>
+      <span class="res-v">${p.results.hr}本</span>
+      <span class="res-sep">|</span>
+      <span class="res-v">${p.results.rbi}打点</span>
+      <span class="res-sep">|</span>
+      <span class="res-v">${p.results.sb}盗</span>`;
 
-  document.getElementById('cardPanel').innerHTML=`
-  <div class="player-card">
-    <div class="card-frame">
-      <div class="c-header">
-        <div class="c-accent" style="background:${p.color}"></div>
-        <div class="c-hcenter">
-          <div class="c-pos" style="background:${p.color}">${p.pos}</div>
-          <div class="c-num-badge">#${p.num}</div>
-          <div>
-            <div class="c-name">${p.name}</div>
-            <div class="c-kana">${p.kana}</div>
-          </div>
-          <div class="satei">
-            <div class="satei-l">査定</div>
-            <div class="satei-n">${p.overall}</div>
-            <div class="satei-u">OVERALL</div>
-          </div>
+  document.getElementById('cw').innerHTML=`
+  <div class="pcard">
+    <div class="ch">
+      <div class="ch-r1">
+        <div class="tbadge">⚾</div>
+        <div class="pname">${p.name}</div>
+        <div class="numbadge"><span class="eq">≡</span>${p.num}</div>
+        <div class="starbox">
+          <span class="star-ico">★</span>
+          <span class="star-n">${p.starRating}</span>
+        </div>
+        <div class="chibi">
+          <img src="${p.photo}" alt="${p.name}"
+            onload="this.classList.add('loaded')">
+          <span>${p.chibi}</span>
         </div>
       </div>
-      <div class="c-body">
-        <div class="portrait">
-          <div class="portrait-box" style="background:linear-gradient(135deg,#0a0a20,#060618)">
-            <img class="p-img" src="${p.photo}" alt="${p.name}"
-              onload="this.classList.add('loaded');this.nextElementSibling.style.display='none'">
-            <div class="p-emoji">🧑</div>
-          </div>
-          <div class="p-info">${infoHtml}</div>
-        </div>
-        <div class="c-right">
-          <div>
-            <div class="sec">◆ 基本能力</div>
-            ${statsHtml}
-          </div>
-          <div>
-            <div class="sec">◆ 特殊能力</div>
-            <div class="chips">${chipsHtml}</div>
-          </div>
-          <div class="profile">${p.profile}</div>
-        </div>
-      </div>
-      <div class="catchphrase">${p.catchphrase}</div>
-      <div class="handedness">
-        <div class="hand-item"><div class="hand-l">投</div><div class="hand-v">${p.thr}投げ</div></div>
-        <div class="hand-item"><div class="hand-l">打</div><div class="hand-v">${p.bat}打ち</div></div>
+      <div class="ch-r2">${resHtml}</div>
+      <div class="ch-r3">
+        <div><span class="mk">フォーム</span><span class="mv">${p.form}</span></div>
+        <div><span class="mk">投打</span><span class="mv">${p.thr}投${p.bat}打</span></div>
+        <div><span class="mk">守備位置</span><span class="mv">${p.defPos}</span></div>
       </div>
     </div>
+    <div class="cbody">
+      <div class="scol">
+        <div class="srow">
+          <span class="sn">弾道</span>
+          <span class="trj">${TRJ[Math.min(p.trajectory,5)]||'→'}</span>
+          <span class="sv">${p.trajectory}</span>
+        </div>
+        ${statsHtml}
+      </div>
+      <div class="acol">${abHtml}</div>
+    </div>
+    <div class="cphr">${p.catchphrase}</div>
   </div>`;
-
-  setTimeout(()=>{
-    document.querySelectorAll('.sb-fill').forEach(b=>{b.style.width=b.dataset.w;});
-  },30);
 }
 
 /* 初期化 */
-renderRoster();
+renderSidebar();
 selectPlayer(PLAYERS[0].id);
 </script>
 </body>
