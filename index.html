@@ -276,6 +276,14 @@
     }
     .chip:hover .tip{display:block;}
 
+    /* ─── 画像まるごと表示（鴨下モード） ─── */
+    .card-img-full{
+      display:block;width:100%;height:auto;
+      max-height:calc(100vh - 36px - 32px);
+      object-fit:contain;object-position:top left;
+      background:#f0f4ff;
+    }
+
     /* ─── キャッチコピー ─── */
     .cphr{
       background:linear-gradient(90deg,#06081e,#0c1430,#06081e);
@@ -465,6 +473,30 @@ const PLAYERS=[
     ],
   },
   {
+    id:7,surname:'鴨下',num:'17',pitcher:true,
+    name:'鴨下',kana:'KAMOSHITA',
+    pos:'投手・外野手',bat:'左',thr:'右',
+    starRating:465,
+    results:{avg:'.022',hr:0,rbi:1,sb:1},
+    form:'スタンダード25',defPos:'投手 外野手',
+    photo:'photos/kamoshita.jpg',chibi:'🧑',
+    catchphrase:'',
+    trajectory:-2,
+    /* cardImage があるとき → 画像をそのまま全面表示 */
+    cardImage:'photos/kamoshita.jpg',
+    stats:[
+      {n:'ミート', v:69},{n:'パワー', v:85},{n:'走力',   v:72},
+      {n:'肩力',   v:65},{n:'守備力', v:72},{n:'捕球',   v:63},
+    ],
+    abilities:[
+      {type:'bool',    n:'真っスラ',   d:'真っ直ぐに見せてスライダーで打ち取る。制球の妙。'},
+      {type:'bool',    n:'ゲームメイク',d:'試合の流れを読んで最善手を選ぶ頭脳派の証明。'},
+      {type:'bool',    n:'進塁打◎',   d:'走者を進めるためなら何でもする。チームプレーの鑑。'},
+      {type:'bool',    n:'緩急◎',     d:'遅いボールと速いボールの使い分けが常人離れしている。'},
+      {type:'graded',  n:'調子者',    g:'C', d:'調子の波が激しい。良いときと悪いときの差が大きい。'},
+    ],
+  },
+  {
     id:6,surname:'小林',num:'8',pitcher:false,
     name:'小林 亮太',kana:'KOBAYASHI RYOTA',
     pos:'中堅手',bat:'左',thr:'左',
@@ -546,6 +578,15 @@ function selectPlayer(id){
       <span class="res-v">${p.results.rbi}打点</span>
       <span class="res-sep">|</span>
       <span class="res-v">${p.results.sb}盗</span>`;
+
+  /* cardImage があるとき → 画像をそのまま表示 */
+  if(p.cardImage){
+    document.getElementById('cw').innerHTML=`
+    <div class="pcard">
+      <img class="card-img-full" src="${p.cardImage}" alt="${p.name}">
+    </div>`;
+    return;
+  }
 
   document.getElementById('cw').innerHTML=`
   <div class="pcard">
