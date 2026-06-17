@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>野球部 OFFICIAL SITE 2024</title>
+  <title>麻布台エンジェルス OFFICIAL SITE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
@@ -11,337 +11,327 @@
 
     body{
       font-family:'Noto Sans JP','Hiragino Kaku Gothic Pro',sans-serif;
-      background:#04080e;
-      color:#fff;
-      min-height:100vh;
+      background:#04080e;color:#fff;
       background-image:
         radial-gradient(ellipse at 10% 80%,rgba(20,60,160,.4) 0%,transparent 55%),
         radial-gradient(ellipse at 90% 10%,rgba(100,20,160,.3) 0%,transparent 50%),
         repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(0,0,40,.4) 3px,rgba(0,0,40,.4) 4px);
     }
 
-    /* ─── グローバルナビ ─── */
+    /* ─── ナビ ─── */
     .gnav{
       height:44px;
       background:linear-gradient(90deg,#04080e 0%,#0a1428 50%,#04080e 100%);
       border-bottom:2px solid #b89000;
-      display:flex;align-items:center;
-      padding:0 16px;gap:2px;
+      display:flex;align-items:center;padding:0 16px;gap:2px;
     }
-    .gnav-logo{
-      font-size:16px;font-weight:900;color:#f0c800;
-      letter-spacing:3px;margin-right:20px;
-      text-shadow:0 0 10px rgba(240,200,0,.4);
-      white-space:nowrap;
-    }
-    .gnav-links{display:flex;gap:2px;align-items:center;}
-    .gnav-link{
-      font-size:12px;font-weight:700;
-      padding:5px 14px;border-radius:3px;
-      text-decoration:none;color:#aabbcc;
-      border:1px solid transparent;
-      transition:all .15s;white-space:nowrap;
-    }
+    .gnav-logo{font-size:16px;font-weight:900;color:#f0c800;letter-spacing:3px;margin-right:20px;text-shadow:0 0 10px rgba(240,200,0,.4);white-space:nowrap;}
+    .gnav-link{font-size:12px;font-weight:700;padding:5px 14px;border-radius:3px;text-decoration:none;color:#aabbcc;border:1px solid transparent;transition:all .15s;white-space:nowrap;}
     .gnav-link:hover{color:#fff;border-color:#2244aa;background:rgba(34,68,170,.2);}
-    .gnav-link.active{
-      color:#fff;background:linear-gradient(180deg,#1a4488,#0d2a66);
-      border-color:#3366cc;
-    }
+    .gnav-link.active{color:#fff;background:linear-gradient(180deg,#1a4488,#0d2a66);border-color:#3366cc;}
 
-    /* ─── ヒーローバナー ─── */
+    /* ─── ヒーロー ─── */
     .hero{
-      background:linear-gradient(180deg,#08122a 0%,#0a1830 60%,#04080e 100%);
+      background:linear-gradient(180deg,#06102a 0%,#091828 60%,#04080e 100%);
       border-bottom:1px solid #1a2a4a;
       padding:24px 20px 20px;
       display:flex;align-items:center;gap:16px;
       position:relative;overflow:hidden;
     }
-    .hero::before{
-      content:'';position:absolute;inset:0;
-      background:repeating-linear-gradient(
-        -55deg,transparent,transparent 20px,
-        rgba(255,215,0,.015) 20px,rgba(255,215,0,.015) 40px
-      );
-    }
+    .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 20px,rgba(255,215,0,.015) 20px,rgba(255,215,0,.015) 40px);}
     .hero-emblem{
       width:72px;height:72px;border-radius:50%;flex-shrink:0;
       background:linear-gradient(135deg,#cc2200,#880000);
-      display:flex;align-items:center;justify-content:center;
-      font-size:38px;
+      display:flex;align-items:center;justify-content:center;font-size:38px;
       box-shadow:0 0 20px rgba(200,30,0,.5),inset 0 2px 0 rgba(255,255,255,.2);
       position:relative;z-index:1;
     }
     .hero-text{position:relative;z-index:1;}
-    .hero-team{font-size:clamp(24px,5vw,38px);font-weight:900;color:#fff;letter-spacing:4px;}
+    .hero-team{font-size:clamp(22px,5vw,36px);font-weight:900;color:#fff;letter-spacing:4px;}
     .hero-sub{font-size:11px;color:#6688aa;letter-spacing:4px;margin-top:3px;}
     .hero-badges{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
-    .hbadge{
-      font-size:10px;font-weight:700;letter-spacing:1px;
-      padding:3px 10px;border-radius:12px;
-      background:rgba(240,200,0,.12);border:1px solid rgba(240,200,0,.3);
-      color:#f0c800;
-    }
+    .hbadge{font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:12px;background:rgba(240,200,0,.12);border:1px solid rgba(240,200,0,.3);color:#f0c800;}
     .hbadge.red{background:rgba(220,50,20,.15);border-color:rgba(220,50,20,.4);color:#ff7755;}
+    .hbadge.green{background:rgba(20,200,80,.12);border-color:rgba(20,200,80,.3);color:#44ee88;}
 
-    /* ─── メインコンテンツ ─── */
-    .content{
-      max-width:1100px;margin:0 auto;padding:20px 16px 40px;
-      display:flex;flex-direction:column;gap:20px;
-    }
+    /* ─── コンテンツ ─── */
+    .content{max-width:1000px;margin:0 auto;padding:20px 16px 0;}
 
-    /* ─── 上段2カラム ─── */
-    .top-grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:16px;
-    }
-    @media(max-width:700px){.top-grid{grid-template-columns:1fr;}}
-
-    /* ─── セクション共通パネル ─── */
-    .panel{
-      background:linear-gradient(180deg,#0a0e20 0%,#070912 100%);
-      border:1px solid #1a2044;border-radius:4px;
-      overflow:hidden;
-      box-shadow:0 0 20px rgba(10,20,60,.5);
-    }
-    .panel-hd{
-      display:flex;align-items:center;gap:8px;
-      padding:8px 14px;
-      background:linear-gradient(90deg,#0d1a3a,#091228);
-      border-bottom:2px solid #1a2a5a;
-    }
+    /* パネル共通 */
+    .panel{background:linear-gradient(180deg,#0a0e20 0%,#070912 100%);border:1px solid #1a2044;border-radius:4px;overflow:hidden;box-shadow:0 0 20px rgba(10,20,60,.5);}
+    .panel-hd{display:flex;align-items:center;gap:8px;padding:8px 14px;background:linear-gradient(90deg,#0d1a3a,#091228);border-bottom:2px solid #1a2a5a;}
     .panel-hd-ico{font-size:16px;}
     .panel-hd-title{font-size:12px;font-weight:900;color:#aabbdd;letter-spacing:3px;}
-    .panel-hd-badge{
-      margin-left:auto;font-size:9px;font-weight:700;
-      padding:2px 8px;border-radius:10px;letter-spacing:1px;
-    }
+    .panel-hd-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:1px;}
     .badge-live{background:rgba(220,50,20,.2);border:1px solid #dd3311;color:#ff7755;}
     .badge-soon{background:rgba(240,200,0,.15);border:1px solid #b89000;color:#f0c800;}
     .badge-done{background:rgba(50,80,150,.2);border:1px solid #334488;color:#7799cc;}
 
-    /* ─── NEXT GAME カード ─── */
-    .next-game{padding:14px;}
-    .ng-date{
-      font-size:11px;color:#6688aa;letter-spacing:2px;margin-bottom:6px;
-    }
-    .ng-main{
-      display:flex;align-items:center;gap:12px;
-      padding:12px;
-      background:rgba(255,255,255,.03);
-      border:1px solid #1a2040;border-radius:3px;
-      margin-bottom:12px;
-    }
-    .ng-vs-badge{
-      background:linear-gradient(135deg,#dd3311,#991100);
-      color:#fff;font-size:10px;font-weight:900;
-      padding:3px 8px;border-radius:2px;flex-shrink:0;
-    }
-    .ng-opponent{font-size:18px;font-weight:900;color:#fff;letter-spacing:2px;}
-    .ng-time{font-size:11px;color:#7799bb;margin-top:2px;}
-    .ng-info-grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;
-    }
-    .ng-info-item{
-      background:rgba(0,0,0,.3);border:1px solid #111a2a;border-radius:3px;
-      padding:6px 10px;
-    }
-    .ng-info-label{font-size:9px;color:#445566;letter-spacing:1px;}
-    .ng-info-val{font-size:12px;font-weight:700;color:#cce;margin-top:2px;}
-    /* 参加ボタン */
-    .recruit-bar{
-      background:linear-gradient(90deg,#cc2200,#991100);
-      border:1px solid #ee4422;border-radius:3px;
-      padding:10px 14px;
-      display:flex;align-items:center;justify-content:space-between;
-      cursor:pointer;transition:filter .15s;
-    }
-    .recruit-bar:hover{filter:brightness(1.15);}
-    .rb-left .rb-title{font-size:14px;font-weight:900;letter-spacing:2px;color:#fff;}
-    .rb-left .rb-sub{font-size:10px;color:#ffcccc;margin-top:2px;}
-    .rb-right{
-      background:rgba(255,255,255,.2);
-      border:1px solid rgba(255,255,255,.3);
-      border-radius:3px;padding:6px 16px;
-      font-size:12px;font-weight:900;color:#fff;
-    }
-    /* 参加者カウンター */
-    .member-count{
-      display:flex;align-items:center;gap:8px;
-      margin-top:10px;font-size:11px;color:#6688aa;
-    }
-    .count-bar-bg{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;}
-    .count-bar-fill{height:100%;background:linear-gradient(90deg,#dd3311,#ff6644);border-radius:3px;transition:width 1s ease;}
-    .count-num{color:#ff7755;font-weight:700;white-space:nowrap;}
+    /* ─── トーナメント：麻布台の軌跡 ─── */
+    .tourney-wrap{padding:14px 16px 16px;}
+    .tourney-meta{font-size:10px;color:#4a6a8a;letter-spacing:2px;margin-bottom:14px;}
 
-    /* ─── トーナメント表 ─── */
-    .bracket-wrap{padding:14px 10px;}
-    .bracket{
-      display:flex;
-      gap:0;
-      align-items:stretch;
-      overflow-x:auto;
+    /* 軌跡ステップ */
+    .path-flow{
+      display:flex;align-items:stretch;gap:0;
+      overflow-x:auto;padding-bottom:4px;
     }
-    .b-round{
+    .path-step{
+      flex:1;min-width:120px;
       display:flex;flex-direction:column;
-      flex:1;min-width:100px;
-    }
-    .b-round-label{
-      font-size:9px;font-weight:900;letter-spacing:2px;
-      color:#4466aa;text-align:center;
-      padding:4px 0 8px;
-    }
-    .b-slots{
-      display:flex;flex-direction:column;
-      gap:0;flex:1;
-      justify-content:space-around;
-    }
-    /* マッチアップブロック */
-    .b-match{
-      display:flex;flex-direction:column;
-      position:relative;flex:1;
-      justify-content:center;
-      padding:0 8px;
-    }
-    /* 右側のコネクタ線 */
-    .b-match::after{
-      content:'';position:absolute;
-      right:0;top:25%;height:50%;
-      border-right:2px solid #2244aa;
-    }
-    .b-match.no-connector::after{display:none;}
-    /* 上下の横線 */
-    .b-match::before{
-      content:'';position:absolute;
-      right:0;top:25%;
-      width:8px;height:0;
-      border-top:2px solid #2244aa;
-    }
-    .b-team{
-      display:flex;align-items:center;gap:6px;
-      padding:5px 8px;margin:2px 0;
-      background:linear-gradient(90deg,#0d1828,#08101e);
-      border:1px solid #1a2840;border-radius:3px;
-      font-size:11px;font-weight:700;color:#aabbcc;
       position:relative;
     }
-    .b-team.winner{
-      background:linear-gradient(90deg,#1a3a6a,#0d2044);
-      border-color:#3366cc;color:#fff;
+    /* ステップ間の矢印 */
+    .path-step:not(:last-child)::after{
+      content:'▶';
+      position:absolute;right:-14px;top:50%;transform:translateY(-50%);
+      font-size:16px;color:#2244aa;z-index:2;
     }
-    .b-team.our-team{
-      background:linear-gradient(90deg,#2a1008,#1a0808);
-      border-color:#cc3311;color:#ff9977;
+    .step-inner{
+      flex:1;margin:0 6px;
+      border-radius:4px;overflow:hidden;
+      display:flex;flex-direction:column;
     }
-    .b-team.our-team.winner{
-      background:linear-gradient(90deg,#441508,#2a0a04);
-      border-color:#ee4422;color:#ff7755;
-      box-shadow:0 0 8px rgba(220,50,20,.3);
+    /* 完了済み */
+    .step-done .step-inner{
+      background:linear-gradient(180deg,#0a2a0a,#061406);
+      border:2px solid #228822;
     }
-    .b-team.next-match{
-      background:linear-gradient(90deg,#1a2800,#0d1800);
-      border-color:#44aa00;color:#88ff44;
-      animation:pulse 2s infinite;
+    /* 次戦（点滅） */
+    .step-next .step-inner{
+      background:linear-gradient(180deg,#2a1a00,#180e00);
+      border:2px solid #cc7700;
+      animation:glow-orange 2s infinite;
     }
-    @keyframes pulse{
-      0%,100%{box-shadow:0 0 4px rgba(68,170,0,.3);}
-      50%{box-shadow:0 0 12px rgba(68,170,0,.6);}
-    }
-    .b-team.tbd{color:#334455;border-color:#111a22;font-style:italic;}
-    .b-num{
-      font-size:9px;background:#1a2a44;border-radius:2px;
-      padding:1px 4px;color:#4466aa;flex-shrink:0;
-    }
-    .b-score{
-      margin-left:auto;font-size:12px;font-weight:900;
-      color:#f0c800;
-    }
-    .b-connector-h{
-      height:2px;background:#2244aa;
-      position:absolute;right:-8px;top:50%;transform:translateY(-50%);
-      width:8px;
+    @keyframes glow-orange{
+      0%,100%{box-shadow:0 0 6px rgba(200,120,0,.3);}
+      50%{box-shadow:0 0 16px rgba(200,120,0,.7);}
     }
     /* 決勝 */
-    .b-final .b-team{padding:8px 10px;font-size:13px;}
-    .b-champion{
-      display:flex;flex-direction:column;justify-content:center;
-      padding:0 8px;
+    .step-final .step-inner{
+      background:linear-gradient(180deg,#2a1800,#180e00);
+      border:2px dashed #b89000;
     }
-    .champ-box{
-      padding:10px;text-align:center;
-      background:linear-gradient(135deg,rgba(240,200,0,.1),rgba(200,150,0,.05));
-      border:2px solid rgba(240,200,0,.3);border-radius:4px;
+    /* ラウンド名バー */
+    .step-round-bar{
+      padding:4px 8px;text-align:center;
+      font-size:10px;font-weight:900;letter-spacing:2px;
     }
-    .champ-ico{font-size:28px;}
-    .champ-lbl{font-size:10px;color:#b89000;letter-spacing:2px;margin-top:4px;}
+    .step-done .step-round-bar{background:#114411;color:#44ee44;}
+    .step-next .step-round-bar{background:#442200;color:#ff9922;}
+    .step-final .step-round-bar{background:#2a1800;color:#f0c800;}
+    /* ボディ */
+    .step-body{padding:10px 10px;flex:1;display:flex;flex-direction:column;gap:4px;}
+    .step-score{font-size:20px;font-weight:900;letter-spacing:2px;}
+    .step-done .step-score{color:#44ee44;}
+    .step-next .step-score,.step-final .step-score{color:#f0c800;}
+    .step-vs{font-size:10px;color:#778899;}
+    .step-venue{font-size:11px;font-weight:700;color:#f0c800;}
+    .step-time{font-size:10px;color:#667788;}
+    .step-tag{
+      display:inline-block;margin-top:4px;
+      font-size:10px;font-weight:900;letter-spacing:1px;
+      padding:2px 8px;border-radius:10px;
+    }
+    .tag-win{background:rgba(50,220,50,.15);border:1px solid #33aa33;color:#55ee55;}
+    .tag-next{background:rgba(220,120,0,.2);border:1px solid #cc7700;color:#ff9922;}
+    .tag-final{background:rgba(240,200,0,.15);border:1px solid #b89000;color:#f0c800;}
 
-    /* ─── 試合動画セクション ─── */
-    .videos-section .panel-hd{border-bottom-color:#1a3a1a;}
-    .video-grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-      padding:14px;
+    /* ─── NEXT GAME ─── */
+    .top-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+    @media(max-width:680px){.top-grid{grid-template-columns:1fr;}}
+
+    .next-game{padding:14px;}
+    .ng-date{font-size:11px;color:#6688aa;letter-spacing:2px;margin-bottom:6px;}
+    .ng-main{display:flex;align-items:center;gap:12px;padding:12px;background:rgba(255,255,255,.03);border:1px solid #1a2040;border-radius:3px;margin-bottom:12px;}
+    .ng-semi-badge{background:linear-gradient(135deg,#cc7700,#995500);color:#fff;font-size:10px;font-weight:900;padding:3px 8px;border-radius:2px;flex-shrink:0;white-space:nowrap;}
+    .ng-opponent{font-size:16px;font-weight:900;color:#ff9922;letter-spacing:1px;}
+    .ng-sub{font-size:10px;color:#7799bb;margin-top:2px;}
+    .ng-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;}
+    .ng-info-item{background:rgba(0,0,0,.3);border:1px solid #111a2a;border-radius:3px;padding:6px 10px;}
+    .ng-info-label{font-size:9px;color:#445566;letter-spacing:1px;}
+    .ng-info-val{font-size:12px;font-weight:700;color:#cce;margin-top:2px;}
+    .cheer-bar{
+      background:linear-gradient(90deg,#cc7700,#995500);
+      border:1px solid #ee9922;border-radius:3px;
+      padding:10px 14px;display:flex;align-items:center;justify-content:space-between;
+      cursor:pointer;transition:filter .15s;text-decoration:none;
     }
-    @media(max-width:700px){.video-grid{grid-template-columns:1fr;}}
-    .video-card{
-      background:#070912;border:1px solid #1a2040;border-radius:3px;
-      overflow:hidden;cursor:pointer;
-      transition:border-color .15s,box-shadow .15s;
-    }
-    .video-card:hover{border-color:#3366cc;box-shadow:0 0 12px rgba(50,100,220,.25);}
-    /* YouTube埋め込みラッパー */
-    .yt-wrap{
-      position:relative;width:100%;padding-top:56.25%;/* 16:9 */
-      background:#000;
-    }
-    .yt-wrap iframe{
-      position:absolute;inset:0;width:100%;height:100%;border:none;
-    }
-    /* プレースホルダー */
-    .yt-placeholder{
-      position:absolute;inset:0;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      background:linear-gradient(135deg,#060c18,#0a1020);
-      color:#334;font-size:11px;gap:6px;
-    }
-    .yt-placeholder .play-ico{font-size:32px;opacity:.3;}
-    .yt-placeholder .yt-msg{color:#334455;}
+    .cheer-bar:hover{filter:brightness(1.15);}
+    .cb-title{font-size:14px;font-weight:900;letter-spacing:2px;color:#fff;}
+    .cb-sub{font-size:10px;color:#ffddaa;margin-top:2px;}
+    .cb-btn{background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:3px;padding:6px 16px;font-size:12px;font-weight:900;color:#fff;}
+
+    /* ─── ブラケット（簡略版26チーム） ─── */
+    .bracket-area{padding:12px 10px 14px;}
+    .bracket-scroll{overflow-x:auto;}
+    .bracket{display:flex;gap:0;align-items:stretch;min-width:560px;}
+    .b-round{display:flex;flex-direction:column;flex:1;}
+    .b-round-lbl{font-size:9px;font-weight:900;letter-spacing:2px;color:#4466aa;text-align:center;padding:4px 0 8px;}
+    .b-slots{display:flex;flex-direction:column;gap:0;flex:1;justify-content:space-around;}
+    .b-match{display:flex;flex-direction:column;position:relative;flex:1;justify-content:center;padding:0 6px;}
+    .b-match::after{content:'';position:absolute;right:0;top:25%;height:50%;border-right:1px solid #1a3066;}
+    .b-match.no-line::after{display:none;}
+    .b-team{display:flex;align-items:center;gap:4px;padding:4px 6px;margin:1px 0;background:#080f1e;border:1px solid #111a2a;border-radius:2px;font-size:10px;font-weight:700;color:#445566;}
+    .b-team.winner{background:#0a1a0a;border-color:#226622;color:#77cc77;}
+    .b-team.us{background:#1a0a00;border-color:#cc5500;color:#ff9955;font-weight:900;}
+    .b-team.us.winner{background:#2a1000;border-color:#ee7700;color:#ffcc44;box-shadow:0 0 6px rgba(220,120,0,.3);}
+    .b-team.next{background:#1a1a00;border-color:#aa9900;color:#ffee44;animation:pulse-y 2s infinite;}
+    @keyframes pulse-y{0%,100%{box-shadow:0 0 3px rgba(180,160,0,.2);}50%{box-shadow:0 0 10px rgba(180,160,0,.5);}}
+    .b-team.tbd{color:#222a33;border-color:#0d141e;font-style:italic;}
+    .b-sc{margin-left:auto;font-size:10px;font-weight:900;color:#f0c800;white-space:nowrap;}
+    .b-venue{font-size:9px;color:#336633;margin-left:4px;white-space:nowrap;}
+    .trophy-col{display:flex;flex-direction:column;justify-content:center;padding:0 8px;flex:0 0 60px;}
+    .trophy-box{text-align:center;padding:8px;background:rgba(240,200,0,.06);border:1px dashed rgba(240,200,0,.25);border-radius:4px;}
+    .trophy-ico{font-size:24px;}
+    .trophy-lbl{font-size:8px;color:#b89000;letter-spacing:2px;margin-top:3px;}
+
+    /* ─── 動画 ─── */
+    .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px;}
+    @media(max-width:680px){.video-grid{grid-template-columns:1fr;}}
+    .video-card{background:#070912;border:1px solid #1a2040;border-radius:3px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+    .video-card:hover{border-color:#3366cc;box-shadow:0 0 12px rgba(50,100,220,.2);}
+    .yt-wrap{position:relative;width:100%;padding-top:56.25%;background:#000;}
+    .yt-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+    .yt-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#060c18,#0a1020);gap:6px;}
+    .yt-placeholder .play-ico{font-size:32px;opacity:.25;}
+    .yt-placeholder .yt-msg{color:#334455;font-size:11px;}
     .video-meta{padding:8px 10px;}
     .video-title{font-size:12px;font-weight:700;color:#aabbcc;}
-    .video-date{font-size:10px;color:#445566;margin-top:3px;}
-    .video-result{
-      display:inline-block;font-size:10px;font-weight:700;
-      padding:1px 6px;border-radius:2px;margin-top:4px;
-    }
+    .video-date{font-size:10px;color:#445566;margin-top:2px;}
+    .video-result{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:2px;margin-top:4px;}
     .res-win{background:rgba(50,200,50,.15);border:1px solid #33aa33;color:#66ee66;}
     .res-lose{background:rgba(200,50,50,.15);border:1px solid #aa3333;color:#ee6666;}
-    .res-draw{background:rgba(150,150,50,.15);border:1px solid #888833;color:#cccc66;}
 
-    /* ─── 選手名鑑リンクバナー ─── */
-    .roster-banner{
-      background:linear-gradient(90deg,#0a1428,#1a2a44,#0a1428);
-      border:1px solid #2244aa;border-radius:4px;
-      padding:16px 20px;
-      display:flex;align-items:center;gap:16px;
-      cursor:pointer;text-decoration:none;
-      transition:border-color .15s,box-shadow .15s;
+    /* ════════════════════════════════════════
+       決勝戦観戦招待スライド
+    ════════════════════════════════════════ */
+    .final-invite{
+      margin-top:32px;
+      background:linear-gradient(180deg,#100a00 0%,#0a0500 100%);
+      border:2px solid #c8a000;border-radius:6px;
+      overflow:hidden;
+      box-shadow:0 0 40px rgba(200,160,0,.2),0 0 80px rgba(200,160,0,.08);
+      position:relative;
     }
-    .roster-banner:hover{border-color:#4488ff;box-shadow:0 0 20px rgba(50,100,220,.25);}
-    .rb-ico{font-size:32px;}
-    .rb-title{font-size:18px;font-weight:900;color:#fff;letter-spacing:3px;}
-    .rb-desc{font-size:11px;color:#6688aa;margin-top:3px;letter-spacing:1px;}
-    .rb-arrow{margin-left:auto;font-size:24px;color:#4488ff;}
+    .final-invite::before{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(
+        45deg,transparent,transparent 30px,
+        rgba(240,200,0,.02) 30px,rgba(240,200,0,.02) 60px
+      );
+    }
+    .fi-top{
+      background:linear-gradient(90deg,#1a0800,#2a1200,#1a0800);
+      border-bottom:1px solid #442200;
+      padding:12px 20px;
+      text-align:center;
+      position:relative;z-index:1;
+    }
+    .fi-eyecatch{font-size:11px;font-weight:900;letter-spacing:6px;color:#cc7700;}
+    .fi-main{padding:28px 20px;text-align:center;position:relative;z-index:1;}
+    .fi-trophy{font-size:56px;line-height:1;filter:drop-shadow(0 0 20px rgba(240,200,0,.6));}
+    .fi-title{
+      font-size:clamp(28px,6vw,48px);font-weight:900;
+      color:#f0c800;letter-spacing:6px;margin-top:12px;
+      text-shadow:0 0 20px rgba(240,200,0,.5);
+    }
+    .fi-sub{font-size:14px;color:#aa8800;letter-spacing:3px;margin-top:4px;}
+    .fi-match-info{
+      display:inline-flex;flex-direction:column;align-items:center;gap:8px;
+      margin-top:20px;
+      background:rgba(0,0,0,.4);
+      border:1px solid rgba(240,200,0,.2);border-radius:4px;
+      padding:16px 32px;
+    }
+    .fi-date{font-size:clamp(18px,4vw,28px);font-weight:900;color:#fff;letter-spacing:3px;}
+    .fi-venue{
+      font-size:14px;color:#ccaa44;letter-spacing:2px;
+      background:rgba(240,200,0,.08);border:1px solid rgba(240,200,0,.15);
+      padding:4px 16px;border-radius:20px;
+    }
+    .fi-time{font-size:13px;color:#887755;letter-spacing:2px;}
+    .fi-cta{
+      font-size:clamp(16px,3vw,22px);font-weight:900;
+      color:#fff;margin-top:20px;
+      letter-spacing:2px;
+      text-shadow:0 0 10px rgba(255,255,255,.3);
+    }
+    .fi-cta span{color:#f0c800;}
+    .fi-note{font-size:11px;color:#665533;letter-spacing:2px;margin-top:8px;}
 
-    /* ─── フッター ─── */
-    footer{
-      text-align:center;padding:20px;
-      color:#222244;font-size:10px;letter-spacing:2px;
+    /* ════════════════════════════════════════
+       部員募集スライド
+    ════════════════════════════════════════ */
+    .recruit-slide{
+      margin-top:16px;margin-bottom:40px;
+      background:linear-gradient(180deg,#00080e 0%,#000508 100%);
+      border:2px solid #1a4466;border-radius:6px;
+      overflow:hidden;
+      box-shadow:0 0 40px rgba(0,100,200,.15);
+      position:relative;
     }
+    .recruit-slide::before{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(
+        -45deg,transparent,transparent 30px,
+        rgba(0,80,200,.02) 30px,rgba(0,80,200,.02) 60px
+      );
+    }
+    .rs-top{
+      background:linear-gradient(90deg,#001828,#002030,#001828);
+      border-bottom:1px solid #003344;
+      padding:12px 20px;text-align:center;position:relative;z-index:1;
+    }
+    .rs-eyecatch{font-size:11px;font-weight:900;letter-spacing:6px;color:#2266aa;}
+    .rs-main{padding:24px 20px 28px;position:relative;z-index:1;}
+    .rs-title{
+      text-align:center;
+      font-size:clamp(24px,5vw,40px);font-weight:900;
+      color:#fff;letter-spacing:6px;
+      text-shadow:0 0 16px rgba(100,160,255,.4);
+    }
+    .rs-subtitle{
+      text-align:center;font-size:13px;color:#4488bb;
+      letter-spacing:3px;margin-top:6px;
+    }
+    .rs-points{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+      margin-top:20px;
+    }
+    @media(max-width:600px){.rs-points{grid-template-columns:1fr;}}
+    .rs-point{
+      background:rgba(0,40,80,.4);border:1px solid #0d2a44;
+      border-radius:4px;padding:14px 12px;text-align:center;
+    }
+    .rs-point-ico{font-size:28px;}
+    .rs-point-title{font-size:12px;font-weight:900;color:#77aadd;margin-top:8px;letter-spacing:1px;}
+    .rs-point-desc{font-size:11px;color:#445566;margin-top:4px;line-height:1.6;}
+    .rs-cta{
+      margin-top:22px;text-align:center;
+    }
+    .rs-cta-main{
+      font-size:clamp(14px,2.5vw,18px);font-weight:900;
+      color:#fff;letter-spacing:2px;
+    }
+    .rs-cta-main span{color:#66aaff;}
+    .rs-contact{
+      display:inline-block;margin-top:12px;
+      background:linear-gradient(90deg,#0a2a4a,#1a3a6a,#0a2a4a);
+      border:1px solid #2255aa;border-radius:4px;
+      padding:10px 24px;font-size:13px;font-weight:700;
+      color:#77aadd;letter-spacing:2px;
+    }
+
+    footer{text-align:center;padding:20px;color:#222244;font-size:10px;letter-spacing:2px;}
   </style>
 </head>
 <body>
 
-<!-- グローバルナビ -->
+<!-- ナビ -->
 <nav class="gnav">
-  <div class="gnav-logo">⚾ 野球部</div>
-  <div class="gnav-links">
+  <div class="gnav-logo">⚾ 麻布台エンジェルス</div>
+  <div style="display:flex;gap:2px;">
     <a href="index.html"   class="gnav-link active">HOME</a>
     <a href="players.html" class="gnav-link">選手名鑑</a>
     <a href="#tournament"  class="gnav-link">トーナメント</a>
@@ -349,283 +339,325 @@
   </div>
 </nav>
 
-<!-- ヒーローバナー -->
+<!-- ヒーロー -->
 <div class="hero">
   <div class="hero-emblem">⚾</div>
   <div class="hero-text">
-    <div class="hero-team">野球部</div>
-    <div class="hero-sub">BASEBALL CLUB — OFFICIAL SITE 2024</div>
+    <div class="hero-team">麻布台エンジェルス</div>
+    <div class="hero-sub">AZABUDAI ANGELS — BASEBALL CLUB 2026</div>
     <div class="hero-badges">
-      <div class="hbadge">メンバー 14名</div>
-      <div class="hbadge">月2回活動</div>
-      <div class="hbadge red">🔴 次の試合まで あと3日</div>
+      <div class="hbadge">港区春季軟式野球大会 3部</div>
+      <div class="hbadge green">🟢 現在 ベスト4！</div>
+      <div class="hbadge red">🏆 決勝まであと2勝</div>
     </div>
   </div>
 </div>
 
 <div class="content">
 
-  <!-- 上段2カラム: NEXT GAME + TOURNAMENT -->
-  <div class="top-grid">
+  <!-- ─── 麻布台の軌跡 ─── -->
+  <div class="panel" id="tournament" style="margin-top:16px;">
+    <div class="panel-hd">
+      <span class="panel-hd-ico">🏆</span>
+      <span class="panel-hd-title">2026年度 港区春季軟式野球大会 3部</span>
+      <span class="panel-hd-badge badge-live">進行中</span>
+    </div>
+    <div class="tourney-wrap">
+      <div class="tourney-meta">◆ 麻布台エンジェルスの軌跡</div>
+      <div class="path-flow">
 
-    <!-- ── NEXT GAME ── -->
+        <!-- 1回戦 -->
+        <div class="path-step step-done">
+          <div class="step-inner">
+            <div class="step-round-bar">1回戦</div>
+            <div class="step-body">
+              <div class="step-score">10 - 0</div>
+              <div class="step-vs">vs NLM</div>
+              <div class="step-tag tag-win">✅ 勝利</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2回戦 -->
+        <div class="path-step step-done">
+          <div class="step-inner">
+            <div class="step-round-bar">2回戦</div>
+            <div class="step-body">
+              <div class="step-score">6 - 1</div>
+              <div class="step-vs">勝利</div>
+              <div class="step-tag tag-win">✅ 勝利</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 準決勝 -->
+        <div class="path-step step-next">
+          <div class="step-inner">
+            <div class="step-round-bar">🔥 準決勝 NEXT</div>
+            <div class="step-body">
+              <div class="step-venue">三郷38グラウンド</div>
+              <div class="step-score" style="font-size:16px;">6月21日（土）</div>
+              <div class="step-time">⏰ 10:30 プレイボール</div>
+              <div class="step-tag tag-next">🔜 開催まで4日！</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 決勝 -->
+        <div class="path-step step-final">
+          <div class="step-inner">
+            <div class="step-round-bar">🏆 決 勝</div>
+            <div class="step-body">
+              <div class="step-venue">三郷38グラウンド</div>
+              <div class="step-score" style="font-size:16px;">6月28日（土）</div>
+              <div class="step-time">⏰ 10:30 プレイボール</div>
+              <div class="step-tag tag-final">🏆 FINAL</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 簡略ブラケット -->
+      <div style="margin-top:16px;">
+        <div style="font-size:9px;color:#334;letter-spacing:2px;margin-bottom:8px;">◆ 大会ブラケット（3部・26チーム）</div>
+        <div class="bracket-scroll">
+          <div class="bracket">
+
+            <!-- 1回戦 -->
+            <div class="b-round">
+              <div class="b-round-lbl">1回戦</div>
+              <div class="b-slots">
+                <div class="b-match"><div class="b-team winner">森永乳業seabacks<span class="b-sc">7-2</span></div><div class="b-team">森ビル野球部</div></div>
+                <div class="b-match"><div class="b-team winner">NTTデータフロンティア<span class="b-sc">8-3</span></div><div class="b-team">極洋マリナーズ</div></div>
+                <div class="b-match"><div class="b-team winner">TYO<span class="b-sc">7-4</span></div><div class="b-team">三井化学本社</div></div>
+                <div class="b-match"><div class="b-team winner">ADK REDSTARS<span class="b-sc">bye</span></div></div>
+                <div class="b-match"><div class="b-team winner">伊藤忠ロジスティクス<span class="b-sc">4-2</span></div><div class="b-team">NIHON SEKKEI</div></div>
+                <div class="b-match"><div class="b-team winner">ジェトロ<span class="b-sc">7-6</span></div><div class="b-team">JT本社</div></div>
+                <div class="b-match"><div class="b-team us winner">麻布台エンジェルス<span class="b-sc">10-0</span></div><div class="b-team">NLM</div></div>
+                <div class="b-match"><div class="b-team winner">TIS<span class="b-sc">7-0</span></div><div class="b-team">NTT・TCリース</div></div>
+                <div class="b-match"><div class="b-team winner">長谷工ジョーカーズ<span class="b-sc">7-0</span></div><div class="b-team">ナイキジャイアンツ</div></div>
+                <div class="b-match"><div class="b-team winner">MAL<span class="b-sc">4-1</span></div><div class="b-team">FLUX</div></div>
+                <div class="b-match"><div class="b-team winner">安藤ハザマ<span class="b-sc">12-3</span></div><div class="b-team">五十嵐冷蔵</div></div>
+                <div class="b-match"><div class="b-team winner">日本メックス<span class="b-sc">7-0</span></div><div class="b-team">NTTデータFT</div></div>
+              </div>
+            </div>
+
+            <!-- 2回戦 -->
+            <div class="b-round">
+              <div class="b-round-lbl">2回戦</div>
+              <div class="b-slots">
+                <div class="b-match" style="flex:2"><div class="b-team winner">森永乳業<span class="b-sc">2-1</span></div><div class="b-team">NTTデータFR</div></div>
+                <div class="b-match" style="flex:2"><div class="b-team winner">ADK REDSTARS<span class="b-sc">3-3</span></div><div class="b-team">TYO</div></div>
+                <div class="b-match" style="flex:2"><div class="b-team winner">伊藤忠<span class="b-sc">3-0</span></div><div class="b-team">ジェトロ</div></div>
+                <div class="b-match" style="flex:2"><div class="b-team us winner">麻布台エンジェルス<span class="b-sc">6-1</span></div><div class="b-team">TIS</div></div>
+                <div class="b-match" style="flex:2"><div class="b-team winner">長谷工ジョーカーズ<span class="b-sc">5-4</span></div><div class="b-team">MAL</div></div>
+                <div class="b-match" style="flex:2"><div class="b-team winner">安藤ハザマ<span class="b-sc">3-2</span></div><div class="b-team">日本メックス</div></div>
+              </div>
+            </div>
+
+            <!-- 準々決勝 -->
+            <div class="b-round">
+              <div class="b-round-lbl">準々決勝</div>
+              <div class="b-slots">
+                <div class="b-match" style="flex:4"><div class="b-team winner">ADK REDSTARS<span class="b-sc">4-2</span></div><div class="b-team">森永乳業</div></div>
+                <div class="b-match" style="flex:4"><div class="b-team winner">伊藤忠<span class="b-sc">1-0</span></div><div class="b-team">伊藤忠(別)</div></div>
+                <div class="b-match" style="flex:4"><div class="b-team us winner">麻布台エンジェルス<span class="b-sc">6-1</span></div><div class="b-team">TIS</div></div>
+                <div class="b-match" style="flex:4"><div class="b-team winner">安藤ハザマ<span class="b-sc">8-3</span></div><div class="b-team">長谷工</div></div>
+              </div>
+            </div>
+
+            <!-- 準決勝 -->
+            <div class="b-round">
+              <div class="b-round-lbl">🔥 準決勝</div>
+              <div class="b-slots">
+                <div class="b-match" style="flex:6">
+                  <div class="b-team next">ADK REDSTARS<span class="b-venue">6/21</span></div>
+                  <div class="b-team">伊藤忠</div>
+                </div>
+                <div class="b-match no-line" style="flex:6">
+                  <div class="b-team us next">麻布台エンジェルス<span class="b-venue">6/21</span></div>
+                  <div class="b-team">安藤ハザマ</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 決勝 -->
+            <div class="b-round">
+              <div class="b-round-lbl">🏆 決勝</div>
+              <div class="b-slots">
+                <div class="b-match no-line">
+                  <div class="b-team tbd">6/28 三郷38</div>
+                  <div class="b-team tbd">10:30〜</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 優勝 -->
+            <div class="trophy-col">
+              <div class="trophy-box">
+                <div class="trophy-ico">🏆</div>
+                <div class="trophy-lbl">優勝</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div style="font-size:9px;color:#2a3a55;margin-top:6px;text-align:right;">🟡 点滅 = 次戦出場チーム</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 上段2カラム：NEXT GAME + 選手名鑑 ─── -->
+  <div class="top-grid">
+    <!-- NEXT GAME -->
     <div class="panel">
       <div class="panel-hd">
         <span class="panel-hd-ico">📅</span>
         <span class="panel-hd-title">NEXT GAME</span>
-        <span class="panel-hd-badge badge-soon">参加募集中</span>
+        <span class="panel-hd-badge badge-soon">🔥 準決勝</span>
       </div>
       <div class="next-game">
-        <div class="ng-date">2024年 7月 15日（月・祝） 13:00〜</div>
+        <div class="ng-date">2026年 6月 21日（土）10:30 プレイボール</div>
         <div class="ng-main">
-          <div class="ng-vs-badge">VS</div>
+          <div class="ng-semi-badge">準決勝</div>
           <div>
-            <div class="ng-opponent">○○チーム</div>
-            <div class="ng-time">第2グラウンド　7回戦</div>
+            <div class="ng-opponent">vs 安藤ハザマ</div>
+            <div class="ng-sub">港区春季軟式野球大会 3部 準決勝</div>
           </div>
         </div>
         <div class="ng-info-grid">
-          <div class="ng-info-item">
-            <div class="ng-info-label">📍 場所</div>
-            <div class="ng-info-val">第2グラウンド</div>
-          </div>
-          <div class="ng-info-item">
-            <div class="ng-info-label">🕐 集合</div>
-            <div class="ng-info-val">12:30 現地集合</div>
-          </div>
-          <div class="ng-info-item">
-            <div class="ng-info-label">⚾ 形式</div>
-            <div class="ng-info-val">7回制　公式戦</div>
-          </div>
-          <div class="ng-info-item">
-            <div class="ng-info-label">👕 ユニフォーム</div>
-            <div class="ng-info-val">ホーム（白）</div>
-          </div>
+          <div class="ng-info-item"><div class="ng-info-label">📍 会場</div><div class="ng-info-val">三郷38グラウンド</div></div>
+          <div class="ng-info-item"><div class="ng-info-label">⏰ 集合</div><div class="ng-info-val">10:00 現地集合</div></div>
+          <div class="ng-info-item"><div class="ng-info-label">⚾ 形式</div><div class="ng-info-val">7回制 公式戦</div></div>
+          <div class="ng-info-item"><div class="ng-info-label">👕 ユニフォーム</div><div class="ng-info-val">ホーム（白）</div></div>
         </div>
-        <div class="recruit-bar" onclick="alert('参加表明ありがとうございます！\n田中キャプテンに連絡してください⚾')">
-          <div class="rb-left">
-            <div class="rb-title">⚾ 参加する</div>
-            <div class="rb-sub">選手・応援どちらも大歓迎！</div>
-          </div>
-          <div class="rb-right">TAP ▶</div>
-        </div>
-        <div class="member-count">
-          <span>参加予定</span>
-          <div class="count-bar-bg">
-            <div class="count-bar-fill" style="width:64%"></div>
-          </div>
-          <span class="count-num">9 / 14名</span>
-        </div>
+        <a class="cheer-bar" href="#final-invite">
+          <div><div class="cb-title">🔥 応援・観戦 大歓迎！</div><div class="cb-sub">選手も応援団も募集中！</div></div>
+          <div class="cb-btn">詳しく ▶</div>
+        </a>
       </div>
     </div>
 
-    <!-- ── トーナメント表 ── -->
-    <div class="panel" id="tournament">
+    <!-- 選手名鑑リンク -->
+    <div class="panel">
       <div class="panel-hd">
-        <span class="panel-hd-ico">🏆</span>
-        <span class="panel-hd-title">TOURNAMENT 2024</span>
-        <span class="panel-hd-badge badge-live">進行中</span>
+        <span class="panel-hd-ico">🎮</span>
+        <span class="panel-hd-title">選手名鑑</span>
+        <span class="panel-hd-badge badge-done">全選手掲載</span>
       </div>
-      <div class="bracket-wrap">
-        <div class="bracket">
-
-          <!-- 1回戦 -->
-          <div class="b-round">
-            <div class="b-round-label">1回戦</div>
-            <div class="b-slots">
-              <div class="b-match">
-                <div class="b-team our-team winner">
-                  <span class="b-num">①</span>野球部
-                  <span class="b-score">7</span>
-                </div>
-                <div class="b-team">
-                  <span class="b-num">②</span>△△チーム
-                  <span class="b-score">3</span>
-                </div>
-              </div>
-              <div class="b-match">
-                <div class="b-team winner">
-                  <span class="b-num">③</span>□□FC
-                  <span class="b-score">5</span>
-                </div>
-                <div class="b-team">
-                  <span class="b-num">④</span>××クラブ
-                  <span class="b-score">2</span>
-                </div>
-              </div>
-              <div class="b-match">
-                <div class="b-team winner">
-                  <span class="b-num">⑤</span>◇◇スポーツ
-                  <span class="b-score">8</span>
-                </div>
-                <div class="b-team">
-                  <span class="b-num">⑥</span>▽▽倶楽部
-                  <span class="b-score">4</span>
-                </div>
-              </div>
-              <div class="b-match">
-                <div class="b-team winner">
-                  <span class="b-num">⑦</span>★★ベースボール
-                  <span class="b-score">6</span>
-                </div>
-                <div class="b-team">
-                  <span class="b-num">⑧</span>○○ファイターズ
-                  <span class="b-score">1</span>
-                </div>
-              </div>
-            </div>
+      <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
+        <a href="players.html" style="display:block;background:linear-gradient(90deg,#0a1428,#1a2a44,#0a1428);border:1px solid #2244aa;border-radius:4px;padding:14px 16px;text-decoration:none;transition:all .15s;" onmouseover="this.style.borderColor='#4488ff'" onmouseout="this.style.borderColor='#2244aa'">
+          <div style="font-size:16px;font-weight:900;color:#fff;letter-spacing:2px;">⚾ 選手データを見る</div>
+          <div style="font-size:11px;color:#5577aa;margin-top:4px;">全選手のパワプロ能力値・特殊能力</div>
+          <div style="font-size:20px;color:#3366cc;text-align:right;margin-top:4px;">▶</div>
+        </a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#080f1e;border:1px solid #111a2a;border-radius:3px;padding:10px;text-align:center;">
+            <div style="font-size:22px;font-weight:900;color:#f0c800;">7</div>
+            <div style="font-size:10px;color:#445566;margin-top:2px;">登録選手数</div>
           </div>
-
-          <!-- 準決勝 -->
-          <div class="b-round">
-            <div class="b-round-label">準決勝</div>
-            <div class="b-slots">
-              <div class="b-match" style="flex:2">
-                <div class="b-team our-team winner">
-                  野球部
-                  <span class="b-score">4</span>
-                </div>
-                <div class="b-team">
-                  □□FC
-                  <span class="b-score">2</span>
-                </div>
-              </div>
-              <div class="b-match" style="flex:2">
-                <div class="b-team winner">
-                  ★★ベースボール
-                  <span class="b-score">3</span>
-                </div>
-                <div class="b-team">
-                  ◇◇スポーツ
-                  <span class="b-score">1</span>
-                </div>
-              </div>
-            </div>
+          <div style="background:#080f1e;border:1px solid #111a2a;border-radius:3px;padding:10px;text-align:center;">
+            <div style="font-size:22px;font-weight:900;color:#44ee44;">2勝</div>
+            <div style="font-size:10px;color:#445566;margin-top:2px;">大会成績</div>
           </div>
-
-          <!-- 決勝 -->
-          <div class="b-round b-final">
-            <div class="b-round-label">🔥 決勝</div>
-            <div class="b-slots">
-              <div class="b-match no-connector" style="flex:1">
-                <div class="b-team our-team next-match">
-                  ⚾ 野球部
-                </div>
-                <div class="b-team">
-                  ★★ベースボール
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 優勝トロフィー -->
-          <div class="b-round" style="max-width:70px">
-            <div class="b-round-label">優勝</div>
-            <div class="b-slots">
-              <div class="b-match no-connector">
-                <div class="champ-box">
-                  <div class="champ-ico">🏆</div>
-                  <div class="champ-lbl">CHAMPION</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-        <!-- 注釈 -->
-        <div style="font-size:10px;color:#3a5a3a;margin-top:8px;text-align:right;letter-spacing:1px;">
-          🟢 点滅 = 次の試合
+        <div style="background:#080f1e;border:1px solid #111a2a;border-radius:3px;padding:10px;">
+          <div style="font-size:10px;color:#445566;margin-bottom:6px;">🏆 今大会ハイライト</div>
+          <div style="font-size:11px;color:#77cc77;">1回戦 vs NLM　<strong style="color:#44ee44;">10-0 大勝</strong></div>
+          <div style="font-size:11px;color:#77cc77;margin-top:3px;">2回戦　<strong style="color:#44ee44;">6-1 勝利</strong></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── 試合動画 ── -->
-  <div class="panel videos-section" id="videos">
+  <!-- ─── 試合動画 ─── -->
+  <div class="panel" id="videos" style="margin-top:16px;">
     <div class="panel-hd">
       <span class="panel-hd-ico">🎬</span>
       <span class="panel-hd-title">試合動画</span>
-      <span class="panel-hd-badge badge-done">最新3試合</span>
+      <span class="panel-hd-badge badge-done">最新試合</span>
     </div>
     <div class="video-grid" id="videoGrid"></div>
   </div>
 
-  <!-- ── 選手名鑑バナー ── -->
-  <a href="players.html" class="roster-banner">
-    <div class="rb-ico">⚾</div>
-    <div>
-      <div class="rb-title">選手名鑑</div>
-      <div class="rb-desc">全選手のパワプロ能力値・特殊能力をチェック</div>
+  <!-- ════════════════════════════════════════
+       決勝戦観戦招待スライド
+  ════════════════════════════════════════ -->
+  <div class="final-invite" id="final-invite">
+    <div class="fi-top">
+      <div class="fi-eyecatch">— 観 戦 の お 誘 い —</div>
     </div>
-    <div class="rb-arrow">▶</div>
-  </a>
+    <div class="fi-main">
+      <div class="fi-trophy">🏆</div>
+      <div class="fi-title">決 勝 戦</div>
+      <div class="fi-sub">AZABUDAI ANGELS — CHAMPIONSHIP FINAL</div>
+      <div class="fi-match-info">
+        <div class="fi-date">2026年 6月 28日（土）</div>
+        <div class="fi-venue">📍 三郷38グラウンド</div>
+        <div class="fi-time">⏰ 10:30 プレイボール</div>
+      </div>
+      <div class="fi-cta">
+        ぜひ<span>応援</span>に来てください！<br>
+        <span>一緒に優勝の瞬間を！</span>
+      </div>
+      <div class="fi-note">観戦・応援 どなたでも大歓迎 / 入場無料</div>
+    </div>
+  </div>
 
-</div>
-
-<footer>© 2024 野球部　BASEBALL CLUB OFFICIAL SITE</footer>
-
-<script>
-/* ──────────────────────────────────────────
-   試合動画データ
-   videoId: YouTubeの動画IDを入れてください
-   例: https://www.youtube.com/watch?v=XXXXXXXXXXX → 'XXXXXXXXXXX'
-   空文字('') にするとプレースホルダー表示になります
-────────────────────────────────────────── */
-const VIDEOS = [
-  {
-    videoId: '',               // ← YouTube動画IDをここに
-    title: '2024年 準決勝 vs □□FC',
-    date: '2024年 6月 8日',
-    result: 'win',
-    score: '4 - 2',
-  },
-  {
-    videoId: '',               // ← YouTube動画IDをここに
-    title: '2024年 1回戦 vs △△チーム',
-    date: '2024年 5月 18日',
-    result: 'win',
-    score: '7 - 3',
-  },
-  {
-    videoId: '',               // ← YouTube動画IDをここに
-    title: '2024年 練習試合 vs ○○ファイターズ',
-    date: '2024年 4月 27日',
-    result: 'lose',
-    score: '2 - 5',
-  },
-];
-
-const RESULT_LABEL = { win:'勝利', lose:'敗戦', draw:'引き分け' };
-const RESULT_CLASS = { win:'res-win', lose:'res-lose', draw:'res-draw' };
-
-const grid = document.getElementById('videoGrid');
-VIDEOS.forEach(v => {
-  const card = document.createElement('div');
-  card.className = 'video-card';
-
-  const ytArea = v.videoId
-    ? `<div class="yt-wrap">
-         <iframe src="https://www.youtube.com/embed/${v.videoId}"
-           allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
-           allowfullscreen></iframe>
-       </div>`
-    : `<div class="yt-wrap">
-         <div class="yt-placeholder">
-           <div class="play-ico">▶</div>
-           <div class="yt-msg">動画URLを設定中...</div>
-         </div>
-       </div>`;
-
-  card.innerHTML = `
-    ${ytArea}
-    <div class="video-meta">
-      <div class="video-title">${v.title}</div>
-      <div class="video-date">${v.date}</div>
-      <div class="video-result ${RESULT_CLASS[v.result]}">
-        ${RESULT_LABEL[v.result]}　${v.score}
+  <!-- ════════════════════════════════════════
+       部員募集スライド（最終スライド）
+  ════════════════════════════════════════ -->
+  <div class="recruit-slide">
+    <div class="rs-top">
+      <div class="rs-eyecatch">— JOIN US —</div>
+    </div>
+    <div class="rs-main">
+      <div class="rs-title">部員募集中！</div>
+      <div class="rs-subtitle">⚾ 一緒に野球をやりませんか？ ⚾</div>
+      <div class="rs-points">
+        <div class="rs-point">
+          <div class="rs-point-ico">🔰</div>
+          <div class="rs-point-title">経験不問</div>
+          <div class="rs-point-desc">野球経験がなくても大丈夫。道具の貸し出しもあります。まず体験に来てみてください。</div>
+        </div>
+        <div class="rs-point">
+          <div class="rs-point-ico">🍺</div>
+          <div class="rs-point-title">打ち上げ必須</div>
+          <div class="rs-point-desc">試合後は必ず打ち上げ。勝っても負けても全力で楽しむのがエンジェルス流です。</div>
+        </div>
+        <div class="rs-point">
+          <div class="rs-point-ico">📅</div>
+          <div class="rs-point-title">月2回活動</div>
+          <div class="rs-point-desc">活動は月に2回・週末。参加できる試合だけでOK。無理なく続けられます。</div>
+        </div>
+      </div>
+      <div class="rs-cta">
+        <div class="rs-cta-main">気になったら<span>田中キャプテン</span>まで！</div>
+        <div class="rs-contact">📩 内線：○○○○ / Slack：@tanaka-daiki</div>
       </div>
     </div>
-  `;
+  </div>
+
+</div><!-- /content -->
+
+<footer>© 2026 麻布台エンジェルス　AZABUDAI ANGELS BASEBALL CLUB</footer>
+
+<script>
+/* ── 動画データ（videoIdにYouTubeのIDを入れると再生されます） ── */
+const VIDEOS=[
+  {videoId:'',title:'2026年 2回戦 勝利',   date:'2026年 ○月 ○日',result:'win', score:'6-1'},
+  {videoId:'',title:'2026年 1回戦 vs NLM', date:'2026年 ○月 ○日',result:'win', score:'10-0'},
+  {videoId:'',title:'練習試合',            date:'2026年 ○月 ○日',result:'win', score:'---'},
+];
+const grid=document.getElementById('videoGrid');
+VIDEOS.forEach(v=>{
+  const card=document.createElement('div');
+  card.className='video-card';
+  const yt=v.videoId
+    ?`<div class="yt-wrap"><iframe src="https://www.youtube.com/embed/${v.videoId}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>`
+    :`<div class="yt-wrap"><div class="yt-placeholder"><div class="play-ico">▶</div><div class="yt-msg">動画準備中...</div></div></div>`;
+  card.innerHTML=`${yt}<div class="video-meta"><div class="video-title">${v.title}</div><div class="video-date">${v.date}</div><div class="video-result ${v.result==='win'?'res-win':'res-lose'}">${v.result==='win'?'勝利':'敗戦'}　${v.score}</div></div>`;
   grid.appendChild(card);
 });
 </script>
