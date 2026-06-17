@@ -3,192 +3,233 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>部活選手名鑑 2024</title>
+  <title>野球部 選手名鑑 2024</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
 
     body{
-      font-family:'Noto Sans JP','Hiragino Kaku Gothic Pro','メイリオ',sans-serif;
+      font-family:'Noto Sans JP','Hiragino Kaku Gothic Pro',sans-serif;
       background:#04040e;
       color:#fff;
       min-height:100vh;
       overflow-x:hidden;
       background-image:repeating-linear-gradient(
-        0deg,
-        transparent 0,transparent 3px,
-        rgba(0,0,30,.55) 3px,rgba(0,0,30,.55) 4px
+        0deg,transparent 0,transparent 3px,
+        rgba(0,0,30,.5) 3px,rgba(0,0,30,.5) 4px
       );
     }
 
-    /* ── タイトルバー ── */
-    .title-bar{
-      background:linear-gradient(180deg,#0c0c28 0%,#080818 100%);
+    /* ─── チームヘッダー ─── */
+    .team-header{
+      background:linear-gradient(90deg,#08122e 0%,#0d1c55 50%,#08122e 100%);
       border-bottom:2px solid #c8a000;
-      padding:6px 16px;
-      display:flex;align-items:center;justify-content:space-between;
+      padding:8px 16px;
+      display:flex;align-items:center;gap:12px;
     }
-    .title-logo{
-      font-size:20px;font-weight:900;color:#f0c800;
-      letter-spacing:4px;
-      text-shadow:0 0 12px rgba(240,200,0,.6);
+    .team-emblem{
+      font-size:28px;
+      width:48px;height:48px;
+      background:linear-gradient(135deg,#dd3311,#aa2200);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 0 12px rgba(220,50,10,.5),inset 0 1px 0 rgba(255,255,255,.2);
+      flex-shrink:0;
     }
-    .title-sub{font-size:10px;color:#556;letter-spacing:3px;margin-top:2px;}
-    .title-right{font-size:13px;font-weight:900;color:#aabbcc;letter-spacing:2px;}
+    .team-name{font-size:22px;font-weight:900;color:#f0c800;letter-spacing:4px;text-shadow:0 0 10px rgba(240,200,0,.5);}
+    .team-sub{font-size:10px;color:#556;letter-spacing:3px;margin-top:2px;}
+    .team-count{
+      margin-left:auto;
+      background:#08082a;border:1px solid #2244aa;border-radius:3px;
+      padding:4px 10px;text-align:center;
+    }
+    .team-count .n{font-size:22px;font-weight:900;color:#fff;}
+    .team-count .l{font-size:9px;color:#446;letter-spacing:2px;}
 
-    /* ── カード外枠 ── */
-    .main{max-width:820px;margin:20px auto;padding:0 14px 30px;}
+    /* ─── レイアウト ─── */
+    .layout{
+      display:grid;
+      grid-template-columns:240px 1fr;
+      height:calc(100vh - 68px);
+    }
+    @media(max-width:640px){
+      .layout{grid-template-columns:1fr;height:auto;}
+    }
+
+    /* ─── ロースターパネル（左） ─── */
+    .roster-panel{
+      border-right:1px solid #111130;
+      background:linear-gradient(180deg,#060618 0%,#040412 100%);
+      overflow-y:auto;
+      display:flex;flex-direction:column;
+    }
+    .roster-title{
+      padding:8px 12px;
+      font-size:10px;font-weight:900;letter-spacing:3px;color:#3355aa;
+      background:#050514;
+      border-bottom:1px solid #111130;
+      flex-shrink:0;
+    }
+    /* プレイヤー行 */
+    .p-row{
+      display:flex;align-items:center;gap:8px;
+      padding:9px 10px;
+      border-bottom:1px solid rgba(255,255,255,.04);
+      cursor:pointer;
+      transition:background .1s;
+      position:relative;
+    }
+    .p-row:hover{background:rgba(51,102,204,.12);}
+    .p-row.active{
+      background:linear-gradient(90deg,rgba(30,80,200,.35),rgba(10,30,80,.2));
+      border-left:3px solid #4488ff;
+    }
+    .p-row.active::after{
+      content:'▶';
+      position:absolute;right:8px;
+      font-size:10px;color:#4488ff;
+    }
+    /* 背番号 */
+    .p-num{
+      width:28px;height:28px;border-radius:3px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:13px;font-weight:900;
+      background:var(--pc,#2244aa);
+      color:#fff;flex-shrink:0;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    /* ポジションバッジ */
+    .p-pos{
+      font-size:10px;color:#445577;
+      width:36px;flex-shrink:0;
+    }
+    /* 名前 */
+    .p-name{font-size:13px;font-weight:700;color:#ddeeff;flex:1;}
+    /* 総合 */
+    .p-ov{
+      font-size:15px;font-weight:900;
+      color:var(--oc,#aabbcc);
+      flex-shrink:0;
+    }
+
+    /* ─── カードパネル（右） ─── */
+    .card-panel{
+      overflow-y:auto;
+      padding:14px;
+      background:linear-gradient(180deg,#05051a 0%,#030310 100%);
+    }
+    @media(max-width:640px){
+      .roster-panel{height:200px;}
+      .card-panel{min-height:calc(100vh - 268px);}
+    }
+
+    /* ─── プレイヤーカード ─── */
+    .player-card{
+      animation:cardIn .25s ease;
+    }
+    @keyframes cardIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 
     .card-frame{
-      border:2px solid #2244aa;
-      border-radius:4px;
-      box-shadow:
-        0 0 0 1px #000,
-        0 0 30px rgba(30,80,220,.25),
-        inset 0 1px 0 rgba(255,255,255,.06);
+      border:2px solid #2244aa;border-radius:4px;
+      box-shadow:0 0 0 1px #000,0 0 30px rgba(30,80,220,.2),
+        inset 0 1px 0 rgba(255,255,255,.05);
       overflow:hidden;
-      animation:cardIn .3s ease;
+      max-width:600px;
     }
-    @keyframes cardIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
 
-    /* ── カードヘッダー ── */
-    .card-header{
+    /* カードヘッダー */
+    .c-header{
       display:flex;align-items:stretch;
-      background:linear-gradient(90deg,#08143a 0%,#0d1c55 40%,#0a163f 100%);
+      background:linear-gradient(90deg,#081440 0%,#0d1c60 40%,#0a1642 100%);
       border-bottom:2px solid #1a2a6a;
-      min-height:64px;
+      min-height:62px;
     }
-    .header-accent{width:7px;flex-shrink:0;background:#dd4422;}
-    .header-center{
-      flex:1;padding:8px 12px;
-      display:flex;align-items:center;gap:10px;
-    }
-    .pos-badge{
-      background:#dd4422;
+    .c-accent{width:7px;flex-shrink:0;}
+    .c-hcenter{flex:1;padding:8px 12px;display:flex;align-items:center;gap:10px;}
+    .c-pos{
       color:#fff;font-size:11px;font-weight:900;
-      padding:3px 10px;border-radius:3px;
-      letter-spacing:1px;flex-shrink:0;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 2px 4px rgba(0,0,0,.4);
+      padding:3px 9px;border-radius:3px;letter-spacing:1px;flex-shrink:0;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.2);
     }
-    .header-name{
-      font-size:clamp(20px,4vw,28px);font-weight:900;
-      color:#fff;letter-spacing:3px;
-      text-shadow:0 2px 6px rgba(0,0,0,.6);
+    .c-num-badge{
+      font-size:11px;font-weight:900;color:#aabbcc;
+      background:#080820;border:1px solid #2244aa;
+      padding:2px 7px;border-radius:3px;flex-shrink:0;
     }
-    .header-kana{font-size:10px;color:#6677aa;letter-spacing:3px;margin-top:2px;}
+    .c-name{font-size:clamp(18px,3.5vw,24px);font-weight:900;color:#fff;letter-spacing:3px;}
+    .c-kana{font-size:10px;color:#6677aa;letter-spacing:3px;margin-top:2px;}
     .satei{
       margin-left:auto;flex-shrink:0;
-      background:linear-gradient(180deg,#080820 0%,#040410 100%);
-      border:1px solid #2244aa;border-radius:3px;
-      padding:4px 10px;min-width:66px;
-      text-align:center;
+      background:#08081e;border:1px solid #2244aa;border-radius:3px;
+      padding:4px 10px;min-width:64px;text-align:center;
     }
-    .satei-lbl{font-size:9px;color:#4466aa;letter-spacing:2px;}
-    .satei-num{
-      font-size:26px;font-weight:900;line-height:1;
-      color:#f0c800;
-      text-shadow:0 0 10px rgba(240,200,0,.5);
-    }
-    .satei-unit{font-size:9px;color:#4466aa;}
+    .satei-l{font-size:9px;color:#4466aa;letter-spacing:2px;}
+    .satei-n{font-size:24px;font-weight:900;line-height:1;color:#f0c800;text-shadow:0 0 8px rgba(240,200,0,.5);}
+    .satei-u{font-size:9px;color:#4466aa;}
 
-    /* ── 2カラムボディ ── */
-    .card-body{
-      display:grid;grid-template-columns:200px 1fr;
+    /* カードボディ */
+    .c-body{
+      display:grid;grid-template-columns:180px 1fr;
       background:linear-gradient(180deg,#06061a 0%,#040412 100%);
     }
-    @media(max-width:560px){.card-body{grid-template-columns:1fr;}}
+    @media(max-width:480px){.c-body{grid-template-columns:1fr;}}
 
-    /* ── 左カラム ── */
-    .left-col{
+    /* ポートレート */
+    .portrait{
       border-right:1px solid #141430;
       display:flex;flex-direction:column;
     }
-
-    /* ── ポートレート ── */
-    .portrait{
+    .portrait-box{
       aspect-ratio:1;
-      background:linear-gradient(135deg,#1a0a08,#3a1a10);
-      border-bottom:1px solid #141430;
       display:flex;align-items:center;justify-content:center;
       position:relative;overflow:hidden;
+      border-bottom:1px solid #141430;
     }
-    /* 背景の斜めストライプ */
-    .portrait::before{
+    .portrait-box::before{
       content:'';position:absolute;inset:0;
-      background:repeating-linear-gradient(
-        -45deg,
-        transparent,transparent 10px,
-        rgba(255,255,255,.015) 10px,rgba(255,255,255,.015) 20px
-      );
+      background:repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(255,255,255,.013) 10px,rgba(255,255,255,.013) 20px);
     }
-    /* 四隅装飾 */
-    .portrait::after{
+    .portrait-box::after{
       content:'';position:absolute;
       top:5px;left:5px;right:5px;bottom:5px;
-      border:1px solid rgba(221,68,34,.35);
-      border-radius:2px;pointer-events:none;
+      border:1px solid rgba(51,102,204,.3);border-radius:2px;pointer-events:none;
     }
-    /* 写真 */
-    .portrait-img{
+    .p-img{
       position:relative;z-index:1;
-      width:100%;height:100%;
-      object-fit:cover;object-position:top center;
-      display:none; /* 写真ファイルが存在するとき表示 */
+      width:100%;height:100%;object-fit:cover;object-position:top center;
+      display:none;
     }
-    .portrait-img.loaded{display:block;}
-    /* 写真がないときのEmoji */
-    .portrait-emoji{
-      position:relative;z-index:1;
-      font-size:72px;
-      filter:drop-shadow(0 3px 10px rgba(0,0,0,.8));
-    }
+    .p-img.loaded{display:block;}
+    .p-emoji{position:relative;z-index:1;font-size:60px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.9));}
 
-    /* 基本情報テーブル */
-    .info-tbl{padding:8px 10px;flex:1;}
-    .info-row{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:3px 0;
-      border-bottom:1px solid rgba(255,255,255,.04);
-      font-size:11px;
+    /* 基本情報 */
+    .p-info{padding:7px 9px;}
+    .i-row{
+      display:flex;justify-content:space-between;
+      padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:10px;
     }
-    .info-row:last-child{border-bottom:none;}
+    .i-row:last-child{border-bottom:none;}
     .ik{color:#445566;}
     .iv{color:#cce;font-weight:700;}
 
-    /* ── 右カラム ── */
-    .right-col{
-      padding:12px;
-      display:flex;flex-direction:column;gap:10px;
-    }
+    /* 右パネル */
+    .c-right{padding:11px;display:flex;flex-direction:column;gap:9px;}
 
-    .sec-label{
-      font-size:10px;font-weight:900;letter-spacing:3px;
-      color:#445588;
-      background:linear-gradient(90deg,#080818,transparent);
-      padding:2px 8px;
-      border-left:3px solid #2244aa;
-      margin-bottom:6px;
-    }
+    .sec{font-size:10px;font-weight:900;letter-spacing:3px;color:#3355aa;
+      background:linear-gradient(90deg,#08081a,transparent);
+      padding:2px 8px;border-left:3px solid #1a3388;margin-bottom:5px;}
 
-    /* ── 能力値 ── */
-    .stat-row{
-      display:flex;align-items:center;gap:7px;
-      margin-bottom:4px;
-    }
-    .sn{font-size:11px;color:#99aacc;width:72px;flex-shrink:0;}
-    .sv{
-      font-size:14px;font-weight:900;width:26px;
-      text-align:right;flex-shrink:0;color:#ddeeff;
-    }
-    /* グレードボックス（パワプロ実機準拠） */
+    /* 能力値 */
+    .stat-row{display:flex;align-items:center;gap:6px;margin-bottom:3px;}
+    .sn{font-size:11px;color:#99aacc;width:48px;flex-shrink:0;}
+    .sv{font-size:13px;font-weight:900;width:24px;text-align:right;flex-shrink:0;color:#ddeeff;}
     .gb{
-      width:28px;height:20px;border-radius:2px;
+      width:26px;height:19px;border-radius:2px;
       display:flex;align-items:center;justify-content:center;
-      font-size:13px;font-weight:900;color:#fff;
-      flex-shrink:0;
-      border-top:1px solid rgba(255,255,255,.32);
-      border-left:1px solid rgba(255,255,255,.15);
+      font-size:12px;font-weight:900;color:#fff;flex-shrink:0;
+      border-top:1px solid rgba(255,255,255,.3);
+      border-left:1px solid rgba(255,255,255,.12);
       border-right:1px solid rgba(0,0,0,.4);
       border-bottom:1px solid rgba(0,0,0,.5);
       text-shadow:0 1px 2px rgba(0,0,0,.7);
@@ -201,13 +242,7 @@
     .g-E{background:linear-gradient(180deg,#7788aa,#445566);}
     .g-F{background:linear-gradient(180deg,#445566,#223344);}
     .g-G{background:linear-gradient(180deg,#333344,#111122);}
-
-    .sb-bg{
-      flex:1;height:7px;
-      background:rgba(0,0,0,.55);
-      border-radius:3px;overflow:hidden;
-      border:1px solid rgba(255,255,255,.05);
-    }
+    .sb-bg{flex:1;height:6px;background:rgba(0,0,0,.55);border-radius:3px;overflow:hidden;border:1px solid rgba(255,255,255,.04);}
     .sb-fill{height:100%;border-radius:3px;transition:width .8s ease;}
     .b-S{background:linear-gradient(90deg,#ff1a1a,#ff6666);}
     .b-A{background:linear-gradient(90deg,#ff6600,#ffaa44);}
@@ -218,250 +253,372 @@
     .b-F{background:linear-gradient(90deg,#445566,#667788);}
     .b-G{background:linear-gradient(90deg,#223344,#445566);}
 
-    /* ── 特殊能力チップ（パワプロ実機スタイル） ── */
+    /* 特殊能力チップ */
     .chips{display:flex;flex-wrap:wrap;gap:4px;}
     .chip{
-      display:flex;align-items:center;
-      border-radius:2px;overflow:hidden;
-      border:1px solid rgba(0,0,0,.5);
-      cursor:default;position:relative;
-      transition:filter .1s;
+      display:flex;align-items:center;border-radius:2px;overflow:hidden;
+      border:1px solid rgba(0,0,0,.5);cursor:default;
+      position:relative;transition:filter .1s;
     }
     .chip:hover{filter:brightness(1.25);}
-    .ci{
-      width:22px;height:22px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:12px;flex-shrink:0;
-    }
-    .cn{
-      padding:0 7px;height:22px;
-      display:flex;align-items:center;
-      font-size:11px;font-weight:700;
-      white-space:nowrap;
-    }
-    /* 金特 */
+    .ci{width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+    .cn{padding:0 6px;height:20px;display:flex;align-items:center;font-size:10px;font-weight:700;white-space:nowrap;}
     .t-gold .ci{background:#7a5a00;border-right:1px solid #5a4000;}
     .t-gold .cn{background:linear-gradient(90deg,#c8900a,#a87000);color:#fff8cc;}
-    .t-gold{border-color:#c09000 !important;}
-    /* 赤特 */
+    .t-gold{border-color:#c09000!important;}
     .t-red .ci{background:#8a1010;border-right:1px solid #5a0808;}
     .t-red .cn{background:linear-gradient(90deg,#cc1a1a,#aa0a0a);color:#ffdddd;}
-    .t-red{border-color:#cc1a1a !important;}
-    /* 青特 */
+    .t-red{border-color:#cc1a1a!important;}
     .t-blue .ci{background:#0a2a88;border-right:1px solid #081a55;}
     .t-blue .cn{background:linear-gradient(90deg,#1a44bb,#0f2a99);color:#ccdeff;}
-    .t-blue{border-color:#1a44bb !important;}
-    /* 緑特 */
+    .t-blue{border-color:#1a44bb!important;}
     .t-green .ci{background:#0a4a1a;border-right:1px solid #083310;}
     .t-green .cn{background:linear-gradient(90deg,#1a7730,#0f5520);color:#ccffdd;}
-    .t-green{border-color:#1a7730 !important;}
-    /* 紫特（マイナス系） */
+    .t-green{border-color:#1a7730!important;}
     .t-purple .ci{background:#440a66;border-right:1px solid #2a0544;}
     .t-purple .cn{background:linear-gradient(90deg,#6622aa,#441188);color:#eeccff;}
-    .t-purple{border-color:#6622aa !important;}
-    /* 白特（ノーマル） */
+    .t-purple{border-color:#6622aa!important;}
     .t-white .ci{background:#2a3a55;border-right:1px solid #1a2a44;}
     .t-white .cn{background:linear-gradient(90deg,#3a4a66,#2a3a55);color:#cce;}
-    .t-white{border-color:#3a4a66 !important;}
-
-    /* ツールチップ */
+    .t-white{border-color:#3a4a66!important;}
     .chip-tip{
-      display:none;
-      position:absolute;
-      bottom:calc(100% + 5px);left:50%;
-      transform:translateX(-50%);
-      background:#08082a;border:1px solid #2244aa;
-      color:#aabbcc;font-size:11px;font-weight:400;
-      padding:6px 10px;border-radius:3px;
-      width:190px;white-space:normal;line-height:1.5;
+      display:none;position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);
+      background:#08082a;border:1px solid #2244aa;color:#aabbcc;font-size:10px;font-weight:400;
+      padding:5px 8px;border-radius:3px;width:170px;white-space:normal;line-height:1.5;
       z-index:200;pointer-events:none;
     }
     .chip:hover .chip-tip{display:block;}
 
-    /* ── プロフィール ── */
+    /* プロフィール */
     .profile{
-      background:rgba(0,0,0,.35);
-      border:1px solid #111130;border-radius:2px;
-      padding:9px 11px;
-      font-size:11px;line-height:1.85;color:#99aacc;
+      background:rgba(0,0,0,.35);border:1px solid #111130;border-radius:2px;
+      padding:8px 10px;font-size:10px;line-height:1.85;color:#99aacc;
     }
 
-    /* ── キャッチコピー ── */
+    /* キャッチコピー */
     .catchphrase{
       background:linear-gradient(90deg,#04040e,#080820,#04040e);
       border-top:1px solid #111130;border-bottom:1px solid #111130;
-      padding:10px;text-align:center;
-      font-size:clamp(13px,2.5vw,17px);font-weight:900;
-      color:#f0c800;letter-spacing:3px;
-      text-shadow:0 0 12px rgba(240,200,0,.4);
+      padding:9px;text-align:center;
+      font-size:clamp(12px,2vw,15px);font-weight:900;
+      color:#f0c800;letter-spacing:2px;
+      text-shadow:0 0 10px rgba(240,200,0,.4);
     }
 
-    /* ── 募集情報 ── */
-    .recruit{
-      display:flex;gap:16px;flex-wrap:wrap;
-      background:#030308;border-top:1px solid #111130;
-      padding:8px 12px;
+    /* 投打 */
+    .handedness{
+      display:flex;gap:12px;padding:7px 11px;
+      background:#030310;border-top:1px solid #111130;
     }
-    .ritem .rl{font-size:9px;color:#445566;letter-spacing:2px;}
-    .ritem .rv{font-size:11px;font-weight:700;color:#bbccdd;margin-top:2px;}
+    .hand-item{font-size:10px;}
+    .hand-l{color:#4466aa;letter-spacing:1px;}
+    .hand-v{color:#ddeeff;font-weight:700;margin-top:1px;}
 
-    footer{
-      text-align:center;padding:20px;
-      color:#222244;font-size:10px;letter-spacing:2px;
-    }
-    ::-webkit-scrollbar{width:6px;height:6px;}
+    /* スクロールバー */
+    ::-webkit-scrollbar{width:5px;}
     ::-webkit-scrollbar-track{background:#06061a;}
-    ::-webkit-scrollbar-thumb{background:#2244aa;border-radius:3px;}
+    ::-webkit-scrollbar-thumb{background:#1a3388;border-radius:3px;}
+
+    /* 空状態 */
+    .empty-card{
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      height:100%;color:#334;font-size:14px;gap:12px;
+    }
+    .empty-card .ic{font-size:48px;opacity:.3;}
   </style>
 </head>
 <body>
 
-<div class="title-bar">
+<!-- チームヘッダー -->
+<header class="team-header">
+  <div class="team-emblem">⚾</div>
   <div>
-    <div class="title-logo">⚾ 部活選手名鑑</div>
-    <div class="title-sub">BUKATSU PLAYER ENCYCLOPEDIA 2024</div>
+    <div class="team-name">野球部</div>
+    <div class="team-sub">BASEBALL CLUB 2024</div>
   </div>
-  <div class="title-right">2024 EDITION</div>
+  <div class="team-count">
+    <div class="n" id="memberCount">0</div>
+    <div class="l">MEMBERS</div>
+  </div>
+</header>
+
+<!-- 2カラムレイアウト -->
+<div class="layout">
+  <!-- ロースター（左） -->
+  <div class="roster-panel">
+    <div class="roster-title">◆ 選手一覧</div>
+    <div id="rosterList"></div>
+  </div>
+  <!-- カード（右） -->
+  <div class="card-panel" id="cardPanel">
+    <div class="empty-card">
+      <div class="ic">⚾</div>
+      <div>選手を選択してください</div>
+    </div>
+  </div>
 </div>
 
-<main class="main">
-  <div class="card-frame">
-    <!-- ヘッダー -->
-    <div class="card-header">
-      <div class="header-accent"></div>
-      <div class="header-center">
-        <div class="pos-badge">外野手</div>
-        <div>
-          <div class="header-name">野球部</div>
-          <div class="header-kana">BASEBALL CLUB</div>
-        </div>
-        <div class="satei">
-          <div class="satei-lbl">査定</div>
-          <div class="satei-num">2,480</div>
-          <div class="satei-unit">pts</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ボディ -->
-    <div class="card-body">
-      <!-- 左：ポートレート＋情報 -->
-      <div class="left-col">
-        <div class="portrait">
-          <!--
-            【写真の入れ方】
-            写真ファイルを photos/baseball.jpg として保存すると自動で表示されます
-          -->
-          <img
-            class="portrait-img"
-            src="photos/baseball.jpg"
-            alt="野球部"
-            onload="this.classList.add('loaded');this.nextElementSibling.style.display='none'"
-          >
-          <div class="portrait-emoji">⚾</div>
-        </div>
-        <div class="info-tbl">
-          <div class="info-row"><span class="ik">設立</span><span class="iv">2015年</span></div>
-          <div class="info-row"><span class="ik">メンバー</span><span class="iv">14名</span></div>
-          <div class="info-row"><span class="ik">活動頻度</span><span class="iv">月2回（週末）</span></div>
-          <div class="info-row"><span class="ik">平均年齢</span><span class="iv">34歳</span></div>
-          <div class="info-row"><span class="ik">本拠地</span><span class="iv">第2グラウンド</span></div>
-        </div>
-      </div>
-
-      <!-- 右：能力＋特殊能力 -->
-      <div class="right-col">
-        <div>
-          <div class="sec-label">◆ 基本能力</div>
-          <div id="stats"></div>
-        </div>
-        <div>
-          <div class="sec-label">◆ 特殊能力</div>
-          <div class="chips" id="chips"></div>
-        </div>
-        <div class="profile">
-          草野球界の風雲児。「仕事のミスはOKでも、エラーは許さない」という独自の謎ルールで知られる。<br>
-          全員が「体より口が動く」タイプだが、打ち上げの団結力はプロ以上。<br>
-          入部者には「○○選手」という称号が翌日の会議でも使用される。
-        </div>
-      </div>
-    </div>
-
-    <!-- キャッチコピー -->
-    <div class="catchphrase">「打てなくても、飲める！」</div>
-
-    <!-- 募集情報 -->
-    <div class="recruit">
-      <div class="ritem">
-        <div class="rl">● 募集状況</div>
-        <div class="rv">随時募集中！見学OK・手ぶらOK</div>
-      </div>
-      <div class="ritem">
-        <div class="rl">● 参加方法</div>
-        <div class="rv">毎回体験参加できます。まず来てみて！</div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<footer>© 2024 部活動振興委員会　査定値はすべて実測値です（当社比）</footer>
-
 <script>
-function toGrade(v){
+/* ──────────────────────────────────────────
+   グレード変換
+────────────────────────────────────────── */
+function toG(v){
   if(v>=95)return'S';if(v>=82)return'A';if(v>=68)return'B';
   if(v>=53)return'C';if(v>=38)return'D';if(v>=23)return'E';
   if(v>=10)return'F';return'G';
 }
+function ovColor(v){
+  if(v>=90)return'#ff4444';
+  if(v>=80)return'#ff8800';
+  if(v>=70)return'#ddcc00';
+  if(v>=60)return'#44cc44';
+  return'#4488ee';
+}
 
-const STATS=[
-  {n:'たのしさ',    v:98},
-  {n:'うんどうりょう', v:68},
-  {n:'こんしんかい力', v:100},
-  {n:'スキル上達',  v:48},
-  {n:'土日消費',   v:84},
-  {n:'入部難易度',  v:12},
+/* ──────────────────────────────────────────
+   選手データ　←　ここを実際のメンバーに変更！
+   photo: 'photos/ファイル名.jpg' で写真を設定
+────────────────────────────────────────── */
+const PLAYERS=[
+  {
+    id:1, num:'5', color:'#dd3311',
+    name:'田中 大輝', kana:'TANAKA DAIKI',
+    pos:'外野手', bat:'右', thr:'右',
+    overall:82,
+    photo:'photos/tanaka.jpg',
+    catchphrase:'「守れなくても、声は出る。」',
+    profile:'チームの魂にして最大の声量を誇るキャプテン。守備の穴は声でカバーする独自理論を持ち、3年連続でベンチを最も盛り上げた男として表彰される。打ち上げの一発目の乾杯は必ず彼が仕切る。',
+    info:[['所属部署','営業部'],['野球歴','8年'],['好きな球種','直球のみ']],
+    stats:[
+      {n:'ミート',v:62},{n:'パワー',v:74},{n:'走力',v:55},
+      {n:'肩力',v:68},{n:'守備',v:41},{n:'宴会力',v:100},
+    ],
+    abilities:[
+      {i:'★',n:'精神的支柱',t:'gold',d:'チームが崩れかけたとき、不思議とまとまる。理由は不明だが全員が認める事実。'},
+      {i:'声',n:'野次将軍',t:'red',d:'ベンチからの声援が激しすぎて相手チームが笑い出すことがある。'},
+      {i:'杯',n:'乾杯マスター',t:'blue',d:'乾杯の音頭は全試合後必ず担当。所要時間は平均2分15秒。'},
+      {i:'鉄',n:'鉄板話術',t:'white',d:'同じエピソードを3年言い続けているが毎回ウケる謎のスキル。'},
+    ],
+  },
+  {
+    id:2, num:'1', color:'#2266dd',
+    name:'佐藤 健太', kana:'SATO KENTA',
+    pos:'先発投手', bat:'右', thr:'右',
+    overall:88,
+    photo:'photos/sato.jpg',
+    catchphrase:'「ストライクは入らないが、ハートは入れる。」',
+    profile:'エースの称号を持ちながら制球に難がある浪漫型投手。四球で貯めたランナーを何とかしてきたここ4年の実績は本物。仕事では設計部の精密屋として知られる二面性の持ち主。',
+    info:[['所属部署','設計部'],['野球歴','12年'],['好きな球種','スローカーブ']],
+    stats:[
+      {n:'球速',v:72},{n:'コントロール',v:38},{n:'スタミナ',v:80},
+      {n:'変化球',v:65},{n:'メンタル',v:90},{n:'宴会力',v:76},
+    ],
+    abilities:[
+      {i:'★',n:'浪漫の四球',t:'gold',d:'ピンチを作り自分で抑える。ハイリスクハイリターンを体現する生き様。'},
+      {i:'鋼',n:'鋼のメンタル',t:'red',d:'満塁でも顔色が変わらない。むしろ楽しんでいる節がある。'},
+      {i:'遅',n:'スローカーブ愛',t:'blue',d:'打者が「え、今の何？」と言う軌道を持つ独自変化球を保有。'},
+      {i:'暴',n:'暴投常習犯',t:'purple',d:'ウォームアップ中に最も多くの窓ガラスを割った記録を保持している（4枚）。'},
+    ],
+  },
+  {
+    id:3, num:'2', color:'#228844',
+    name:'鈴木 拓也', kana:'SUZUKI TAKUYA',
+    pos:'捕手', bat:'右', thr:'右',
+    overall:79,
+    photo:'photos/suzuki.jpg',
+    catchphrase:'「受け止めるのが仕事。ボールも、愚痴も。」',
+    profile:'チームのまとめ役、正捕手。打者の配球を読む能力より、同僚の愚痴を聞く能力のほうが高いと言われる。総務部でも何でも引き受ける。休憩中に声をかけられた回数は社内トップ。',
+    info:[['所属部署','総務部'],['野球歴','6年'],['好きな球種','なんでも来い']],
+    stats:[
+      {n:'ミート',v:58},{n:'パワー',v:55},{n:'走力',v:44},
+      {n:'肩力',v:76},{n:'守備',v:85},{n:'宴会力',v:88},
+    ],
+    abilities:[
+      {i:'★',n:'全員の父',t:'gold',d:'年齢関係なく相談を受ける。解決はしないが、聞いてくれるだけで楽になる。'},
+      {i:'止',n:'ワンバン必止',t:'red',d:'どんなワンバウンドも体で止める。ユニフォームの汚れ量が証明している。'},
+      {i:'配',n:'完璧なサイン',t:'green',d:'投手が首を振ることがほぼない。振られたときだけ顔が少し曇る。'},
+      {i:'重',n:'重量級走塁',t:'purple',d:'全力疾走でもペースが変わらない独自の物理法則を持っている。'},
+    ],
+  },
+  {
+    id:4, num:'3', color:'#dd8800',
+    name:'山田 誠一', kana:'YAMADA SEIICHI',
+    pos:'一塁手', bat:'左', thr:'右',
+    overall:85,
+    photo:'photos/yamada.jpg',
+    catchphrase:'「飛ばしたら勝ち。理屈はあとでいい。」',
+    profile:'チーム唯一の本物のホームランバッター。スイング軌道が独特すぎて誰も真似できない。企画部でも「考えるより動く」スタイルで成果を出す行動派。打ち上げでのお酒の量も一発本塁打。',
+    info:[['所属部署','企画部'],['野球歴','10年'],['好きな球種','甘い球全般']],
+    stats:[
+      {n:'ミート',v:62},{n:'パワー',v:95},{n:'走力',v:48},
+      {n:'肩力',v:70},{n:'守備',v:55},{n:'宴会力',v:91},
+    ],
+    abilities:[
+      {i:'★',n:'一発長打',t:'gold',d:'凡打かホームランかの二択。その潔さをチームは愛している。'},
+      {i:'引',n:'引っ張り専門',t:'red',d:'逆方向に飛んだことが観測史上一度もない。本人も認めている。'},
+      {i:'振',n:'豪快三振',t:'purple',d:'空振りするとき必ずフルスイング。ハーフスイングという概念がない。'},
+      {i:'祭',n:'宴会の主役',t:'blue',d:'打ち上げが始まると本番が始まるタイプ。グラウンドより輝く。'},
+    ],
+  },
+  {
+    id:5, num:'6', color:'#9922cc',
+    name:'中村 翔', kana:'NAKAMURA SHO',
+    pos:'二塁手', bat:'右', thr:'右',
+    overall:76,
+    photo:'photos/nakamura.jpg',
+    catchphrase:'「データは裏切らない。俺の打率も正直だ。」',
+    profile:'チームのスコアラー兼アナリスト。試合中にiPadでデータを記録しているが、守備位置を離れがちになる副作用がある。IT部門では社内システムの神として崇められている。',
+    info:[['所属部署','情報システム部'],['野球歴','4年'],['好きな球種','データ上の弱点球']],
+    stats:[
+      {n:'ミート',v:52},{n:'パワー',v:44},{n:'走力',v:71},
+      {n:'肩力',v:59},{n:'守備',v:68},{n:'宴会力',v:60},
+    ],
+    abilities:[
+      {i:'★',n:'データの鬼',t:'gold',d:'全打者の攻略データを所持。なぜか自分の打率だけ都合よく除外される。'},
+      {i:'IT',n:'スコアラー',t:'blue',d:'リアルタイムでスコアを入力。ただし記録に夢中で守備に遅れることがある。'},
+      {i:'冷',n:'冷静沈着',t:'green',d:'ピンチでもデータを見て「理論上は抑えられます」と言える唯一の存在。'},
+      {i:'帰',n:'定時帰宅志向',t:'white',d:'打ち上げは2時間が限界。22時には必ず帰宅する。データがあるので。'},
+    ],
+  },
+  {
+    id:6, num:'8', color:'#11aacc',
+    name:'小林 亮太', kana:'KOBAYASHI RYOTA',
+    pos:'中堅手', bat:'左', thr:'左',
+    overall:81,
+    photo:'photos/kobayashi.jpg',
+    catchphrase:'「追いついてみせる。打球も、締切も。」',
+    profile:'チームで最も足が速い俊足の中堅手。外野の守備範囲はチーム随一だが、打席に入ると途端に大人しくなる謎の変身能力を持つ。マーケ部ではデッドラインを颯爽と駆け抜ける仕事ぶりで有名。',
+    info:[['所属部署','マーケティング部'],['野球歴','7年'],['好きな球種','高めのストレート']],
+    stats:[
+      {n:'ミート',v:55},{n:'パワー',v:42},{n:'走力',v:95},
+      {n:'肩力',v:72},{n:'守備',v:88},{n:'宴会力',v:78},
+    ],
+    abilities:[
+      {i:'★',n:'疾風の脚力',t:'gold',d:'内野ゴロで全力疾走。生き足として内野を揺さぶる唯一の存在。'},
+      {i:'広',n:'広大な守備範囲',t:'green',d:'他の外野手が諦めた打球まで追いつく。なぜか打席では足が使えない。'},
+      {i:'盗',n:'盗塁成功率',t:'blue',d:'盗塁を試みると9割成功する。なぜか毎回走るタイミングをためらう。'},
+      {i:'軟',n:'打席チキン',t:'purple',d:'打席に入ると足の速さが消える謎の体質。守備と打撃で別人。'},
+    ],
+  },
 ];
 
-const ABILITIES=[
-  {i:'★',n:'打ち上げ必須',t:'gold',  d:'試合後の懇親会はセット。勝っても負けても全力で楽しむ。飲み代計算は誰かがやってくれる。'},
-  {i:'声',n:'野次将軍',  t:'red',   d:'ベンチからの声援が激しすぎて相手チームが笑い出すことがある。試合への貢献は不明。'},
-  {i:'守',n:'守備難民',  t:'blue',  d:'守備位置の希望が毎回バラバラ。毎試合じゃんけんで決まる伝統がある。'},
-  {i:'📸',n:'写真班常駐', t:'white', d:'公式カメラマンが3名常駐。試合より写真のクオリティのほうが高い。'},
-  {i:'禁',n:'仕事話禁止', t:'purple',d:'グラウンドでの仕事トークは罰金100円。積み立てで機材購入に使われる。'},
-];
+/* ──────────────────────────────────────────
+   ロースター描画
+────────────────────────────────────────── */
+let currentId=null;
 
-// 能力値を描画
-const statsEl=document.getElementById('stats');
-STATS.forEach(s=>{
-  const g=toGrade(s.v);
-  const row=document.createElement('div');
-  row.className='stat-row';
-  row.innerHTML=`
-    <span class="sn">${s.n}</span>
-    <span class="sv">${s.v}</span>
-    <div class="gb g-${g}">${g}</div>
-    <div class="sb-bg"><div class="sb-fill b-${g}" style="width:0" data-w="${s.v}%"></div></div>
-  `;
-  statsEl.appendChild(row);
-});
+function renderRoster(){
+  const list=document.getElementById('rosterList');
+  document.getElementById('memberCount').textContent=PLAYERS.length;
+  list.innerHTML='';
+  PLAYERS.forEach(p=>{
+    const row=document.createElement('div');
+    row.className='p-row';
+    row.id='row-'+p.id;
+    row.style.setProperty('--pc',p.color);
+    const oc=ovColor(p.overall);
+    row.style.setProperty('--oc',oc);
+    row.innerHTML=`
+      <div class="p-num" style="background:${p.color}">${p.num}</div>
+      <div class="p-pos">${p.pos}</div>
+      <div class="p-name">${p.name}</div>
+      <div class="p-ov" style="color:${oc}">${p.overall}</div>
+    `;
+    row.addEventListener('click',()=>selectPlayer(p.id));
+    list.appendChild(row);
+  });
+}
 
-// 特殊能力チップを描画
-const chipsEl=document.getElementById('chips');
-ABILITIES.forEach(a=>{
-  const chip=document.createElement('div');
-  chip.className=`chip t-${a.t}`;
-  chip.innerHTML=`
-    <div class="ci">${a.i}</div>
-    <div class="cn">${a.n}</div>
-    <div class="chip-tip">${a.d}</div>
-  `;
-  chipsEl.appendChild(chip);
-});
+/* ──────────────────────────────────────────
+   カード描画
+────────────────────────────────────────── */
+function selectPlayer(id){
+  currentId=id;
+  document.querySelectorAll('.p-row').forEach(r=>r.classList.remove('active'));
+  const row=document.getElementById('row-'+id);
+  if(row)row.classList.add('active');
 
-// バーアニメ
-setTimeout(()=>{
-  document.querySelectorAll('.sb-fill').forEach(b=>{b.style.width=b.dataset.w;});
-},100);
+  const p=PLAYERS.find(x=>x.id===id);
+  if(!p)return;
+
+  const statsHtml=p.stats.map(s=>{
+    const g=toG(s.v);
+    return`<div class="stat-row">
+      <span class="sn">${s.n}</span>
+      <span class="sv">${s.v}</span>
+      <div class="gb g-${g}">${g}</div>
+      <div class="sb-bg"><div class="sb-fill b-${g}" style="width:0" data-w="${s.v}%"></div></div>
+    </div>`;
+  }).join('');
+
+  const chipsHtml=p.abilities.map(a=>`
+    <div class="chip t-${a.t}">
+      <div class="ci">${a.i}</div>
+      <div class="cn">${a.n}</div>
+      <div class="chip-tip">${a.d}</div>
+    </div>
+  `).join('');
+
+  const infoHtml=(p.info||[]).map(([k,v])=>`
+    <div class="i-row"><span class="ik">${k}</span><span class="iv">${v}</span></div>
+  `).join('');
+
+  document.getElementById('cardPanel').innerHTML=`
+  <div class="player-card">
+    <div class="card-frame">
+      <div class="c-header">
+        <div class="c-accent" style="background:${p.color}"></div>
+        <div class="c-hcenter">
+          <div class="c-pos" style="background:${p.color}">${p.pos}</div>
+          <div class="c-num-badge">#${p.num}</div>
+          <div>
+            <div class="c-name">${p.name}</div>
+            <div class="c-kana">${p.kana}</div>
+          </div>
+          <div class="satei">
+            <div class="satei-l">査定</div>
+            <div class="satei-n">${p.overall}</div>
+            <div class="satei-u">OVERALL</div>
+          </div>
+        </div>
+      </div>
+      <div class="c-body">
+        <div class="portrait">
+          <div class="portrait-box" style="background:linear-gradient(135deg,#0a0a20,#060618)">
+            <img class="p-img" src="${p.photo}" alt="${p.name}"
+              onload="this.classList.add('loaded');this.nextElementSibling.style.display='none'">
+            <div class="p-emoji">🧑</div>
+          </div>
+          <div class="p-info">${infoHtml}</div>
+        </div>
+        <div class="c-right">
+          <div>
+            <div class="sec">◆ 基本能力</div>
+            ${statsHtml}
+          </div>
+          <div>
+            <div class="sec">◆ 特殊能力</div>
+            <div class="chips">${chipsHtml}</div>
+          </div>
+          <div class="profile">${p.profile}</div>
+        </div>
+      </div>
+      <div class="catchphrase">${p.catchphrase}</div>
+      <div class="handedness">
+        <div class="hand-item"><div class="hand-l">投</div><div class="hand-v">${p.thr}投げ</div></div>
+        <div class="hand-item"><div class="hand-l">打</div><div class="hand-v">${p.bat}打ち</div></div>
+      </div>
+    </div>
+  </div>`;
+
+  setTimeout(()=>{
+    document.querySelectorAll('.sb-fill').forEach(b=>{b.style.width=b.dataset.w;});
+  },30);
+}
+
+/* 初期化 */
+renderRoster();
+selectPlayer(PLAYERS[0].id);
 </script>
 </body>
 </html>
