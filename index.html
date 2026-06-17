@@ -187,8 +187,9 @@
     .trophy-lbl{font-size:8px;color:#b89000;letter-spacing:2px;margin-top:3px;}
 
     /* ─── 動画 ─── */
-    .video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:14px;}
-    @media(max-width:680px){.video-grid{grid-template-columns:1fr;}}
+    .video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:14px;}
+    @media(max-width:900px){.video-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:640px){.video-grid{grid-template-columns:1fr;}}
     .video-card{background:#070912;border:1px solid #1a2040;border-radius:3px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
     .video-card:hover{border-color:#3366cc;box-shadow:0 0 12px rgba(50,100,220,.2);}
     .yt-wrap{position:relative;width:100%;padding-top:56.25%;background:#000;}
@@ -724,9 +725,10 @@
 <script>
 /* ── 動画データ（videoIdにYouTubeのIDを入れると再生されます） ── */
 const VIDEOS=[
-  {videoId:'HdGvaSpry9s',title:'準々決勝 ① 港区春季軟式野球大会 3部',date:'2026年 港区春季大会 3部',result:'win',score:''},
-  {videoId:'UMaTME3S_M8',title:'準々決勝 ② 港区春季軟式野球大会 3部',date:'2026年 港区春季大会 3部',result:'win',score:''},
-  {videoId:'',           title:'1回戦 vs NLM',                       date:'2026年 港区春季大会 3部',result:'win',score:'10-0'},
+  {videoId:'HdGvaSpry9s',title:'準々決勝 ①',date:'2026年 港区春季大会 3部',result:'win',score:''},
+  {videoId:'UMaTME3S_M8',title:'準々決勝 ②',date:'2026年 港区春季大会 3部',result:'win',score:''},
+  {videoId:'mrQnw3IgpVM',title:'2回戦',      date:'2026年 港区春季大会 3部',result:'win',score:'6-1'},
+  {videoId:'SvyPrLPiGRI',title:'1回戦 vs NLM',date:'2026年 港区春季大会 3部',result:'win',score:'10-0'},
 ];
 const grid=document.getElementById('videoGrid');
 VIDEOS.forEach(v=>{
