@@ -378,14 +378,15 @@
           </div>
         </div>
 
-        <!-- 2回戦 -->
+        <!-- 準々決勝 -->
         <div class="path-step step-done">
           <div class="step-inner">
-            <div class="step-round-bar">2回戦</div>
+            <div class="step-round-bar">準々決勝</div>
             <div class="step-body">
               <div class="step-score">6 - 1</div>
               <div class="step-vs">勝利</div>
               <div class="step-tag tag-win">✅ 勝利</div>
+              <a href="#videos" style="display:inline-block;margin-top:3px;font-size:9px;font-weight:700;color:#ff4444;text-decoration:none;letter-spacing:1px;">🎬 動画あり</a>
             </div>
           </div>
         </div>
@@ -462,7 +463,7 @@
               <div class="b-slots">
                 <div class="b-match" style="flex:4"><div class="b-team winner">ADK REDSTARS<span class="b-sc">4-2</span></div><div class="b-team">森永乳業</div></div>
                 <div class="b-match" style="flex:4"><div class="b-team winner">伊藤忠<span class="b-sc">1-0</span></div><div class="b-team">伊藤忠(別)</div></div>
-                <div class="b-match" style="flex:4"><div class="b-team us winner">麻布台エンジェルス<span class="b-sc">6-1</span></div><div class="b-team">TIS</div></div>
+                <div class="b-match" style="flex:4"><div class="b-team us winner">麻布台エンジェルス<span class="b-sc">6-1 🎬</span></div><div class="b-team">TIS</div></div>
                 <div class="b-match" style="flex:4"><div class="b-team winner">安藤ハザマ<span class="b-sc">8-3</span></div><div class="b-team">長谷工</div></div>
               </div>
             </div>
@@ -646,9 +647,9 @@
 <script>
 /* ── 動画データ（videoIdにYouTubeのIDを入れると再生されます） ── */
 const VIDEOS=[
-  {videoId:'',title:'2026年 2回戦 勝利',   date:'2026年 ○月 ○日',result:'win', score:'6-1'},
-  {videoId:'',title:'2026年 1回戦 vs NLM', date:'2026年 ○月 ○日',result:'win', score:'10-0'},
-  {videoId:'',title:'練習試合',            date:'2026年 ○月 ○日',result:'win', score:'---'},
+  {videoId:'HdGvaSpry9s',title:'準々決勝 ① 港区春季軟式野球大会 3部',date:'2026年 港区春季大会 3部',result:'win',score:''},
+  {videoId:'UMaTME3S_M8',title:'準々決勝 ② 港区春季軟式野球大会 3部',date:'2026年 港区春季大会 3部',result:'win',score:''},
+  {videoId:'',           title:'1回戦 vs NLM',                       date:'2026年 港区春季大会 3部',result:'win',score:'10-0'},
 ];
 const grid=document.getElementById('videoGrid');
 VIDEOS.forEach(v=>{
