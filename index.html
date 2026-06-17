@@ -324,6 +324,83 @@
     }
 
     footer{text-align:center;padding:20px;color:#222244;font-size:10px;letter-spacing:2px;}
+
+    /* ════════════════════════════════════════
+       モバイル対応 (≤640px)
+    ════════════════════════════════════════ */
+    @media(max-width:640px){
+      /* ナビ：2行レイアウト */
+      .gnav{height:auto;flex-wrap:wrap;padding:6px 10px 4px;gap:0;}
+      .gnav-logo{font-size:13px;letter-spacing:1px;margin-right:0;width:100%;padding-bottom:4px;}
+      .gnav > div{width:100%;overflow-x:auto;display:flex;gap:2px;padding-bottom:4px;
+        -webkit-overflow-scrolling:touch;}
+      .gnav > div::-webkit-scrollbar{display:none;}
+      .gnav-link{font-size:11px;padding:4px 10px;white-space:nowrap;}
+
+      /* ヒーロー */
+      .hero{padding:14px 12px 12px;gap:10px;}
+      .hero-emblem{width:52px;height:52px;font-size:28px;}
+      .hero-team{letter-spacing:2px;}
+      .hero-sub{letter-spacing:1px;font-size:9px;}
+      .hbadge{font-size:9px;padding:2px 7px;}
+
+      /* コンテンツ */
+      .content{padding:12px 10px 0;}
+
+      /* パネルヘッダー */
+      .panel-hd-title{letter-spacing:1px;font-size:11px;}
+
+      /* 軌跡：縦積みに変更 */
+      .path-flow{flex-direction:column;gap:4px;overflow-x:visible;}
+      .path-step{min-width:0;width:100%;position:relative;}
+      .path-step:not(:last-child)::after{
+        content:'▼';
+        position:absolute;right:auto;
+        left:50%;bottom:-12px;top:auto;
+        transform:translateX(-50%);
+        font-size:14px;
+      }
+      .step-inner{margin:0;}
+      .step-body{padding:8px 10px;}
+      .step-score{font-size:18px;}
+
+      /* NEXT GAME */
+      .ng-main{flex-wrap:wrap;}
+      .cb-btn{padding:4px 10px;font-size:11px;}
+
+      /* 動画グリッド：1カラム（既存） + 間隔調整 */
+      .video-grid{padding:10px;gap:10px;}
+
+      /* 決勝招待スライド */
+      .fi-eyecatch{letter-spacing:2px;font-size:10px;}
+      .fi-title{letter-spacing:3px;}
+      .fi-sub{letter-spacing:1px;font-size:12px;}
+      .fi-match-info{padding:12px 16px;width:calc(100% - 20px);}
+      .fi-date{letter-spacing:1px;}
+      .fi-venue{letter-spacing:1px;font-size:12px;}
+      .fi-cta{letter-spacing:1px;font-size:16px;}
+      .fi-main{padding:20px 12px;}
+
+      /* 部員募集スライド */
+      .rs-eyecatch{letter-spacing:2px;}
+      .rs-title{letter-spacing:3px;}
+      .rs-subtitle{letter-spacing:1px;font-size:12px;}
+      .rs-contact{
+        font-size:11px;letter-spacing:0;
+        padding:10px 14px;word-break:break-all;
+        display:block;text-align:center;
+      }
+      .rs-main{padding:18px 12px 22px;}
+    }
+
+    /* スマホ横向き・小さいスマホ（≤400px）追加調整 */
+    @media(max-width:400px){
+      .hero-team{font-size:20px;}
+      .hero-badges{gap:4px;}
+      .hbadge{font-size:8px;}
+      .panel-hd-title{font-size:10px;}
+      .step-score{font-size:16px;}
+    }
   </style>
 </head>
 <body>

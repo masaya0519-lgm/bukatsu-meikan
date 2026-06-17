@@ -298,6 +298,72 @@
     ::-webkit-scrollbar{width:5px;height:5px;}
     ::-webkit-scrollbar-track{background:#06061a;}
     ::-webkit-scrollbar-thumb{background:#1a2a66;border-radius:3px;}
+
+    /* ════════════════════════════════════════
+       モバイル対応 (≤640px)
+    ════════════════════════════════════════ */
+    @media(max-width:640px){
+      /* bodyの固定レイアウトを解除 */
+      body{overflow-y:auto;}
+
+      /* ゲームタイトルバー */
+      .gtitle{padding:0 10px;}
+      .gtitle-ver{display:none;}
+      .gtitle-logo{font-size:12px;letter-spacing:2px;}
+
+      /* ページ全体：縦積みに変更 */
+      .page{flex-direction:column;height:auto;min-height:0;}
+
+      /* サイドバー → 上部の横スクロール行に変更 */
+      .sidebar{
+        width:100%;height:auto;
+        flex-direction:row;flex-wrap:nowrap;
+        overflow-x:auto;overflow-y:hidden;
+        padding:5px 8px;gap:4px;
+        border-right:none;border-bottom:2px solid #1a2040;
+        -webkit-overflow-scrolling:touch;
+        position:sticky;top:0;z-index:100;
+        background:rgba(2,4,18,.96);
+      }
+      .sidebar::-webkit-scrollbar{display:none;}
+      .sb-nav{flex-shrink:0;}
+      .npill{min-width:52px;max-width:none;white-space:nowrap;padding:0 10px;height:30px;}
+
+      /* タブバー：横スクロール可能に */
+      .tabbar{overflow-x:auto;height:auto;padding:4px 6px 0;flex-shrink:0;}
+      .tabbar::-webkit-scrollbar{display:none;}
+      .tbbtn{font-size:9px;padding:3px 6px 5px;white-space:nowrap;}
+      .tb-lr,.tb-sp{display:none;}
+
+      /* メイン・カードエリア */
+      .main{height:auto;overflow:visible;flex:none;}
+      .cardwrap{overflow-y:visible;height:auto;}
+
+      /* 画像フルモード（鴨下） */
+      .card-img-full{max-height:80vw;}
+
+      /* カードヘッダー */
+      .ch{padding:8px 10px 6px;}
+      .ch-r1{flex-wrap:wrap;gap:5px;}
+      .pname{font-size:17px;}
+      .starbox{margin-left:0;}
+      .chibi{width:40px;height:40px;font-size:22px;}
+
+      /* 成績行：横スクロール */
+      .ch-r2{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+      .ch-r3{flex-wrap:wrap;gap:6px 12px;}
+
+      /* カードボディ：1カラム化（既存の520px対応より先読み） */
+      .cbody{grid-template-columns:1fr !important;}
+      .scol{border-right:none;border-bottom:1px solid #c8c2b0;padding:8px;}
+      .acol{padding:6px;}
+
+      /* ツールチップ */
+      .tip{width:140px;font-size:9px;}
+
+      /* キャッチコピー */
+      .cphr{letter-spacing:1px;font-size:12px;}
+    }
   </style>
 </head>
 <body>
