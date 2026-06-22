@@ -223,12 +223,42 @@
       z-index:102;
     }
 
+    /* ─── YouTubeサムネイル（右側フェードイン） ─── */
+    .ytbg{
+      position:absolute;right:0;top:0;bottom:0;
+      width:52%;
+      background-size:cover;background-position:center;
+      -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 35%,black 100%);
+      mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 35%,black 100%);
+      opacity:.3;
+      pointer-events:none;z-index:0;
+    }
+    /* スライド内のテキスト等をytbgの前面に */
+    .slide > *:not(.ytbg){position:relative;z-index:1;}
+
+    /* ─── 試合写真ストリップ ─── */
+    .photo-strip{
+      display:flex;gap:6px;
+      margin-top:14px;width:100%;max-width:640px;
+    }
+    .photo-strip img{
+      flex:1;width:0;height:clamp(52px,8vw,80px);
+      object-fit:cover;border-radius:4px;
+      border:1px solid rgba(255,255,255,.12);
+      opacity:.75;transition:opacity .15s;
+    }
+    .photo-strip img:hover{opacity:1;}
+
     /* スマホ */
     @media(max-width:640px){
       .slide{padding:30px 18px 60px;}
       .promo-row{flex-direction:column;gap:10px;}
       .s-list li{font-size:14px;padding:7px 14px;}
       .quote-card{padding:18px 20px;}
+      .ytbg{width:100%;opacity:.12;
+        -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.3) 40%,black 100%);
+        mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.3) 40%,black 100%);}
+      .photo-strip img{height:44px;}
     }
   </style>
 </head>
@@ -251,6 +281,7 @@
 
   <!-- ===== SLIDE 2: 現在の状況 ===== -->
   <div class="slide bg-blue">
+    <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/HdGvaSpry9s/hqdefault.jpg')"></div>
     <div class="s-label">CURRENT STATUS</div>
     <div class="s-title">現在、麻布台エンジェルスは<br>公式戦の<span style="color:#f0c800;">真っ最中</span>です。</div>
     <div class="sdiv blue"></div>
@@ -259,6 +290,7 @@
 
   <!-- ===== SLIDE 3: 昇格 ===== -->
   <div class="slide">
+    <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/SvyPrLPiGRI/hqdefault.jpg')"></div>
     <div class="s-label">PROMOTION</div>
     <div class="s-title">昨年は<span style="color:#667788;">5部</span>での参加でしたが、<br>今年からは一気に<span style="color:#f0c800;">3部</span>へ昇格。</div>
     <div class="promo-row">
@@ -276,6 +308,7 @@
 
   <!-- ===== SLIDE 4: 戦力増強 ===== -->
   <div class="slide bg-blue">
+    <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/mrQnw3IgpVM/hqdefault.jpg')"></div>
     <div class="s-label">REINFORCEMENT</div>
     <div class="s-title">オフシーズンには<br><span style="color:#f0c800;">新メンバー</span>も加わり、<br>チームとして大幅に<span style="color:#55ee88;">戦力を増強</span>しました。</div>
   </div>
@@ -297,10 +330,17 @@
       <div class="pm-arrow">▶</div>
       <div class="pm-step" style="background:rgba(240,200,0,.06);border:2px dashed #b89000;color:#b89000;">決勝<br>🏆</div>
     </div>
+    <div class="photo-strip">
+      <img src="https://img.youtube.com/vi/SvyPrLPiGRI/mqdefault.jpg"  alt="1回戦"    title="1回戦 vs NLM 10-0">
+      <img src="https://img.youtube.com/vi/mrQnw3IgpVM/mqdefault.jpg"  alt="2回戦"    title="2回戦 6-1">
+      <img src="https://img.youtube.com/vi/HdGvaSpry9s/mqdefault.jpg"  alt="準々決勝①" title="準々決勝①">
+      <img src="https://img.youtube.com/vi/UMaTME3S_M8/mqdefault.jpg"  alt="準々決勝②" title="準々決勝②">
+    </div>
   </div>
 
   <!-- ===== SLIDE 6: 選手紹介へ ===== -->
   <div class="slide bg-blue">
+    <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/UMaTME3S_M8/hqdefault.jpg')"></div>
     <div class="s-label">PLAYER INTRODUCTION</div>
     <div class="s-title">どんなメンバーが<br>活躍しているのか、<br>一部だけ紹介します。</div>
     <div class="sdiv blue"></div>
