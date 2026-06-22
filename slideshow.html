@@ -7,7 +7,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
-
     body{
       font-family:'Noto Sans JP','Hiragino Kaku Gothic Pro',sans-serif;
       background:#04080e;color:#fff;
@@ -15,250 +14,183 @@
       user-select:none;-webkit-user-select:none;
     }
 
-    /* ─── スライドコンテナ ─── */
-    .deck{
-      position:relative;width:100%;height:100%;
-    }
+    /* ─── スライド基本 ─── */
+    .deck{position:relative;width:100%;height:100%;}
     .slide{
       position:absolute;inset:0;
       display:flex;flex-direction:column;
       align-items:center;justify-content:center;
-      padding:40px clamp(20px,6vw,80px);
+      padding:40px clamp(16px,6vw,80px) 56px;
       opacity:0;pointer-events:none;
-      transition:opacity .4s ease;
+      transition:opacity .35s ease;
       background:#04080e;
-      background-image:
-        repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(0,0,40,.4) 3px,rgba(0,0,40,.4) 4px);
+      background-image:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(0,0,40,.4) 3px,rgba(0,0,40,.4) 4px);
     }
     .slide.active{opacity:1;pointer-events:all;}
 
-    /* スライド背景バリエーション */
-    .slide.bg-title{
-      background:
-        radial-gradient(ellipse at 20% 70%,rgba(20,60,180,.5) 0%,transparent 55%),
-        radial-gradient(ellipse at 80% 20%,rgba(120,20,180,.35) 0%,transparent 50%),
-        #04080e;
-    }
-    .slide.bg-gold{
-      background:
-        radial-gradient(ellipse at 50% 60%,rgba(120,80,0,.5) 0%,transparent 60%),
-        #050300;
-    }
-    .slide.bg-red{
-      background:
-        radial-gradient(ellipse at 50% 50%,rgba(120,10,10,.5) 0%,transparent 60%),
-        #050001;
-    }
-    .slide.bg-blue{
-      background:
-        radial-gradient(ellipse at 30% 60%,rgba(10,40,140,.5) 0%,transparent 55%),
-        #020410;
-    }
+    .bg-title{background:radial-gradient(ellipse at 20% 70%,rgba(20,60,180,.5) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(120,20,180,.35) 0%,transparent 50%),#04080e;}
+    .bg-gold{background:radial-gradient(ellipse at 50% 60%,rgba(120,80,0,.5) 0%,transparent 60%),#050300;}
+    .bg-red{background:radial-gradient(ellipse at 50% 50%,rgba(120,10,10,.5) 0%,transparent 60%),#050001;}
+    .bg-blue{background:radial-gradient(ellipse at 30% 60%,rgba(10,40,140,.5) 0%,transparent 55%),#020410;}
+    .bg-dark{background:radial-gradient(ellipse at 50% 40%,rgba(10,10,30,.8) 0%,transparent 70%),#02020a;}
 
-    /* ─── テキストスタイル ─── */
-    .s-label{
-      font-size:clamp(10px,1.5vw,13px);font-weight:900;
-      letter-spacing:4px;color:#4a6a8a;
-      margin-bottom:16px;
-    }
-    .s-title{
-      font-size:clamp(28px,6vw,64px);font-weight:900;
-      color:#fff;letter-spacing:4px;
-      text-align:center;line-height:1.25;
-    }
-    .s-title.gold{
-      color:#f0c800;
-      text-shadow:0 0 30px rgba(240,200,0,.5);
-    }
-    .s-title.red{
-      color:#ff5533;
-      text-shadow:0 0 30px rgba(255,80,40,.5);
-    }
-    .s-body{
-      font-size:clamp(16px,2.8vw,26px);font-weight:700;
-      color:#aabbcc;text-align:center;
-      line-height:1.85;margin-top:20px;
-    }
-    .s-body span{color:#fff;}
-    .s-body .hi{color:#f0c800;}
-    .s-body .red{color:#ff7755;}
-    .s-body .green{color:#55ee88;}
-    .s-sub{
-      font-size:clamp(13px,1.8vw,18px);
-      color:#445566;text-align:center;
-      margin-top:14px;line-height:1.7;
-    }
-
-    /* 区切り線 */
-    .sdiv{
-      width:80px;height:2px;
-      background:linear-gradient(90deg,transparent,#f0c800,transparent);
-      margin:20px auto;
-    }
+    /* ─── テキスト ─── */
+    .s-label{font-size:clamp(9px,1.4vw,12px);font-weight:900;letter-spacing:4px;color:#4a6a8a;margin-bottom:14px;}
+    .s-title{font-size:clamp(24px,5vw,56px);font-weight:900;color:#fff;letter-spacing:3px;text-align:center;line-height:1.3;}
+    .s-title.gold{color:#f0c800;text-shadow:0 0 30px rgba(240,200,0,.5);}
+    .s-title.red{color:#ff5533;text-shadow:0 0 30px rgba(255,80,40,.5);}
+    .s-body{font-size:clamp(15px,2.5vw,24px);font-weight:700;color:#aabbcc;text-align:center;line-height:1.9;margin-top:18px;}
+    .s-body span{color:#fff;}.s-body .hi{color:#f0c800;}.s-body .red{color:#ff7755;}.s-body .green{color:#55ee88;}
+    .s-sub{font-size:clamp(12px,1.6vw,16px);color:#445566;text-align:center;margin-top:12px;line-height:1.7;}
+    .sdiv{width:80px;height:2px;background:linear-gradient(90deg,transparent,#f0c800,transparent);margin:18px auto;}
     .sdiv.blue{background:linear-gradient(90deg,transparent,#4488ff,transparent);}
     .sdiv.red{background:linear-gradient(90deg,transparent,#ff5533,transparent);}
 
+    /* ─── YouTubeサムネイル背景 ─── */
+    .ytbg{
+      position:absolute;right:0;top:0;bottom:0;width:52%;
+      background-size:cover;background-position:center;
+      -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 35%,black 100%);
+      mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 35%,black 100%);
+      opacity:.28;pointer-events:none;z-index:0;
+    }
+    .slide > *:not(.ytbg){position:relative;z-index:1;}
+
+    /* ─── 写真ストリップ ─── */
+    .photo-strip{display:flex;gap:6px;margin-top:14px;width:100%;max-width:640px;}
+    .photo-strip img{flex:1;width:0;height:clamp(48px,7vw,76px);object-fit:cover;border-radius:4px;border:1px solid rgba(255,255,255,.12);opacity:.75;transition:opacity .15s;}
+    .photo-strip img:hover{opacity:1;}
+
+    /* ─── 昇格バッジ ─── */
+    .promo-row{display:flex;align-items:center;gap:20px;margin-top:22px;}
+    .promo-box{text-align:center;padding:14px 26px;border-radius:6px;}
+    .promo-box.old{background:rgba(80,80,80,.2);border:2px solid #444;}
+    .promo-box.new{background:rgba(240,200,0,.1);border:2px solid #b89000;}
+    .promo-n{font-size:clamp(26px,5vw,50px);font-weight:900;}
+    .promo-box.old .promo-n{color:#667788;}
+    .promo-box.new .promo-n{color:#f0c800;text-shadow:0 0 16px rgba(240,200,0,.5);}
+    .promo-label{font-size:clamp(10px,1.4vw,13px);color:#445566;margin-top:4px;letter-spacing:2px;}
+    .promo-arrow{font-size:clamp(22px,4vw,46px);color:#f0c800;}
+
     /* ─── 軌跡ミニ ─── */
-    .path-mini{
-      display:flex;align-items:center;gap:0;
-      margin-top:24px;flex-wrap:wrap;justify-content:center;gap:4px;
-    }
-    .pm-step{
-      padding:8px 16px;border-radius:4px;text-align:center;
-      font-size:clamp(11px,1.5vw,14px);font-weight:900;
-    }
+    .path-mini{display:flex;align-items:center;margin-top:22px;flex-wrap:wrap;justify-content:center;gap:4px;}
+    .pm-step{padding:7px 14px;border-radius:4px;text-align:center;font-size:clamp(10px,1.4vw,14px);font-weight:900;}
     .pm-step.done{background:#0a2a0a;border:2px solid #228822;color:#55ee55;}
     .pm-step.next{background:#2a1a00;border:2px solid #cc7700;color:#ff9922;animation:glow-o 2s infinite;}
     .pm-arrow{color:#2244aa;font-size:18px;flex-shrink:0;}
     @keyframes glow-o{0%,100%{box-shadow:0 0 4px rgba(200,120,0,.3);}50%{box-shadow:0 0 14px rgba(200,120,0,.7);}}
 
     /* ─── リスト ─── */
-    .s-list{
-      list-style:none;margin-top:20px;
-      display:flex;flex-direction:column;gap:12px;
-      text-align:left;
-    }
-    .s-list li{
-      font-size:clamp(15px,2.2vw,22px);font-weight:700;
-      color:#aabbcc;padding:8px 20px;
-      background:rgba(255,255,255,.03);
-      border:1px solid #1a2040;border-radius:4px;
-      border-left:3px solid #2244aa;
-    }
+    .s-list{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:10px;text-align:left;width:100%;max-width:620px;}
+    .s-list li{font-size:clamp(14px,2vw,20px);font-weight:700;color:#aabbcc;padding:8px 18px;background:rgba(255,255,255,.03);border:1px solid #1a2040;border-radius:4px;border-left:3px solid #2244aa;}
     .s-list li .ico{margin-right:8px;}
     .s-list.red li{border-left-color:#cc3300;}
     .s-list.gold li{border-left-color:#b89000;}
 
-    /* ─── 名言カード ─── */
-    .quote-card{
-      margin-top:20px;
-      padding:clamp(20px,4vw,40px) clamp(24px,5vw,60px);
-      background:rgba(0,0,0,.5);
-      border:1px solid rgba(240,200,0,.2);
-      border-radius:6px;
-      position:relative;
-      max-width:700px;width:100%;
-    }
-    .quote-card::before,.quote-card::after{
-      content:'"';font-size:80px;color:rgba(240,200,0,.15);
-      position:absolute;font-family:serif;line-height:1;
-    }
-    .quote-card::before{top:0px;left:16px;}
-    .quote-card::after{content:'"';bottom:-20px;right:16px;}
-    .quote-text{
-      font-size:clamp(16px,2.5vw,24px);font-weight:900;
-      color:#f0c800;line-height:1.7;text-align:center;
-      position:relative;z-index:1;
-    }
-    .quote-src{
-      font-size:clamp(12px,1.5vw,16px);color:#665533;
-      text-align:right;margin-top:12px;
-      position:relative;z-index:1;
-    }
-
-    /* ─── 昇格バッジ ─── */
-    .promo-row{
-      display:flex;align-items:center;gap:20px;
-      margin-top:24px;
-    }
-    .promo-box{
-      text-align:center;padding:16px 28px;border-radius:6px;
-    }
-    .promo-box.old{background:rgba(80,80,80,.2);border:2px solid #444;}
-    .promo-box.new{background:rgba(240,200,0,.1);border:2px solid #b89000;}
-    .promo-n{font-size:clamp(28px,5vw,52px);font-weight:900;}
-    .promo-box.old .promo-n{color:#667788;}
-    .promo-box.new .promo-n{color:#f0c800;text-shadow:0 0 16px rgba(240,200,0,.5);}
-    .promo-label{font-size:clamp(11px,1.5vw,14px);color:#445566;margin-top:4px;letter-spacing:2px;}
-    .promo-arrow{font-size:clamp(24px,4vw,48px);color:#f0c800;}
+    /* ─── 名言 ─── */
+    .quote-card{margin-top:18px;padding:clamp(16px,3vw,36px) clamp(20px,4vw,56px);background:rgba(0,0,0,.5);border:1px solid rgba(240,200,0,.2);border-radius:6px;position:relative;max-width:680px;width:100%;}
+    .quote-card::before,.quote-card::after{content:'"';font-size:72px;color:rgba(240,200,0,.12);position:absolute;font-family:serif;line-height:1;}
+    .quote-card::before{top:0;left:14px;}.quote-card::after{content:'"';bottom:-18px;right:14px;}
+    .quote-text{font-size:clamp(15px,2.2vw,22px);font-weight:900;color:#f0c800;line-height:1.75;text-align:center;position:relative;z-index:1;}
+    .quote-src{font-size:clamp(11px,1.4vw,15px);color:#665533;text-align:right;margin-top:10px;position:relative;z-index:1;}
 
     /* ─── 募集ボタン ─── */
-    .recruit-btn{
-      display:inline-block;margin-top:28px;
-      background:linear-gradient(135deg,#1a3a6a,#0d2250);
-      border:2px solid #3366cc;border-radius:6px;
-      padding:clamp(12px,2vw,18px) clamp(24px,4vw,48px);
-      text-decoration:none;color:#fff;
-      font-size:clamp(14px,2vw,20px);font-weight:900;
-      letter-spacing:2px;
-      box-shadow:0 0 20px rgba(50,100,220,.3);
-      transition:filter .15s;
-    }
+    .recruit-btn{display:inline-block;margin-top:24px;background:linear-gradient(135deg,#1a3a6a,#0d2250);border:2px solid #3366cc;border-radius:6px;padding:clamp(10px,2vw,16px) clamp(20px,4vw,44px);text-decoration:none;color:#fff;font-size:clamp(13px,1.8vw,18px);font-weight:900;letter-spacing:2px;box-shadow:0 0 20px rgba(50,100,220,.3);transition:filter .15s;}
     .recruit-btn:hover{filter:brightness(1.2);}
 
+    /* ════════════════════════════════════════
+       動画ピッカー
+    ════════════════════════════════════════ */
+    .vpicker{
+      display:grid;grid-template-columns:1fr 1fr;gap:10px;
+      margin-top:20px;width:100%;max-width:640px;
+    }
+    .vthumb{
+      cursor:pointer;border-radius:6px;overflow:hidden;
+      border:2px solid #1a2040;transition:border-color .15s,box-shadow .15s;
+      background:#050810;
+    }
+    .vthumb:hover{border-color:#3366cc;box-shadow:0 0 14px rgba(50,100,220,.3);}
+    .vthumb img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;opacity:.85;}
+    .vthumb-label{padding:6px 10px;font-size:clamp(10px,1.4vw,13px);font-weight:700;color:#aabbcc;line-height:1.4;}
+    .vthumb-badge{font-size:11px;font-weight:900;color:#44ee88;margin-left:4px;}
+    .vplayer{display:none;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:800px;margin-top:16px;}
+    .vplayer-wrap{position:relative;width:100%;padding-top:56.25%;}
+    .vplayer-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:4px;}
+    .vback{background:rgba(255,255,255,.07);border:1px solid #2244aa;color:#7799cc;font-size:12px;font-weight:700;padding:5px 16px;border-radius:4px;cursor:pointer;font-family:inherit;transition:all .15s;}
+    .vback:hover{background:rgba(50,100,200,.2);color:#fff;}
+
+    /* ════════════════════════════════════════
+       選手クイズ
+    ════════════════════════════════════════ */
+    .quiz-base{
+      margin-top:16px;width:100%;max-width:580px;
+      background:rgba(0,0,0,.3);border:1px solid #1a2040;border-radius:4px;
+      padding:10px 16px;
+      display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+    }
+    .qb-item{font-size:clamp(12px,1.6vw,15px);color:#6688aa;}
+    .qb-item span{color:#cce;font-weight:700;margin-left:4px;}
+
+    /* ヒント一覧ラッパー */
+    .qhints{width:100%;max-width:580px;display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+
+    /* 各ヒント（初期非表示） */
+    .qhint{
+      display:none;
+      padding:10px 16px;border-radius:4px;
+      font-size:clamp(13px,1.8vw,18px);font-weight:700;
+      border-left:4px solid;
+    }
+    .qhint.shown{display:flex;align-items:baseline;gap:8px;animation:revIn .35s ease both;}
+    @keyframes revIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+    .qhint.hint-pos{background:rgba(50,80,160,.15);border-color:#2244aa;color:#aabbdd;}
+    .qhint.hint-good{background:rgba(50,160,80,.12);border-color:#228844;color:#88ddaa;}
+    .qhint.hint-bad{background:rgba(160,50,50,.15);border-color:#aa2222;color:#ddaaaa;}
+    .qhint .hint-ico{font-size:1.1em;flex-shrink:0;}
+    .qhint .hint-name{font-weight:900;white-space:nowrap;}
+    .qhint .hint-desc{font-size:.85em;color:rgba(255,255,255,.5);margin-left:4px;}
+
+    /* 答え */
+    .qhint.qanswer{
+      background:linear-gradient(135deg,rgba(120,80,0,.3),rgba(60,40,0,.3));
+      border-color:#b89000;border-left-width:4px;
+      flex-direction:column;align-items:flex-start;gap:4px;
+      padding:14px 18px;
+    }
+    .qa-label{font-size:clamp(10px,1.3vw,12px);color:#8a7030;letter-spacing:3px;font-weight:900;}
+    .qa-name{font-size:clamp(22px,4vw,40px);font-weight:900;color:#f0c800;letter-spacing:4px;text-shadow:0 0 16px rgba(240,200,0,.5);}
+    .qa-sub{font-size:clamp(11px,1.4vw,14px);color:#aa8800;margin-top:2px;}
+    .qa-phrase{font-size:clamp(12px,1.5vw,16px);color:#777055;margin-top:6px;font-style:italic;}
+
+    /* クリックヒント */
+    .quiz-hint-bar{
+      margin-top:14px;font-size:clamp(11px,1.4vw,13px);color:#2a3a55;
+      animation:pulse-hint 2s infinite;
+    }
+    @keyframes pulse-hint{0%,100%{opacity:.5;}50%{opacity:1;}}
+    .quiz-hint-bar.done{color:#445566;animation:none;}
+
     /* ─── ナビバー ─── */
-    .nav-bar{
-      position:fixed;bottom:0;left:0;right:0;
-      height:48px;
-      background:rgba(4,8,14,.9);
-      border-top:1px solid #1a2040;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 16px;
-      z-index:100;
-    }
-    .nav-btn{
-      background:rgba(255,255,255,.06);border:1px solid #1a2040;
-      color:#7799cc;font-size:14px;font-weight:700;
-      padding:6px 20px;border-radius:4px;cursor:pointer;
-      transition:all .15s;font-family:inherit;
-      letter-spacing:1px;
-    }
+    .nav-bar{position:fixed;bottom:0;left:0;right:0;height:48px;background:rgba(4,8,14,.92);border-top:1px solid #1a2040;display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:100;}
+    .nav-btn{background:rgba(255,255,255,.06);border:1px solid #1a2040;color:#7799cc;font-size:13px;font-weight:700;padding:6px 18px;border-radius:4px;cursor:pointer;transition:all .15s;font-family:inherit;letter-spacing:1px;}
     .nav-btn:hover{background:rgba(50,100,200,.2);border-color:#3366cc;color:#fff;}
-    .nav-btn:disabled{opacity:.25;cursor:default;}
-    .slide-counter{
-      font-size:12px;color:#445566;letter-spacing:2px;
-    }
-    .progress-bar{
-      position:fixed;top:0;left:0;height:2px;
-      background:linear-gradient(90deg,#1a4488,#f0c800);
-      transition:width .3s ease;z-index:101;
-    }
+    .nav-btn:disabled{opacity:.2;cursor:default;}
+    .slide-counter{font-size:11px;color:#2a3a55;letter-spacing:2px;}
+    .progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#1a4488,#f0c800);transition:width .3s ease;z-index:101;}
+    .back-link{position:fixed;top:10px;left:14px;font-size:11px;color:#2244aa;text-decoration:none;border:1px solid #1a2a44;border-radius:3px;padding:3px 10px;background:rgba(4,8,14,.85);z-index:102;}
 
-    /* ─── 戻るリンク ─── */
-    .back-link{
-      position:fixed;top:10px;left:14px;
-      font-size:11px;color:#2244aa;text-decoration:none;
-      border:1px solid #1a2a44;border-radius:3px;
-      padding:3px 10px;background:rgba(4,8,14,.8);
-      z-index:102;
-    }
-
-    /* ─── YouTubeサムネイル（右側フェードイン） ─── */
-    .ytbg{
-      position:absolute;right:0;top:0;bottom:0;
-      width:52%;
-      background-size:cover;background-position:center;
-      -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 35%,black 100%);
-      mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.4) 35%,black 100%);
-      opacity:.3;
-      pointer-events:none;z-index:0;
-    }
-    /* スライド内のテキスト等をytbgの前面に */
-    .slide > *:not(.ytbg){position:relative;z-index:1;}
-
-    /* ─── 試合写真ストリップ ─── */
-    .photo-strip{
-      display:flex;gap:6px;
-      margin-top:14px;width:100%;max-width:640px;
-    }
-    .photo-strip img{
-      flex:1;width:0;height:clamp(52px,8vw,80px);
-      object-fit:cover;border-radius:4px;
-      border:1px solid rgba(255,255,255,.12);
-      opacity:.75;transition:opacity .15s;
-    }
-    .photo-strip img:hover{opacity:1;}
-
-    /* スマホ */
+    /* ─── スマホ ─── */
     @media(max-width:640px){
-      .slide{padding:30px 18px 60px;}
+      .slide{padding:24px 14px 56px;}
       .promo-row{flex-direction:column;gap:10px;}
-      .s-list li{font-size:14px;padding:7px 14px;}
-      .quote-card{padding:18px 20px;}
-      .ytbg{width:100%;opacity:.12;
-        -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.3) 40%,black 100%);
-        mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.3) 40%,black 100%);}
-      .photo-strip img{height:44px;}
+      .s-list li{font-size:13px;padding:6px 12px;}
+      .quote-card{padding:16px 16px;}
+      .vpicker{grid-template-columns:1fr 1fr;gap:8px;}
+      .ytbg{opacity:.1;}
+      .photo-strip img{height:40px;}
+      .qhints{gap:6px;}
+      .qhint{font-size:13px;padding:8px 12px;}
     }
   </style>
 </head>
@@ -269,17 +201,45 @@
 
 <div class="deck" id="deck">
 
-  <!-- ===== SLIDE 1: タイトル ===== -->
+  <!-- ===== 1: タイトル ===== -->
   <div class="slide bg-title active">
     <div class="s-label">AZABUDAI ANGELS — 2026</div>
-    <div style="font-size:clamp(48px,10vw,96px);line-height:1;">⚾</div>
+    <div style="font-size:clamp(52px,10vw,96px);line-height:1;">⚾</div>
     <div class="s-title gold" style="margin-top:12px;">麻布台エンジェルス</div>
     <div class="sdiv"></div>
     <div class="s-body">野球部紹介</div>
-    <div class="s-sub" style="margin-top:24px;">クリック or → キーで次へ進む</div>
+    <div class="s-sub" style="margin-top:20px;">クリック / → キー / スワイプで次へ</div>
   </div>
 
-  <!-- ===== SLIDE 2: 現在の状況 ===== -->
+  <!-- ===== 2: 動画ピッカー ===== -->
+  <div class="slide bg-dark" id="slide-video">
+    <div class="s-label">MATCH VIDEO</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,32px);">試合動画</div>
+    <div class="vpicker" id="vpicker">
+      <div class="vthumb" onclick="playVideo('SvyPrLPiGRI','1回戦 vs NLM 10-0')">
+        <img src="https://img.youtube.com/vi/SvyPrLPiGRI/mqdefault.jpg" alt="1回戦">
+        <div class="vthumb-label">1回戦 vs NLM<span class="vthumb-badge">10-0 ✅</span></div>
+      </div>
+      <div class="vthumb" onclick="playVideo('mrQnw3IgpVM','2回戦 6-1')">
+        <img src="https://img.youtube.com/vi/mrQnw3IgpVM/mqdefault.jpg" alt="2回戦">
+        <div class="vthumb-label">2回戦<span class="vthumb-badge">6-1 ✅</span></div>
+      </div>
+      <div class="vthumb" onclick="playVideo('HdGvaSpry9s','準々決勝 ①')">
+        <img src="https://img.youtube.com/vi/HdGvaSpry9s/mqdefault.jpg" alt="準々決勝①">
+        <div class="vthumb-label">準々決勝 ①<span class="vthumb-badge">✅</span></div>
+      </div>
+      <div class="vthumb" onclick="playVideo('UMaTME3S_M8','準々決勝 ②')">
+        <img src="https://img.youtube.com/vi/UMaTME3S_M8/mqdefault.jpg" alt="準々決勝②">
+        <div class="vthumb-label">準々決勝 ②<span class="vthumb-badge">✅</span></div>
+      </div>
+    </div>
+    <div class="vplayer" id="vplayer">
+      <div class="vplayer-wrap"><iframe id="yt-iframe" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
+      <button class="vback" onclick="backToPicker()">← 選び直す</button>
+    </div>
+  </div>
+
+  <!-- ===== 3: 現在の状況 ===== -->
   <div class="slide bg-blue">
     <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/HdGvaSpry9s/hqdefault.jpg')"></div>
     <div class="s-label">CURRENT STATUS</div>
@@ -288,39 +248,30 @@
     <div class="s-body">2026年度 港区春季軟式野球大会 <span>3部</span></div>
   </div>
 
-  <!-- ===== SLIDE 3: 昇格 ===== -->
+  <!-- ===== 4: 昇格 ===== -->
   <div class="slide">
     <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/SvyPrLPiGRI/hqdefault.jpg')"></div>
     <div class="s-label">PROMOTION</div>
     <div class="s-title">昨年は<span style="color:#667788;">5部</span>での参加でしたが、<br>今年からは一気に<span style="color:#f0c800;">3部</span>へ昇格。</div>
     <div class="promo-row">
-      <div class="promo-box old">
-        <div class="promo-n">5部</div>
-        <div class="promo-label">2025年</div>
-      </div>
+      <div class="promo-box old"><div class="promo-n">5部</div><div class="promo-label">2025年</div></div>
       <div class="promo-arrow">→</div>
-      <div class="promo-box new">
-        <div class="promo-n">3部</div>
-        <div class="promo-label">2026年 🎊</div>
-      </div>
+      <div class="promo-box new"><div class="promo-n">3部</div><div class="promo-label">2026年 🎊</div></div>
     </div>
   </div>
 
-  <!-- ===== SLIDE 4: 戦力増強 ===== -->
+  <!-- ===== 5: 戦力増強 ===== -->
   <div class="slide bg-blue">
     <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/mrQnw3IgpVM/hqdefault.jpg')"></div>
     <div class="s-label">REINFORCEMENT</div>
     <div class="s-title">オフシーズンには<br><span style="color:#f0c800;">新メンバー</span>も加わり、<br>チームとして大幅に<span style="color:#55ee88;">戦力を増強</span>しました。</div>
   </div>
 
-  <!-- ===== SLIDE 5: 快進撃 ===== -->
+  <!-- ===== 6: 快進撃 ===== -->
   <div class="slide bg-gold">
     <div class="s-label">RECORD</div>
     <div class="s-title gold">公式戦は絶好調！</div>
-    <div class="s-body">
-      コールド勝ちも含めて勝ち上がり、<br>
-      なんと<span class="hi">準決勝まで進出</span>しています。
-    </div>
+    <div class="s-body">コールド勝ちも含めて勝ち上がり、<br>なんと<span class="hi">準決勝まで進出</span>しています。</div>
     <div class="path-mini">
       <div class="pm-step done">1回戦<br>10-0 ✅</div>
       <div class="pm-arrow">▶</div>
@@ -331,48 +282,200 @@
       <div class="pm-step" style="background:rgba(240,200,0,.06);border:2px dashed #b89000;color:#b89000;">決勝<br>🏆</div>
     </div>
     <div class="photo-strip">
-      <img src="https://img.youtube.com/vi/SvyPrLPiGRI/mqdefault.jpg"  alt="1回戦"    title="1回戦 vs NLM 10-0">
-      <img src="https://img.youtube.com/vi/mrQnw3IgpVM/mqdefault.jpg"  alt="2回戦"    title="2回戦 6-1">
-      <img src="https://img.youtube.com/vi/HdGvaSpry9s/mqdefault.jpg"  alt="準々決勝①" title="準々決勝①">
-      <img src="https://img.youtube.com/vi/UMaTME3S_M8/mqdefault.jpg"  alt="準々決勝②" title="準々決勝②">
+      <img src="https://img.youtube.com/vi/SvyPrLPiGRI/mqdefault.jpg" title="1回戦">
+      <img src="https://img.youtube.com/vi/mrQnw3IgpVM/mqdefault.jpg" title="2回戦">
+      <img src="https://img.youtube.com/vi/HdGvaSpry9s/mqdefault.jpg" title="準々決勝①">
+      <img src="https://img.youtube.com/vi/UMaTME3S_M8/mqdefault.jpg" title="準々決勝②">
     </div>
   </div>
 
-  <!-- ===== SLIDE 6: 選手紹介へ ===== -->
+  <!-- ===== 7: 選手クイズ前フリ ===== -->
   <div class="slide bg-blue">
-    <div class="ytbg" style="background-image:url('https://img.youtube.com/vi/UMaTME3S_M8/hqdefault.jpg')"></div>
     <div class="s-label">PLAYER INTRODUCTION</div>
-    <div class="s-title">どんなメンバーが<br>活躍しているのか、<br>一部だけ紹介します。</div>
+    <div class="s-title">どんなメンバーが活躍しているのか、<br>一部だけ紹介します。</div>
     <div class="sdiv blue"></div>
-    <div class="s-body" style="margin-top:0;">それでは、<span>選手名鑑</span>を見ていきましょう。</div>
-    <a href="players.html" class="recruit-btn" style="background:linear-gradient(135deg,#0d2a66,#061840);border-color:#2244aa;">
-      ⚾ 選手名鑑を開く →
-    </a>
-    <div class="s-sub" style="margin-top:16px;">※ いじり</div>
+    <div class="s-body">— 選手クイズ —<br><span style="font-size:.8em;color:#556677;">ヒントを見て誰か当ててみてください</span></div>
   </div>
 
-  <!-- ===== SLIDE 7: 問題提起（前フリ） ===== -->
+  <!-- ===== 8〜14: 選手クイズ ===== -->
+
+  <!-- 田中 大輝 -->
+  <div class="slide quiz-slide bg-dark">
+    <div class="s-label">QUIZ — 1 / 7</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
+    <div class="quiz-base">
+      <div class="qb-item">ポジション<span>外野手</span></div>
+      <div class="qb-item">打順<span>パワー型</span></div>
+      <div class="qb-item">背番号<span>5</span></div>
+    </div>
+    <div class="qhints">
+      <div class="qhint hint-good"><span class="hint-ico">🍺</span><span class="hint-name">宴会力 S</span><span class="hint-desc">— 乾杯の音頭は毎回2分超え</span></div>
+      <div class="qhint hint-good"><span class="hint-ico">📢</span><span class="hint-name">声量 A</span><span class="hint-desc">— ベンチからの声援が激しすぎて相手が笑い出す</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">🚫</span><span class="hint-name">守備難民</span><span class="hint-desc">— 守備位置の希望が毎回バラバラ。毎試合じゃんけん</span></div>
+      <div class="qhint qanswer">
+        <div class="qa-label">ANSWER</div>
+        <div class="qa-name">田中 大輝</div>
+        <div class="qa-sub">背番号 5 ／ 外野手 ／ キャプテン ／ ★280</div>
+        <div class="qa-phrase">「守れなくても、声は出る。」</div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar" id="qbar-1">▼ クリックでヒントを表示</div>
+  </div>
+
+  <!-- 佐藤 健太 -->
+  <div class="slide quiz-slide bg-dark">
+    <div class="s-label">QUIZ — 2 / 7</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
+    <div class="quiz-base">
+      <div class="qb-item">ポジション<span>先発投手</span></div>
+      <div class="qb-item">スタイル<span>スタンダード</span></div>
+      <div class="qb-item">背番号<span>1</span></div>
+    </div>
+    <div class="qhints">
+      <div class="qhint hint-good"><span class="hint-ico">🎭</span><span class="hint-name">浪漫投法○</span><span class="hint-desc">— ピンチを自ら作り自ら抑える。ハイリスクハイリターン</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">🚶</span><span class="hint-name">四球病</span><span class="hint-desc">— 四球を出す確率がプロ以上。なぜかアウトも取れる</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">💥</span><span class="hint-name">暴投常習犯</span><span class="hint-desc">— ウォームアップで窓ガラスを4枚割った記録保持者</span></div>
+      <div class="qhint qanswer">
+        <div class="qa-label">ANSWER</div>
+        <div class="qa-name">佐藤 健太</div>
+        <div class="qa-sub">背番号 1 ／ 先発投手 ／ ★341</div>
+        <div class="qa-phrase">「ストライクは入らないが、ハートは入れる。」</div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+  </div>
+
+  <!-- 鈴木 拓也 -->
+  <div class="slide quiz-slide bg-dark">
+    <div class="s-label">QUIZ — 3 / 7</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
+    <div class="quiz-base">
+      <div class="qb-item">ポジション<span>捕手</span></div>
+      <div class="qb-item">捕球<span>A（90）</span></div>
+      <div class="qb-item">背番号<span>2</span></div>
+    </div>
+    <div class="qhints">
+      <div class="qhint hint-good"><span class="hint-ico">👂</span><span class="hint-name">傾聴力 S</span><span class="hint-desc">— 年齢関係なく相談を受ける。解決はしないが聞いてくれる</span></div>
+      <div class="qhint hint-good"><span class="hint-ico">👨</span><span class="hint-name">全員の父○</span><span class="hint-desc">— 困ったらまず相談する文化がチームに根付いている</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">🐢</span><span class="hint-name">重量級走塁</span><span class="hint-desc">— 全力疾走でもペースが変わらない独自の物理法則</span></div>
+      <div class="qhint qanswer">
+        <div class="qa-label">ANSWER</div>
+        <div class="qa-name">鈴木 拓也</div>
+        <div class="qa-sub">背番号 2 ／ 捕手 ／ ★310</div>
+        <div class="qa-phrase">「受け止めるのが仕事。ボールも、愚痴も。」</div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+  </div>
+
+  <!-- 山田 誠一 -->
+  <div class="slide quiz-slide bg-dark">
+    <div class="s-label">QUIZ — 4 / 7</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
+    <div class="quiz-base">
+      <div class="qb-item">ポジション<span>一塁手</span></div>
+      <div class="qb-item">スタイル<span>パワー型</span></div>
+      <div class="qb-item">背番号<span>3</span></div>
+    </div>
+    <div class="qhints">
+      <div class="qhint hint-good"><span class="hint-ico">💪</span><span class="hint-name">パワー S（95）</span><span class="hint-desc">— 凡打かホームランかの二択。その潔さをチームは愛している</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">🔄</span><span class="hint-name">引っ張り専門</span><span class="hint-desc">— 逆方向に飛んだことが観測史上一度もない。本人も認めている</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">⚡</span><span class="hint-name">豪快三振</span><span class="hint-desc">— 空振りするとき必ずフルスイング。ハーフスイングという概念がない</span></div>
+      <div class="qhint qanswer">
+        <div class="qa-label">ANSWER</div>
+        <div class="qa-name">山田 誠一</div>
+        <div class="qa-sub">背番号 3 ／ 一塁手 ／ ★355</div>
+        <div class="qa-phrase">「飛ばしたら勝ち。理屈はあとでいい。」</div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+  </div>
+
+  <!-- 中村 翔 -->
+  <div class="slide quiz-slide bg-dark">
+    <div class="s-label">QUIZ — 5 / 7</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
+    <div class="quiz-base">
+      <div class="qb-item">ポジション<span>二塁手</span></div>
+      <div class="qb-item">走力<span>C（71）</span></div>
+      <div class="qb-item">背番号<span>6</span></div>
+    </div>
+    <div class="qhints">
+      <div class="qhint hint-good"><span class="hint-ico">📊</span><span class="hint-name">分析力 S</span><span class="hint-desc">— 全打者の攻略データを所持。なぜか自分の打率だけ除外</span></div>
+      <div class="qhint hint-good"><span class="hint-ico">📋</span><span class="hint-name">スコアラー○</span><span class="hint-desc">— リアルタイムでスコア入力。記録に夢中で守備が遅れることも</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">🕙</span><span class="hint-name">定時帰宅</span><span class="hint-desc">— 打ち上げは2時間が限界。22時には必ず帰宅。データがあるので</span></div>
+      <div class="qhint qanswer">
+        <div class="qa-label">ANSWER</div>
+        <div class="qa-name">中村 翔</div>
+        <div class="qa-sub">背番号 6 ／ 二塁手 ／ ★265</div>
+        <div class="qa-phrase">「データは裏切らない。俺の打率も正直だ。」</div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+  </div>
+
+  <!-- 小林 亮太 -->
+  <div class="slide quiz-slide bg-dark">
+    <div class="s-label">QUIZ — 6 / 7</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
+    <div class="quiz-base">
+      <div class="qb-item">ポジション<span>中堅手</span></div>
+      <div class="qb-item">スタイル<span>スピード型</span></div>
+      <div class="qb-item">背番号<span>8</span></div>
+    </div>
+    <div class="qhints">
+      <div class="qhint hint-good"><span class="hint-ico">🏃</span><span class="hint-name">走力 S（95）</span><span class="hint-desc">— 内野ゴロで全力疾走。生き足でプレッシャーをかけ続ける</span></div>
+      <div class="qhint hint-good"><span class="hint-ico">💨</span><span class="hint-name">疾風脚○</span><span class="hint-desc">— 40m走タイムはチームダントツ1位。ユニフォームが常に風になびく</span></div>
+      <div class="qhint hint-bad"><span class="hint-ico">😨</span><span class="hint-name">打席チキン</span><span class="hint-desc">— 打席に入ると足の速さが消える謎の体質。守備と打撃で別人</span></div>
+      <div class="qhint qanswer">
+        <div class="qa-label">ANSWER</div>
+        <div class="qa-name">小林 亮太</div>
+        <div class="qa-sub">背番号 8 ／ 中堅手 ／ ★298</div>
+        <div class="qa-phrase">「追いついてみせる。打球も、締切も。」</div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+  </div>
+
+  <!-- 鴨下 -->
+  <div class="slide quiz-slide bg-dark">
+    <div class="s-label">QUIZ — 7 / 7（最後）</div>
+    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
+    <div class="quiz-base">
+      <div class="qb-item">ポジション<span>投手・外野（二刀流）</span></div>
+      <div class="qb-item">背番号<span>17</span></div>
+    </div>
+    <div class="qhints">
+      <div class="qhint hint-good"><span class="hint-ico">🔮</span><span class="hint-name">真っスラ</span><span class="hint-desc">— 真っ直ぐに見せてスライダー。打者が「え、今の何？」と言う謎変化球</span></div>
+      <div class="qhint hint-good"><span class="hint-ico">🧠</span><span class="hint-name">ゲームメイク○</span><span class="hint-desc">— 試合の流れを読んで最善手を選ぶ頭脳派の証明</span></div>
+      <div class="qhint hint-good"><span class="hint-ico">🌊</span><span class="hint-name">緩急◎</span><span class="hint-desc">— 遅いボールと速いボールの使い分けが常人離れしている</span></div>
+      <div class="qhint qanswer">
+        <div class="qa-label">ANSWER</div>
+        <div class="qa-name">鴨下</div>
+        <div class="qa-sub">背番号 17 ／ 投手・外野手 ／ ★465</div>
+        <div class="qa-phrase" style="color:#f0c800;">⚠ 実在するパワプロ選手です</div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+  </div>
+
+  <!-- ===== 15: 問題前フリ ===== -->
   <div class="slide">
     <div class="s-label">CHALLENGE</div>
     <div class="s-title">こんな愉快なメンバーで活動する野球部ですが、<br>今後も勝ち続けるために、</div>
     <div class="sdiv"></div>
-    <div class="s-body">
-      どうしても越えなければいけない<br>
-      <span>大きな障壁</span>があります。
-    </div>
-    <div class="s-body" style="margin-top:16px;color:#445566;">
-      それは……
-    </div>
+    <div class="s-body">どうしても越えなければいけない<br><span>大きな障壁</span>があります。</div>
+    <div class="s-body" style="margin-top:14px;color:#445566;">それは……</div>
   </div>
 
-  <!-- ===== SLIDE 8: 問題（ドーン） ===== -->
+  <!-- ===== 16: 人が集まらない ===== -->
   <div class="slide bg-red">
-    <div class="s-title red" style="font-size:clamp(32px,8vw,80px);">「人が集まらない」</div>
+    <div class="s-title red" style="font-size:clamp(30px,7vw,72px);">「人が集まらない」</div>
     <div class="sdiv red"></div>
     <div class="s-body" style="color:#667788;">理由はさまざまです。</div>
   </div>
 
-  <!-- ===== SLIDE 9: あるある ===== -->
+  <!-- ===== 17: あるある ===== -->
   <div class="slide">
     <div class="s-label">REASONS</div>
     <ul class="s-list red">
@@ -381,25 +484,21 @@
       <li><span class="ico">📅</span>予定を入れるのを<span style="color:#ff7755;">忘れていた</span></li>
       <li><span class="ico">🗓</span>カレンダーには入っていたけど、<span style="color:#ff7755;">心には入っていなかった</span></li>
     </ul>
-    <div class="s-sub" style="margin-top:20px;">社会人らしからぬスリリングな自己管理により、<br>毎回ギリギリの人数で戦っています。</div>
+    <div class="s-sub" style="margin-top:18px;">社会人らしからぬスリリングな自己管理により、<br>毎回ギリギリの人数で戦っています。</div>
   </div>
 
-  <!-- ===== SLIDE 10: ナポレオン ===== -->
+  <!-- ===== 18: ナポレオン ===== -->
   <div class="slide bg-gold">
     <div class="s-label">NAPOLEON</div>
-    <div class="s-body" style="margin-top:0;margin-bottom:20px;color:#7a6030;">ナポレオンもびっくりです。</div>
+    <div class="s-body" style="margin-top:0;margin-bottom:18px;color:#7a6030;">ナポレオンもびっくりです。</div>
     <div class="quote-card">
-      <div class="quote-text">
-        「真に恐れるべきは<br>
-        強い相手ではなく、<br>
-        <span style="font-size:1.2em;">無能な味方である」</span>
-      </div>
+      <div class="quote-text">「真に恐れるべきは<br>強い相手ではなく、<br><span style="font-size:1.15em;">無能な味方である」</span></div>
       <div class="quote-src">— ナポレオン・ボナパルト</div>
     </div>
-    <div class="s-sub" style="margin-top:20px;">まさにそんな状態です。</div>
+    <div class="s-sub" style="margin-top:18px;">まさにそんな状態です。</div>
   </div>
 
-  <!-- ===== SLIDE 11: 助っ人 ===== -->
+  <!-- ===== 19: 助っ人 ===== -->
   <div class="slide">
     <div class="s-label">GUEST PLAYERS</div>
     <div class="s-title">場合によっては、<br>外部から<span style="color:#f0c800;">助っ人</span>をお願いすることもあります。</div>
@@ -407,81 +506,117 @@
     <div class="s-body">そんなギリギリの野球部ですので、</div>
   </div>
 
-  <!-- ===== SLIDE 12: 募集（歓迎リスト） ===== -->
+  <!-- ===== 20: 募集リスト ===== -->
   <div class="slide bg-blue">
     <div class="s-label">WELCOME</div>
-    <div class="s-title" style="font-size:clamp(20px,3.5vw,36px);margin-bottom:8px;">どんな形でも大歓迎です！</div>
-    <ul class="s-list gold" style="margin-top:16px;">
+    <div class="s-title" style="font-size:clamp(18px,3.5vw,34px);margin-bottom:8px;">どんな形でも大歓迎です！</div>
+    <ul class="s-list gold" style="margin-top:14px;">
       <li><span class="ico">⚾</span>野球をやっていた人</li>
       <li><span class="ico">🕰</span>昔やっていたけど、最近は離れている人</li>
       <li><span class="ico">🔰</span>未経験だけど興味がある人</li>
     </ul>
-    <div class="s-body" style="margin-top:16px;">
-      経験・レベル問わず<br><span class="hi">メンバー募集中！</span>
-    </div>
+    <div class="s-body" style="margin-top:14px;">経験・レベル問わず<br><span class="hi">メンバー募集中！</span></div>
   </div>
 
-  <!-- ===== SLIDE 13: 最終・連絡先 ===== -->
+  <!-- ===== 21: 連絡先 ===== -->
   <div class="slide bg-title">
     <div style="font-size:clamp(40px,8vw,80px);line-height:1;">⚾</div>
     <div class="s-title gold" style="margin-top:12px;">部員募集中！</div>
     <div class="sdiv"></div>
-    <div class="s-body">
-      少しでも興味がある方は、<br>
-      ぜひ<span>一度参加</span>してみてください。
+    <div class="s-body">少しでも興味がある方は、<br>ぜひ<span>一度参加</span>してみてください。</div>
+    <div style="margin-top:22px;background:rgba(0,0,0,.4);border:1px solid #1a3a6a;border-radius:6px;padding:clamp(12px,2.5vw,22px) clamp(18px,4vw,44px);text-align:center;">
+      <div style="font-size:clamp(11px,1.4vw,14px);color:#445566;letter-spacing:2px;margin-bottom:8px;">CONTACT</div>
+      <div style="font-size:clamp(13px,1.8vw,18px);font-weight:900;color:#77aadd;word-break:break-all;">📩 ma.inoue@projectcompany.co.jp</div>
+      <div style="font-size:clamp(11px,1.3vw,13px);color:#334455;margin-top:5px;">井上雅也 まで</div>
     </div>
-    <div style="margin-top:24px;background:rgba(0,0,0,.4);border:1px solid #1a3a6a;border-radius:6px;padding:clamp(14px,3vw,24px) clamp(20px,5vw,48px);text-align:center;">
-      <div style="font-size:clamp(12px,1.5vw,15px);color:#445566;letter-spacing:2px;margin-bottom:8px;">CONTACT</div>
-      <div style="font-size:clamp(14px,2vw,20px);font-weight:900;color:#77aadd;word-break:break-all;">📩 ma.inoue@projectcompany.co.jp</div>
-      <div style="font-size:clamp(12px,1.5vw,14px);color:#334455;margin-top:6px;">井上雅也 まで</div>
-    </div>
-    <div class="s-sub" style="margin-top:20px;">次回練習：<span style="color:#aabbcc;">8月8日（土）</span></div>
+    <div class="s-sub" style="margin-top:18px;">次回練習：<span style="color:#aabbcc;">8月8日（土）</span></div>
   </div>
 
 </div><!-- /deck -->
 
-<!-- ナビバー -->
 <div class="nav-bar">
   <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>← 戻る</button>
-  <div class="slide-counter" id="counter">1 / 13</div>
+  <div class="slide-counter" id="counter"></div>
   <button class="nav-btn" id="nextBtn" onclick="go(1)">次へ →</button>
 </div>
 
 <script>
-const slides=document.querySelectorAll('.slide');
-const total=slides.length;
-let cur=0;
+const slides = document.querySelectorAll('.slide');
+const TOTAL = slides.length;
+let cur = 0;
 
-function show(n){
-  slides[cur].classList.remove('active');
-  cur=Math.max(0,Math.min(total-1,n));
-  slides[cur].classList.add('active');
-  document.getElementById('counter').textContent=(cur+1)+' / '+total;
-  document.getElementById('prevBtn').disabled=cur===0;
-  document.getElementById('nextBtn').disabled=cur===total-1;
-  document.getElementById('prog').style.width=((cur+1)/total*100)+'%';
+/* ── 動画制御 ── */
+function playVideo(id, label) {
+  document.getElementById('vpicker').style.display = 'none';
+  const p = document.getElementById('vplayer');
+  p.style.display = 'flex';
+  document.getElementById('yt-iframe').src =
+    'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
+}
+function backToPicker() {
+  document.getElementById('yt-iframe').src = '';
+  document.getElementById('vplayer').style.display = 'none';
+  document.getElementById('vpicker').style.display = 'grid';
+}
+function stopVideo() {
+  const f = document.getElementById('yt-iframe');
+  if (f) f.src = '';
+  document.getElementById('vplayer').style.display = 'none';
+  document.getElementById('vpicker').style.display = 'grid';
 }
 
-function go(d){show(cur+d);}
+/* ── スライド表示 ── */
+function show(n) {
+  // 動画スライドを離れるとき停止
+  if (slides[cur] === document.getElementById('slide-video')) stopVideo();
 
-/* キーボード */
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' ')go(1);
-  if(e.key==='ArrowLeft'||e.key==='ArrowUp')go(-1);
+  slides[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(TOTAL - 1, n));
+  slides[cur].classList.add('active');
+  document.getElementById('counter').textContent = (cur + 1) + ' / ' + TOTAL;
+  document.getElementById('prevBtn').disabled = cur === 0;
+  document.getElementById('nextBtn').disabled = cur === TOTAL - 1;
+  document.getElementById('prog').style.width = ((cur + 1) / TOTAL * 100) + '%';
+}
+
+/* ── ナビ（クイズ対応） ── */
+function go(d) {
+  const s = slides[cur];
+
+  // 前進 & クイズスライドにまだ隠れているヒントがあれば1つ表示
+  if (d > 0 && s.classList.contains('quiz-slide')) {
+    const next = s.querySelector('.qhint:not(.shown)');
+    if (next) {
+      next.classList.add('shown');
+      // ヒントバーの更新
+      const bar = s.querySelector('.quiz-hint-bar');
+      if (bar) {
+        const remain = s.querySelectorAll('.qhint:not(.shown)').length;
+        bar.textContent = remain > 0 ? '▼ クリックでヒントを表示' : '▼ クリックで答えを表示';
+        if (next.classList.contains('qanswer')) bar.textContent = '→ クリックで次の選手へ';
+      }
+      return;
+    }
+  }
+
+  show(cur + d);
+}
+
+/* ── キーボード ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                   { e.preventDefault(); go(-1); }
 });
 
-/* クリックで次へ（ボタン・リンク以外） */
-document.getElementById('deck').addEventListener('click',e=>{
-  if(!e.target.closest('a')&&!e.target.closest('button'))go(1);
+/* ── クリック（ボタン・リンク・動画以外） ── */
+document.getElementById('deck').addEventListener('click', e => {
+  if (!e.target.closest('a, button, .vthumb, iframe, .vplayer')) go(1);
 });
 
-/* タッチスワイプ */
-let tx=0;
-document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
-document.addEventListener('touchend',e=>{
-  const d=tx-e.changedTouches[0].clientX;
-  if(Math.abs(d)>40)go(d>0?1:-1);
-},{passive:true});
+/* ── スワイプ ── */
+let tx = 0;
+document.addEventListener('touchstart', e => tx = e.touches[0].clientX, {passive:true});
+document.addEventListener('touchend',   e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 40) go(d > 0 ? 1 : -1); }, {passive:true});
 
 show(0);
 </script>
