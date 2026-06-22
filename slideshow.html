@@ -36,7 +36,7 @@
 
     /* ─── テキスト ─── */
     .s-label{font-size:clamp(9px,1.4vw,12px);font-weight:900;letter-spacing:4px;color:#4a6a8a;margin-bottom:14px;}
-    .s-title{font-size:clamp(24px,5vw,56px);font-weight:900;color:#fff;letter-spacing:3px;text-align:center;line-height:1.3;}
+    .s-title{font-size:clamp(22px,4.5vw,52px);font-weight:900;color:#fff;letter-spacing:2px;text-align:center;line-height:1.3;}
     .s-title.gold{color:#f0c800;text-shadow:0 0 30px rgba(240,200,0,.5);}
     .s-title.red{color:#ff5533;text-shadow:0 0 30px rgba(255,80,40,.5);}
     .s-body{font-size:clamp(15px,2.5vw,24px);font-weight:700;color:#aabbcc;text-align:center;line-height:1.9;margin-top:18px;}
@@ -99,77 +99,139 @@
     .recruit-btn:hover{filter:brightness(1.2);}
 
     /* ════════════════════════════════════════
-       動画ピッカー
+       動画スライド — 自動再生
     ════════════════════════════════════════ */
-    .vpicker{
-      display:grid;grid-template-columns:1fr 1fr;gap:10px;
-      margin-top:20px;width:100%;max-width:640px;
+    .vplayer-full{
+      width:100%;max-width:760px;
+      margin-top:10px;
+      display:flex;flex-direction:column;gap:6px;
     }
-    .vthumb{
-      cursor:pointer;border-radius:6px;overflow:hidden;
-      border:2px solid #1a2040;transition:border-color .15s,box-shadow .15s;
-      background:#050810;
-    }
-    .vthumb:hover{border-color:#3366cc;box-shadow:0 0 14px rgba(50,100,220,.3);}
-    .vthumb img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;opacity:.85;}
-    .vthumb-label{padding:6px 10px;font-size:clamp(10px,1.4vw,13px);font-weight:700;color:#aabbcc;line-height:1.4;}
-    .vthumb-badge{font-size:11px;font-weight:900;color:#44ee88;margin-left:4px;}
-    .vplayer{display:none;flex-direction:column;align-items:center;gap:10px;width:100%;max-width:800px;margin-top:16px;}
     .vplayer-wrap{position:relative;width:100%;padding-top:56.25%;}
     .vplayer-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:4px;}
-    .vback{background:rgba(255,255,255,.07);border:1px solid #2244aa;color:#7799cc;font-size:12px;font-weight:700;padding:5px 16px;border-radius:4px;cursor:pointer;font-family:inherit;transition:all .15s;}
-    .vback:hover{background:rgba(50,100,200,.2);color:#fff;}
+    .vswitch-row{display:flex;gap:5px;}
+    .vswitch-btn{
+      flex:1;cursor:pointer;border-radius:4px;overflow:hidden;
+      border:2px solid #1a2040;background:#050810;
+      transition:border-color .15s,opacity .15s;
+      opacity:.55;
+    }
+    .vswitch-btn:hover{border-color:#3366cc;opacity:.85;}
+    .vswitch-btn.active{border-color:#f0c800;opacity:1;}
+    .vswitch-btn img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;}
+    .vswitch-label{padding:2px 4px;font-size:9px;font-weight:700;color:#556677;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
     /* ════════════════════════════════════════
-       選手クイズ
+       選手クイズ — カード型
     ════════════════════════════════════════ */
-    .quiz-base{
-      margin-top:16px;width:100%;max-width:580px;
-      background:rgba(0,0,0,.3);border:1px solid #1a2040;border-radius:4px;
-      padding:10px 16px;
-      display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+    .quiz-layout{
+      display:flex;
+      gap:clamp(10px,2vw,20px);
+      width:100%;max-width:880px;
+      margin-top:10px;
+      align-items:flex-start;
     }
-    .qb-item{font-size:clamp(12px,1.6vw,15px);color:#6688aa;}
-    .qb-item span{color:#cce;font-weight:700;margin-left:4px;}
 
-    /* ヒント一覧ラッパー */
-    .qhints{width:100%;max-width:580px;display:flex;flex-direction:column;gap:8px;margin-top:10px;}
-
-    /* 各ヒント（初期非表示） */
-    .qhint{
+    /* 左：プレイヤーカード */
+    .qcard-wrap{
+      flex-shrink:0;
+      width:clamp(110px,17vw,175px);
+      display:flex;flex-direction:column;gap:5px;
+    }
+    .qcard-inner{
+      width:100%;aspect-ratio:3/4;
+      border-radius:6px;position:relative;
+      overflow:hidden;
+      border:2px solid rgba(255,255,255,.12);
+    }
+    .qcard-inner img{width:100%;height:100%;object-fit:cover;}
+    .qcard-pos-tag{
+      position:absolute;top:0;left:0;right:0;
+      background:rgba(0,0,0,.65);
+      padding:4px 6px;
+      font-size:clamp(8px,1.1vw,11px);font-weight:900;letter-spacing:1px;
+      color:rgba(255,255,255,.7);text-align:center;
+    }
+    .qcard-num-bg{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:clamp(52px,9vw,88px);font-weight:900;
+      color:rgba(255,255,255,.07);pointer-events:none;
+      line-height:1;
+    }
+    .qcard-name-area{
+      position:absolute;bottom:0;left:0;right:0;
+      background:rgba(0,0,0,.72);
+      padding:5px 6px;text-align:center;
+    }
+    .qcard-name-hidden{
+      font-size:clamp(11px,1.5vw,14px);font-weight:900;
+      color:rgba(255,255,255,.22);letter-spacing:4px;
+    }
+    .qcard-name-revealed{
       display:none;
-      padding:10px 16px;border-radius:4px;
-      font-size:clamp(13px,1.8vw,18px);font-weight:700;
+      font-size:clamp(11px,1.5vw,14px);font-weight:900;
+      color:#f0c800;letter-spacing:1px;
+      animation:revIn .4s ease both;
+    }
+    .qcard-star{
+      text-align:center;font-size:clamp(9px,1.2vw,12px);
+      color:#2a3a20;font-weight:700;letter-spacing:1px;
+    }
+    .qcard-star.shown{color:#aa8800;}
+
+    /* 右：能力チップリスト */
+    .qabil-list{
+      flex:1;
+      display:flex;flex-direction:column;gap:6px;
+      justify-content:center;
+    }
+
+    .qabil{
+      display:none;
+      border-radius:4px;
+      font-size:clamp(11px,1.5vw,15px);
+      font-weight:700;
       border-left:4px solid;
+      padding:7px 11px;
+      flex-direction:column;gap:2px;
     }
-    .qhint.shown{display:flex;align-items:baseline;gap:8px;animation:revIn .35s ease both;}
-    @keyframes revIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-    .qhint.hint-pos{background:rgba(50,80,160,.15);border-color:#2244aa;color:#aabbdd;}
-    .qhint.hint-good{background:rgba(50,160,80,.12);border-color:#228844;color:#88ddaa;}
-    .qhint.hint-bad{background:rgba(160,50,50,.15);border-color:#aa2222;color:#ddaaaa;}
-    .qhint .hint-ico{font-size:1.1em;flex-shrink:0;}
-    .qhint .hint-name{font-weight:900;white-space:nowrap;}
-    .qhint .hint-desc{font-size:.85em;color:rgba(255,255,255,.5);margin-left:4px;}
+    .qabil.shown{display:flex;animation:revIn .35s ease both;}
+    @keyframes revIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
 
-    /* 答え */
-    .qhint.qanswer{
-      background:linear-gradient(135deg,rgba(120,80,0,.3),rgba(60,40,0,.3));
-      border-color:#b89000;border-left-width:4px;
-      flex-direction:column;align-items:flex-start;gap:4px;
-      padding:14px 18px;
+    .qabil-top{display:flex;align-items:center;gap:7px;}
+    .qabil-ico{font-size:1.05em;flex-shrink:0;}
+    .qabil-name{font-weight:900;}
+    .qabil-grade{
+      padding:1px 6px;border-radius:2px;
+      font-weight:900;font-size:.82em;color:#fff;flex-shrink:0;
     }
-    .qa-label{font-size:clamp(10px,1.3vw,12px);color:#8a7030;letter-spacing:3px;font-weight:900;}
-    .qa-name{font-size:clamp(22px,4vw,40px);font-weight:900;color:#f0c800;letter-spacing:4px;text-shadow:0 0 16px rgba(240,200,0,.5);}
-    .qa-sub{font-size:clamp(11px,1.4vw,14px);color:#aa8800;margin-top:2px;}
-    .qa-phrase{font-size:clamp(12px,1.5vw,16px);color:#777055;margin-top:6px;font-style:italic;}
+    .qabil-desc{font-size:.78em;color:rgba(255,255,255,.38);padding-left:22px;line-height:1.4;}
 
-    /* クリックヒント */
+    .qabil-graded{background:rgba(40,140,70,.14);border-color:#227744;color:#99ddbb;}
+    .qabil-bool  {background:rgba(200,180,80,.1); border-color:#aa9900;color:#ddcc77;}
+    .qabil-neg   {background:rgba(160,40,40,.14); border-color:#aa2222;color:#ddaaaa;}
+
+    /* グレードボックス色 */
+    .gs{background:#cc2222;}.ga{background:#cc5500;}
+    .gb{background:#aaaa00;}.gc{background:#228844;}
+    .gd{background:#2255cc;}.ge,.gf{background:#557788;}
+
+    /* 答えチップ */
+    .qabil.qanswer{
+      background:linear-gradient(135deg,rgba(120,80,0,.28),rgba(60,40,0,.28));
+      border-color:#b89000;
+    }
+    .qa-label-line{font-size:9px;letter-spacing:3px;color:#7a6020;margin-bottom:1px;}
+    .qa-big-name{font-size:clamp(17px,2.8vw,26px);font-weight:900;color:#f0c800;letter-spacing:3px;text-shadow:0 0 12px rgba(240,200,0,.4);}
+    .qa-sub-line{font-size:clamp(9px,1.2vw,12px);color:#aa8800;margin-top:2px;}
+    .qa-phrase-line{font-size:clamp(9px,1.2vw,12px);color:#665533;font-style:italic;margin-top:4px;}
+
+    /* クリックヒントバー */
     .quiz-hint-bar{
-      margin-top:14px;font-size:clamp(11px,1.4vw,13px);color:#2a3a55;
-      animation:pulse-hint 2s infinite;
+      margin-top:10px;font-size:clamp(10px,1.3vw,13px);color:#2a3a55;
+      animation:pulse-hint 2s infinite;flex-shrink:0;
     }
     @keyframes pulse-hint{0%,100%{opacity:.5;}50%{opacity:1;}}
-    .quiz-hint-bar.done{color:#445566;animation:none;}
 
     /* ─── ナビバー ─── */
     .nav-bar{position:fixed;bottom:0;left:0;right:0;height:48px;background:rgba(4,8,14,.92);border-top:1px solid #1a2040;display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:100;}
@@ -182,15 +244,20 @@
 
     /* ─── スマホ ─── */
     @media(max-width:640px){
-      .slide{padding:24px 14px 56px;}
+      .slide{padding:20px 12px 56px;}
       .promo-row{flex-direction:column;gap:10px;}
       .s-list li{font-size:13px;padding:6px 12px;}
-      .quote-card{padding:16px 16px;}
-      .vpicker{grid-template-columns:1fr 1fr;gap:8px;}
+      .quote-card{padding:14px 14px;}
       .ytbg{opacity:.1;}
       .photo-strip img{height:40px;}
-      .qhints{gap:6px;}
-      .qhint{font-size:13px;padding:8px 12px;}
+      /* クイズ縦積み */
+      .quiz-layout{flex-direction:column;align-items:center;}
+      .qcard-wrap{width:120px;}
+      .qabil-list{width:100%;}
+      .qabil{font-size:12px;padding:6px 10px;}
+      .qabil-desc{font-size:.75em;}
+      /* 動画 */
+      .vswitch-label{display:none;}
     }
   </style>
 </head>
@@ -211,31 +278,32 @@
     <div class="s-sub" style="margin-top:20px;">クリック / → キー / スワイプで次へ</div>
   </div>
 
-  <!-- ===== 2: 動画ピッカー ===== -->
+  <!-- ===== 2: 試合動画 — 自動再生 ===== -->
   <div class="slide bg-dark" id="slide-video">
     <div class="s-label">MATCH VIDEO</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,32px);">試合動画</div>
-    <div class="vpicker" id="vpicker">
-      <div class="vthumb" onclick="playVideo('SvyPrLPiGRI','1回戦 vs NLM 10-0')">
-        <img src="https://img.youtube.com/vi/SvyPrLPiGRI/mqdefault.jpg" alt="1回戦">
-        <div class="vthumb-label">1回戦 vs NLM<span class="vthumb-badge">10-0 ✅</span></div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,26px);margin-bottom:0;">試合動画</div>
+    <div class="vplayer-full">
+      <div class="vplayer-wrap">
+        <iframe id="yt-iframe" allow="autoplay;encrypted-media" allowfullscreen></iframe>
       </div>
-      <div class="vthumb" onclick="playVideo('mrQnw3IgpVM','2回戦 6-1')">
-        <img src="https://img.youtube.com/vi/mrQnw3IgpVM/mqdefault.jpg" alt="2回戦">
-        <div class="vthumb-label">2回戦<span class="vthumb-badge">6-1 ✅</span></div>
+      <div class="vswitch-row">
+        <div class="vswitch-btn active" data-vid="SvyPrLPiGRI" onclick="switchVideo('SvyPrLPiGRI',this)">
+          <img src="https://img.youtube.com/vi/SvyPrLPiGRI/mqdefault.jpg" alt="1回戦">
+          <div class="vswitch-label">1回戦 10-0 ✅</div>
+        </div>
+        <div class="vswitch-btn" data-vid="mrQnw3IgpVM" onclick="switchVideo('mrQnw3IgpVM',this)">
+          <img src="https://img.youtube.com/vi/mrQnw3IgpVM/mqdefault.jpg" alt="2回戦">
+          <div class="vswitch-label">2回戦 ✅</div>
+        </div>
+        <div class="vswitch-btn" data-vid="HdGvaSpry9s" onclick="switchVideo('HdGvaSpry9s',this)">
+          <img src="https://img.youtube.com/vi/HdGvaSpry9s/mqdefault.jpg" alt="準々決勝①">
+          <div class="vswitch-label">準々決勝 ① ✅</div>
+        </div>
+        <div class="vswitch-btn" data-vid="UMaTME3S_M8" onclick="switchVideo('UMaTME3S_M8',this)">
+          <img src="https://img.youtube.com/vi/UMaTME3S_M8/mqdefault.jpg" alt="準々決勝②">
+          <div class="vswitch-label">準々決勝 ② ✅</div>
+        </div>
       </div>
-      <div class="vthumb" onclick="playVideo('HdGvaSpry9s','準々決勝 ①')">
-        <img src="https://img.youtube.com/vi/HdGvaSpry9s/mqdefault.jpg" alt="準々決勝①">
-        <div class="vthumb-label">準々決勝 ①<span class="vthumb-badge">✅</span></div>
-      </div>
-      <div class="vthumb" onclick="playVideo('UMaTME3S_M8','準々決勝 ②')">
-        <img src="https://img.youtube.com/vi/UMaTME3S_M8/mqdefault.jpg" alt="準々決勝②">
-        <div class="vthumb-label">準々決勝 ②<span class="vthumb-badge">✅</span></div>
-      </div>
-    </div>
-    <div class="vplayer" id="vplayer">
-      <div class="vplayer-wrap"><iframe id="yt-iframe" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
-      <button class="vback" onclick="backToPicker()">← 選び直す</button>
     </div>
   </div>
 
@@ -294,169 +362,287 @@
     <div class="s-label">PLAYER INTRODUCTION</div>
     <div class="s-title">どんなメンバーが活躍しているのか、<br>一部だけ紹介します。</div>
     <div class="sdiv blue"></div>
-    <div class="s-body">— 選手クイズ —<br><span style="font-size:.8em;color:#556677;">ヒントを見て誰か当ててみてください</span></div>
+    <div class="s-body">— 選手クイズ —<br><span style="font-size:.8em;color:#556677;">クリックで能力をめくって誰か当ててみてください</span></div>
   </div>
 
-  <!-- ===== 8〜14: 選手クイズ ===== -->
-
-  <!-- 田中 大輝 -->
+  <!-- ===== QUIZ 1: 田中 大輝 ===== -->
   <div class="slide quiz-slide bg-dark">
     <div class="s-label">QUIZ — 1 / 7</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
-    <div class="quiz-base">
-      <div class="qb-item">ポジション<span>外野手</span></div>
-      <div class="qb-item">打順<span>パワー型</span></div>
-      <div class="qb-item">背番号<span>5</span></div>
-    </div>
-    <div class="qhints">
-      <div class="qhint hint-good"><span class="hint-ico">🍺</span><span class="hint-name">宴会力 S</span><span class="hint-desc">— 乾杯の音頭は毎回2分超え</span></div>
-      <div class="qhint hint-good"><span class="hint-ico">📢</span><span class="hint-name">声量 A</span><span class="hint-desc">— ベンチからの声援が激しすぎて相手が笑い出す</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">🚫</span><span class="hint-name">守備難民</span><span class="hint-desc">— 守備位置の希望が毎回バラバラ。毎試合じゃんけん</span></div>
-      <div class="qhint qanswer">
-        <div class="qa-label">ANSWER</div>
-        <div class="qa-name">田中 大輝</div>
-        <div class="qa-sub">背番号 5 ／ 外野手 ／ キャプテン ／ ★280</div>
-        <div class="qa-phrase">「守れなくても、声は出る。」</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner" style="background:linear-gradient(160deg,#1a3a6a,#080f28);">
+          <div class="qcard-pos-tag">外野手 / #5</div>
+          <div class="qcard-num-bg">5</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">??? ???</div>
+            <div class="qcard-name-revealed">田中 大輝</div>
+          </div>
+        </div>
+        <div class="qcard-star" id="star-1">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-graded">
+          <div class="qabil-top"><span class="qabil-ico">🍺</span><span class="qabil-name">宴会力</span><span class="qabil-grade gs">S</span></div>
+          <div class="qabil-desc">乾杯の音頭は毎回2分超え</div>
+        </div>
+        <div class="qabil qabil-graded">
+          <div class="qabil-top"><span class="qabil-ico">📢</span><span class="qabil-name">声量</span><span class="qabil-grade ga">A</span></div>
+          <div class="qabil-desc">ベンチからの声援が激しすぎて相手が笑い出す</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">🚫</span><span class="qabil-name">守備難民</span></div>
+          <div class="qabil-desc">守備位置の希望が毎回バラバラ。毎試合じゃんけん</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">田中 大輝</div>
+          <div class="qa-sub-line">背番号 5 ／ 外野手 ／ ★280</div>
+          <div class="qa-phrase-line">「守れなくても、声は出る。」</div>
+        </div>
       </div>
     </div>
-    <div class="quiz-hint-bar" id="qbar-1">▼ クリックでヒントを表示</div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
-  <!-- 佐藤 健太 -->
+  <!-- ===== QUIZ 2: 佐藤 健太 ===== -->
   <div class="slide quiz-slide bg-dark">
     <div class="s-label">QUIZ — 2 / 7</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
-    <div class="quiz-base">
-      <div class="qb-item">ポジション<span>先発投手</span></div>
-      <div class="qb-item">スタイル<span>スタンダード</span></div>
-      <div class="qb-item">背番号<span>1</span></div>
-    </div>
-    <div class="qhints">
-      <div class="qhint hint-good"><span class="hint-ico">🎭</span><span class="hint-name">浪漫投法○</span><span class="hint-desc">— ピンチを自ら作り自ら抑える。ハイリスクハイリターン</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">🚶</span><span class="hint-name">四球病</span><span class="hint-desc">— 四球を出す確率がプロ以上。なぜかアウトも取れる</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">💥</span><span class="hint-name">暴投常習犯</span><span class="hint-desc">— ウォームアップで窓ガラスを4枚割った記録保持者</span></div>
-      <div class="qhint qanswer">
-        <div class="qa-label">ANSWER</div>
-        <div class="qa-name">佐藤 健太</div>
-        <div class="qa-sub">背番号 1 ／ 先発投手 ／ ★341</div>
-        <div class="qa-phrase">「ストライクは入らないが、ハートは入れる。」</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner" style="background:linear-gradient(160deg,#4a1010,#200606);">
+          <div class="qcard-pos-tag">先発投手 / #1</div>
+          <div class="qcard-num-bg">1</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">??? ???</div>
+            <div class="qcard-name-revealed">佐藤 健太</div>
+          </div>
+        </div>
+        <div class="qcard-star">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">🎭</span><span class="qabil-name">浪漫投法○</span></div>
+          <div class="qabil-desc">ピンチを自ら作り自ら抑える。ハイリスクハイリターン</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">🚶</span><span class="qabil-name">四球病</span></div>
+          <div class="qabil-desc">四球を出す確率がプロ以上。なぜかアウトも取れる</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">💥</span><span class="qabil-name">暴投常習犯</span></div>
+          <div class="qabil-desc">ウォームアップで窓ガラスを4枚割った記録保持者</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">佐藤 健太</div>
+          <div class="qa-sub-line">背番号 1 ／ 先発投手 ／ ★341</div>
+          <div class="qa-phrase-line">「ストライクは入らないが、ハートは入れる。」</div>
+        </div>
       </div>
     </div>
-    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
-  <!-- 鈴木 拓也 -->
+  <!-- ===== QUIZ 3: 鈴木 拓也 ===== -->
   <div class="slide quiz-slide bg-dark">
     <div class="s-label">QUIZ — 3 / 7</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
-    <div class="quiz-base">
-      <div class="qb-item">ポジション<span>捕手</span></div>
-      <div class="qb-item">捕球<span>A（90）</span></div>
-      <div class="qb-item">背番号<span>2</span></div>
-    </div>
-    <div class="qhints">
-      <div class="qhint hint-good"><span class="hint-ico">👂</span><span class="hint-name">傾聴力 S</span><span class="hint-desc">— 年齢関係なく相談を受ける。解決はしないが聞いてくれる</span></div>
-      <div class="qhint hint-good"><span class="hint-ico">👨</span><span class="hint-name">全員の父○</span><span class="hint-desc">— 困ったらまず相談する文化がチームに根付いている</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">🐢</span><span class="hint-name">重量級走塁</span><span class="hint-desc">— 全力疾走でもペースが変わらない独自の物理法則</span></div>
-      <div class="qhint qanswer">
-        <div class="qa-label">ANSWER</div>
-        <div class="qa-name">鈴木 拓也</div>
-        <div class="qa-sub">背番号 2 ／ 捕手 ／ ★310</div>
-        <div class="qa-phrase">「受け止めるのが仕事。ボールも、愚痴も。」</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner" style="background:linear-gradient(160deg,#0a3a2a,#041810);">
+          <div class="qcard-pos-tag">捕手 / #2</div>
+          <div class="qcard-num-bg">2</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">??? ???</div>
+            <div class="qcard-name-revealed">鈴木 拓也</div>
+          </div>
+        </div>
+        <div class="qcard-star">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-graded">
+          <div class="qabil-top"><span class="qabil-ico">👂</span><span class="qabil-name">傾聴力</span><span class="qabil-grade gs">S</span></div>
+          <div class="qabil-desc">年齢関係なく相談を受ける。解決はしないが聞いてくれる</div>
+        </div>
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">👨</span><span class="qabil-name">全員の父○</span></div>
+          <div class="qabil-desc">困ったらまず相談する文化がチームに根付いている</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">🐢</span><span class="qabil-name">重量級走塁</span></div>
+          <div class="qabil-desc">全力疾走でもペースが変わらない独自の物理法則</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">鈴木 拓也</div>
+          <div class="qa-sub-line">背番号 2 ／ 捕手 ／ ★310</div>
+          <div class="qa-phrase-line">「受け止めるのが仕事。ボールも、愚痴も。」</div>
+        </div>
       </div>
     </div>
-    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
-  <!-- 山田 誠一 -->
+  <!-- ===== QUIZ 4: 山田 誠一 ===== -->
   <div class="slide quiz-slide bg-dark">
     <div class="s-label">QUIZ — 4 / 7</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
-    <div class="quiz-base">
-      <div class="qb-item">ポジション<span>一塁手</span></div>
-      <div class="qb-item">スタイル<span>パワー型</span></div>
-      <div class="qb-item">背番号<span>3</span></div>
-    </div>
-    <div class="qhints">
-      <div class="qhint hint-good"><span class="hint-ico">💪</span><span class="hint-name">パワー S（95）</span><span class="hint-desc">— 凡打かホームランかの二択。その潔さをチームは愛している</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">🔄</span><span class="hint-name">引っ張り専門</span><span class="hint-desc">— 逆方向に飛んだことが観測史上一度もない。本人も認めている</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">⚡</span><span class="hint-name">豪快三振</span><span class="hint-desc">— 空振りするとき必ずフルスイング。ハーフスイングという概念がない</span></div>
-      <div class="qhint qanswer">
-        <div class="qa-label">ANSWER</div>
-        <div class="qa-name">山田 誠一</div>
-        <div class="qa-sub">背番号 3 ／ 一塁手 ／ ★355</div>
-        <div class="qa-phrase">「飛ばしたら勝ち。理屈はあとでいい。」</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner" style="background:linear-gradient(160deg,#3a2008,#180d03);">
+          <div class="qcard-pos-tag">一塁手 / #3</div>
+          <div class="qcard-num-bg">3</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">??? ???</div>
+            <div class="qcard-name-revealed">山田 誠一</div>
+          </div>
+        </div>
+        <div class="qcard-star">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-graded">
+          <div class="qabil-top"><span class="qabil-ico">💪</span><span class="qabil-name">パワー</span><span class="qabil-grade gs">S</span></div>
+          <div class="qabil-desc">凡打かホームランかの二択。その潔さをチームは愛している</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">🔄</span><span class="qabil-name">引っ張り専門</span></div>
+          <div class="qabil-desc">逆方向に飛んだことが観測史上一度もない。本人も認めている</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">⚡</span><span class="qabil-name">豪快三振</span></div>
+          <div class="qabil-desc">空振りするとき必ずフルスイング。ハーフスイングという概念がない</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">山田 誠一</div>
+          <div class="qa-sub-line">背番号 3 ／ 一塁手 ／ ★355</div>
+          <div class="qa-phrase-line">「飛ばしたら勝ち。理屈はあとでいい。」</div>
+        </div>
       </div>
     </div>
-    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
-  <!-- 中村 翔 -->
+  <!-- ===== QUIZ 5: 中村 翔 ===== -->
   <div class="slide quiz-slide bg-dark">
     <div class="s-label">QUIZ — 5 / 7</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
-    <div class="quiz-base">
-      <div class="qb-item">ポジション<span>二塁手</span></div>
-      <div class="qb-item">走力<span>C（71）</span></div>
-      <div class="qb-item">背番号<span>6</span></div>
-    </div>
-    <div class="qhints">
-      <div class="qhint hint-good"><span class="hint-ico">📊</span><span class="hint-name">分析力 S</span><span class="hint-desc">— 全打者の攻略データを所持。なぜか自分の打率だけ除外</span></div>
-      <div class="qhint hint-good"><span class="hint-ico">📋</span><span class="hint-name">スコアラー○</span><span class="hint-desc">— リアルタイムでスコア入力。記録に夢中で守備が遅れることも</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">🕙</span><span class="hint-name">定時帰宅</span><span class="hint-desc">— 打ち上げは2時間が限界。22時には必ず帰宅。データがあるので</span></div>
-      <div class="qhint qanswer">
-        <div class="qa-label">ANSWER</div>
-        <div class="qa-name">中村 翔</div>
-        <div class="qa-sub">背番号 6 ／ 二塁手 ／ ★265</div>
-        <div class="qa-phrase">「データは裏切らない。俺の打率も正直だ。」</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner" style="background:linear-gradient(160deg,#2a1a4a,#100a20);">
+          <div class="qcard-pos-tag">二塁手 / #6</div>
+          <div class="qcard-num-bg">6</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">??? ?</div>
+            <div class="qcard-name-revealed">中村 翔</div>
+          </div>
+        </div>
+        <div class="qcard-star">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-graded">
+          <div class="qabil-top"><span class="qabil-ico">📊</span><span class="qabil-name">分析力</span><span class="qabil-grade gs">S</span></div>
+          <div class="qabil-desc">全打者の攻略データを所持。なぜか自分の打率だけ除外</div>
+        </div>
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">📋</span><span class="qabil-name">スコアラー○</span></div>
+          <div class="qabil-desc">リアルタイムでスコア入力。記録に夢中で守備が遅れることも</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">🕙</span><span class="qabil-name">定時帰宅</span></div>
+          <div class="qabil-desc">打ち上げは2時間が限界。22時には必ず帰宅。データがあるので</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">中村 翔</div>
+          <div class="qa-sub-line">背番号 6 ／ 二塁手 ／ ★265</div>
+          <div class="qa-phrase-line">「データは裏切らない。俺の打率も正直だ。」</div>
+        </div>
       </div>
     </div>
-    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
-  <!-- 小林 亮太 -->
+  <!-- ===== QUIZ 6: 小林 亮太 ===== -->
   <div class="slide quiz-slide bg-dark">
     <div class="s-label">QUIZ — 6 / 7</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
-    <div class="quiz-base">
-      <div class="qb-item">ポジション<span>中堅手</span></div>
-      <div class="qb-item">スタイル<span>スピード型</span></div>
-      <div class="qb-item">背番号<span>8</span></div>
-    </div>
-    <div class="qhints">
-      <div class="qhint hint-good"><span class="hint-ico">🏃</span><span class="hint-name">走力 S（95）</span><span class="hint-desc">— 内野ゴロで全力疾走。生き足でプレッシャーをかけ続ける</span></div>
-      <div class="qhint hint-good"><span class="hint-ico">💨</span><span class="hint-name">疾風脚○</span><span class="hint-desc">— 40m走タイムはチームダントツ1位。ユニフォームが常に風になびく</span></div>
-      <div class="qhint hint-bad"><span class="hint-ico">😨</span><span class="hint-name">打席チキン</span><span class="hint-desc">— 打席に入ると足の速さが消える謎の体質。守備と打撃で別人</span></div>
-      <div class="qhint qanswer">
-        <div class="qa-label">ANSWER</div>
-        <div class="qa-name">小林 亮太</div>
-        <div class="qa-sub">背番号 8 ／ 中堅手 ／ ★298</div>
-        <div class="qa-phrase">「追いついてみせる。打球も、締切も。」</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner" style="background:linear-gradient(160deg,#0a2a3a,#04121c);">
+          <div class="qcard-pos-tag">中堅手 / #8</div>
+          <div class="qcard-num-bg">8</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">??? ???</div>
+            <div class="qcard-name-revealed">小林 亮太</div>
+          </div>
+        </div>
+        <div class="qcard-star">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-graded">
+          <div class="qabil-top"><span class="qabil-ico">🏃</span><span class="qabil-name">走力</span><span class="qabil-grade gs">S</span></div>
+          <div class="qabil-desc">内野ゴロで全力疾走。生き足でプレッシャーをかけ続ける</div>
+        </div>
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">💨</span><span class="qabil-name">疾風脚○</span></div>
+          <div class="qabil-desc">40m走タイムはチームダントツ1位。ユニフォームが常に風になびく</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">😨</span><span class="qabil-name">打席チキン</span></div>
+          <div class="qabil-desc">打席に入ると足の速さが消える謎の体質。守備と打撃で別人</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">小林 亮太</div>
+          <div class="qa-sub-line">背番号 8 ／ 中堅手 ／ ★298</div>
+          <div class="qa-phrase-line">「追いついてみせる。打球も、締切も。」</div>
+        </div>
       </div>
     </div>
-    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
-  <!-- 鴨下 -->
+  <!-- ===== QUIZ 7: 鴨下 ===== -->
   <div class="slide quiz-slide bg-dark">
     <div class="s-label">QUIZ — 7 / 7（最後）</div>
-    <div class="s-title" style="font-size:clamp(18px,3vw,30px);">この選手は誰？</div>
-    <div class="quiz-base">
-      <div class="qb-item">ポジション<span>投手・外野（二刀流）</span></div>
-      <div class="qb-item">背番号<span>17</span></div>
-    </div>
-    <div class="qhints">
-      <div class="qhint hint-good"><span class="hint-ico">🔮</span><span class="hint-name">真っスラ</span><span class="hint-desc">— 真っ直ぐに見せてスライダー。打者が「え、今の何？」と言う謎変化球</span></div>
-      <div class="qhint hint-good"><span class="hint-ico">🧠</span><span class="hint-name">ゲームメイク○</span><span class="hint-desc">— 試合の流れを読んで最善手を選ぶ頭脳派の証明</span></div>
-      <div class="qhint hint-good"><span class="hint-ico">🌊</span><span class="hint-name">緩急◎</span><span class="hint-desc">— 遅いボールと速いボールの使い分けが常人離れしている</span></div>
-      <div class="qhint qanswer">
-        <div class="qa-label">ANSWER</div>
-        <div class="qa-name">鴨下</div>
-        <div class="qa-sub">背番号 17 ／ 投手・外野手 ／ ★465</div>
-        <div class="qa-phrase" style="color:#f0c800;">⚠ 実在するパワプロ選手です</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner">
+          <img src="photos/kamoshita.jpeg" alt="鴨下">
+          <div class="qcard-pos-tag">投手・外野（二刀流）/ #17</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">???</div>
+            <div class="qcard-name-revealed">鴨下</div>
+          </div>
+        </div>
+        <div class="qcard-star">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">🔮</span><span class="qabil-name">真っスラ</span></div>
+          <div class="qabil-desc">真っ直ぐに見せてスライダー。打者が「え、今の何？」と言う謎変化球</div>
+        </div>
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">🧠</span><span class="qabil-name">ゲームメイク○</span></div>
+          <div class="qabil-desc">試合の流れを読んで最善手を選ぶ頭脳派の証明</div>
+        </div>
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">🌊</span><span class="qabil-name">緩急◎</span></div>
+          <div class="qabil-desc">遅いボールと速いボールの使い分けが常人離れしている</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">鴨下</div>
+          <div class="qa-sub-line">背番号 17 ／ 投手・外野手 ／ ★465</div>
+          <div class="qa-phrase-line" style="color:#f0c800;">⚠ 実在するパワプロ選手です</div>
+        </div>
       </div>
     </div>
-    <div class="quiz-hint-bar">▼ クリックでヒントを表示</div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
   <!-- ===== 15: 問題前フリ ===== -->
@@ -546,33 +732,33 @@ const TOTAL = slides.length;
 let cur = 0;
 
 /* ── 動画制御 ── */
-function playVideo(id, label) {
-  document.getElementById('vpicker').style.display = 'none';
-  const p = document.getElementById('vplayer');
-  p.style.display = 'flex';
+const DEFAULT_VID = 'SvyPrLPiGRI';
+
+function startVideo(id) {
   document.getElementById('yt-iframe').src =
     'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
-}
-function backToPicker() {
-  document.getElementById('yt-iframe').src = '';
-  document.getElementById('vplayer').style.display = 'none';
-  document.getElementById('vpicker').style.display = 'grid';
+  document.querySelectorAll('.vswitch-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.vid === id);
+  });
 }
 function stopVideo() {
-  const f = document.getElementById('yt-iframe');
-  if (f) f.src = '';
-  document.getElementById('vplayer').style.display = 'none';
-  document.getElementById('vpicker').style.display = 'grid';
+  document.getElementById('yt-iframe').src = '';
+}
+function switchVideo(id, el) {
+  startVideo(id);
 }
 
 /* ── スライド表示 ── */
 function show(n) {
-  // 動画スライドを離れるとき停止
-  if (slides[cur] === document.getElementById('slide-video')) stopVideo();
+  const leaving = slides[cur];
+  if (leaving === document.getElementById('slide-video')) stopVideo();
 
   slides[cur].classList.remove('active');
   cur = Math.max(0, Math.min(TOTAL - 1, n));
   slides[cur].classList.add('active');
+
+  if (slides[cur] === document.getElementById('slide-video')) startVideo(DEFAULT_VID);
+
   document.getElementById('counter').textContent = (cur + 1) + ' / ' + TOTAL;
   document.getElementById('prevBtn').disabled = cur === 0;
   document.getElementById('nextBtn').disabled = cur === TOTAL - 1;
@@ -583,17 +769,29 @@ function show(n) {
 function go(d) {
   const s = slides[cur];
 
-  // 前進 & クイズスライドにまだ隠れているヒントがあれば1つ表示
   if (d > 0 && s.classList.contains('quiz-slide')) {
-    const next = s.querySelector('.qhint:not(.shown)');
+    const next = s.querySelector('.qabil:not(.shown)');
     if (next) {
       next.classList.add('shown');
-      // ヒントバーの更新
+
+      // 答え表示時にカードの名前も出す
+      if (next.classList.contains('qanswer')) {
+        const nh = s.querySelector('.qcard-name-hidden');
+        const nr = s.querySelector('.qcard-name-revealed');
+        const st = s.querySelector('.qcard-star');
+        if (nh) nh.style.display = 'none';
+        if (nr) nr.style.display = 'block';
+        if (st) { st.classList.add('shown'); st.textContent = next.querySelector('.qa-sub-line').textContent.match(/★\d+/)?.[0] || '★???'; }
+      }
+
       const bar = s.querySelector('.quiz-hint-bar');
       if (bar) {
-        const remain = s.querySelectorAll('.qhint:not(.shown)').length;
-        bar.textContent = remain > 0 ? '▼ クリックでヒントを表示' : '▼ クリックで答えを表示';
-        if (next.classList.contains('qanswer')) bar.textContent = '→ クリックで次の選手へ';
+        const remain = s.querySelectorAll('.qabil:not(.shown)').length;
+        if (next.classList.contains('qanswer')) {
+          bar.textContent = '→ クリックで次の選手へ';
+        } else {
+          bar.textContent = remain > 0 ? '▼ クリックで次の能力を表示' : '▼ クリックで答えを表示';
+        }
       }
       return;
     }
@@ -605,12 +803,12 @@ function go(d) {
 /* ── キーボード ── */
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
-  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                   { e.preventDefault(); go(-1); }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); go(-1); }
 });
 
-/* ── クリック（ボタン・リンク・動画以外） ── */
+/* ── クリック（ボタン・リンク・動画・切替以外） ── */
 document.getElementById('deck').addEventListener('click', e => {
-  if (!e.target.closest('a, button, .vthumb, iframe, .vplayer')) go(1);
+  if (!e.target.closest('a, button, .vswitch-btn, iframe')) go(1);
 });
 
 /* ── スワイプ ── */
