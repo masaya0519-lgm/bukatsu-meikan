@@ -156,15 +156,24 @@
     .quiz-hint-bar{margin-top:10px;font-size:clamp(10px,1.3vw,13px);color:#2a3a55;animation:pulse-hint 2s infinite;flex-shrink:0;}
     @keyframes pulse-hint{0%,100%{opacity:.5;}50%{opacity:1;}}
 
-    /* 四隅の犯人顔写真 */
-    .culprit-corner{
-      position:absolute;
-      width:clamp(70px,9vw,120px);height:clamp(70px,9vw,120px);
+    /* 表を囲む犯人顔写真 */
+    .culprit-frame{
+      display:flex;align-items:center;justify-content:center;
+      gap:clamp(10px,2.5vw,28px);
+      margin-top:16px;width:100%;max-width:780px;
+    }
+    .culprit-side{
+      display:flex;flex-direction:column;
+      gap:clamp(14px,4vh,32px);flex-shrink:0;
+    }
+    .culprit-face{
+      width:clamp(58px,8vw,104px);height:clamp(58px,8vw,104px);
       border-radius:50%;object-fit:cover;object-position:top;
       border:3px solid rgba(255,80,40,.55);
-      opacity:.82;z-index:2;
+      opacity:.85;
       filter:drop-shadow(0 0 10px rgba(255,60,20,.35));
     }
+    .culprit-list{margin-top:0 !important;flex:1;max-width:520px;}
 
     /* ナポレオンスライド */
     .napoleon-bg{position:absolute;inset:0;background-image:url('photos/napoleon.jpg');background-size:cover;background-position:center top;z-index:0;}
@@ -427,17 +436,23 @@
 
   <!-- 11: あるある -->
   <div class="slide">
-    <img src="photos/wada.jpg"      class="culprit-corner" style="top:52px;left:16px;transform:rotate(-6deg);" alt="">
-    <img src="photos/yamaguchi.jpg" class="culprit-corner" style="top:52px;right:16px;transform:rotate(5deg);" alt="">
-    <img src="photos/takayama.jpg"  class="culprit-corner" style="bottom:56px;left:16px;transform:rotate(7deg);" alt="">
-    <img src="photos/yamamoto.jpg"  class="culprit-corner" style="bottom:56px;right:16px;transform:rotate(-4deg);" alt="">
     <div class="s-label">REASONS</div>
-    <ul class="s-list red">
-      <li><span class="ico">🍺</span>前日に飲みすぎて<span style="color:#ff7755;">二日酔い・遅刻</span></li>
-      <li><span class="ico">😴</span><span style="color:#ff7755;">寝坊</span></li>
-      <li><span class="ico">📅</span>予定を入れるのを<span style="color:#ff7755;">忘れていた</span></li>
-      <li><span class="ico">🗓</span>カレンダーには入っていたけど、<span style="color:#ff7755;">心には入っていなかった</span></li>
-    </ul>
+    <div class="culprit-frame">
+      <div class="culprit-side">
+        <img src="photos/wada.jpg"     class="culprit-face" style="transform:rotate(-5deg);" alt="">
+        <img src="photos/takayama.jpg" class="culprit-face" style="transform:rotate(6deg);"  alt="">
+      </div>
+      <ul class="s-list red culprit-list">
+        <li><span class="ico">🍺</span>前日に飲みすぎて<span style="color:#ff7755;">二日酔い・遅刻</span></li>
+        <li><span class="ico">😴</span><span style="color:#ff7755;">寝坊</span></li>
+        <li><span class="ico">📅</span>予定を入れるのを<span style="color:#ff7755;">忘れていた</span></li>
+        <li><span class="ico">🗓</span>カレンダーには入っていたけど、<span style="color:#ff7755;">心には入っていなかった</span></li>
+      </ul>
+      <div class="culprit-side">
+        <img src="photos/yamaguchi.jpg" class="culprit-face" style="transform:rotate(5deg);"  alt="">
+        <img src="photos/yamamoto.jpg"  class="culprit-face" style="transform:rotate(-6deg);" alt="">
+      </div>
+    </div>
     <div class="s-sub" style="margin-top:18px;">社会人らしからぬスリリングな自己管理により、<br>毎回ギリギリの人数で戦っています。</div>
   </div>
 
