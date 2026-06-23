@@ -114,10 +114,20 @@
     }
     .qcard-wrap{flex-shrink:0;width:clamp(110px,17vw,175px);display:flex;flex-direction:column;gap:5px;}
     .qcard-inner{width:100%;aspect-ratio:3/4;border-radius:6px;position:relative;overflow:hidden;border:2px solid rgba(255,255,255,.12);}
-    .qcard-inner img{width:100%;height:100%;object-fit:cover;}
+    .qcard-inner img{width:100%;height:100%;object-fit:cover;transition:filter .5s ease;}
+    /* クイズ中は写真を隠す（ぼかし＋暗転） */
+    .qcard-inner.photo-hidden img{filter:blur(22px) brightness(.35) grayscale(1);}
+    .qcard-inner.photo-hidden::after{
+      content:'?';position:absolute;inset:0;z-index:1;
+      display:flex;align-items:center;justify-content:center;
+      font-size:clamp(48px,8vw,80px);font-weight:900;
+      color:rgba(255,255,255,.5);
+    }
+    .qcard-inner.photo-hidden.revealed img{filter:none;}
+    .qcard-inner.photo-hidden.revealed::after{display:none;}
     .qcard-pos-tag{position:absolute;top:0;left:0;right:0;background:rgba(0,0,0,.65);padding:4px 6px;font-size:clamp(8px,1.1vw,11px);font-weight:900;letter-spacing:1px;color:rgba(255,255,255,.7);text-align:center;}
     .qcard-num-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(52px,9vw,88px);font-weight:900;color:rgba(255,255,255,.07);pointer-events:none;line-height:1;}
-    .qcard-name-area{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.72);padding:5px 6px;text-align:center;}
+    .qcard-name-area{position:absolute;bottom:0;left:0;right:0;z-index:2;background:rgba(0,0,0,.72);padding:5px 6px;text-align:center;}
     .qcard-name-hidden{font-size:clamp(11px,1.5vw,14px);font-weight:900;color:rgba(255,255,255,.22);letter-spacing:4px;}
     .qcard-name-revealed{display:none;font-size:clamp(11px,1.5vw,14px);font-weight:900;color:#f0c800;letter-spacing:1px;animation:revIn .4s ease both;}
     .qcard-star{text-align:center;font-size:clamp(9px,1.2vw,12px);color:#2a3a20;font-weight:700;letter-spacing:1px;}
@@ -365,9 +375,9 @@
     <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
     <div class="quiz-layout">
       <div class="qcard-wrap">
-        <div class="qcard-inner">
+        <div class="qcard-inner photo-hidden">
           <img src="photos/wada.jpg" alt="和田">
-          <div class="qcard-pos-tag">内野手 / ムードメーカー</div>
+          <div class="qcard-pos-tag" style="z-index:2;">内野手 / ムードメーカー</div>
           <div class="qcard-name-area">
             <div class="qcard-name-hidden">???</div>
             <div class="qcard-name-revealed">和田</div>
@@ -567,6 +577,9 @@ function go(d) {
         const st = s.querySelector('.qcard-star');
         if (nh) nh.style.display = 'none';
         if (nr) nr.style.display = 'block';
+        // 隠していた実写写真を公開
+        const hiddenPhoto = s.querySelector('.qcard-inner.photo-hidden');
+        if (hiddenPhoto) hiddenPhoto.classList.add('revealed');
         if (st) {
           st.classList.add('shown');
           const m = nextAbil.querySelector('.qa-sub-line').textContent.match(/★\d+/);
