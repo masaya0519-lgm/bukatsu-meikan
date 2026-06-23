@@ -146,12 +146,47 @@
     .quiz-hint-bar{margin-top:10px;font-size:clamp(10px,1.3vw,13px);color:#2a3a55;animation:pulse-hint 2s infinite;flex-shrink:0;}
     @keyframes pulse-hint{0%,100%{opacity:.5;}50%{opacity:1;}}
 
-    /* 犯人顔写真 */
-    .culprit-row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
-    .culprit-row img{
-      width:clamp(44px,6vw,60px);height:clamp(44px,6vw,60px);
+    /* 四隅の犯人顔写真 */
+    .culprit-corner{
+      position:absolute;
+      width:clamp(64px,9vw,110px);height:clamp(64px,9vw,110px);
       border-radius:50%;object-fit:cover;object-position:top;
-      border:2px solid rgba(255,80,40,.5);
+      border:3px solid rgba(255,80,40,.6);
+      opacity:.85;z-index:2;
+      filter:drop-shadow(0 0 8px rgba(255,60,20,.4));
+    }
+    .culprit-tl{top:56px;left:14px;}
+    .culprit-tr{top:56px;right:14px;}
+    .culprit-bl{bottom:60px;left:14px;}
+    .culprit-br{bottom:60px;right:14px;}
+
+    /* ナポレオンスライド */
+    .napoleon-bg{position:absolute;inset:0;background-image:url('photos/napoleon.jpg');background-size:cover;background-position:center top;z-index:0;}
+    .napoleon-quote-box{
+      position:absolute;bottom:58px;left:6%;right:6%;z-index:1;
+      background:radial-gradient(ellipse at 50% 60%,rgba(255,255,255,.92) 30%,rgba(255,255,255,.7) 65%,transparent 100%);
+      border-radius:54% 46% 50% 50% / 40% 40% 60% 60%;
+      padding:clamp(16px,3vw,28px) clamp(20px,5vw,60px) clamp(20px,3vw,32px);
+      text-align:center;
+    }
+    .napoleon-quote-text{font-size:clamp(13px,2.2vw,22px);font-weight:900;color:#1a0808;line-height:1.65;}
+    .napoleon-quote-src{font-size:clamp(11px,1.5vw,16px);color:#554433;margin-top:8px;}
+
+    /* 鴨下フルスクリーンオーバーレイ */
+    #fullscreen-overlay{
+      display:none;position:fixed;inset:0;z-index:500;
+      background:#000;cursor:pointer;
+    }
+    #fullscreen-overlay img{width:100%;height:100%;object-fit:contain;display:block;}
+    #fullscreen-overlay .fo-name{
+      position:absolute;bottom:60px;left:0;right:0;text-align:center;
+      font-size:clamp(24px,5vw,48px);font-weight:900;
+      color:#f0c800;letter-spacing:6px;
+      text-shadow:0 0 30px rgba(240,200,0,.9);
+    }
+    #fullscreen-overlay .fo-close{
+      position:absolute;top:16px;right:20px;
+      font-size:12px;color:rgba(255,255,255,.35);letter-spacing:1px;
     }
 
     .nav-bar{position:fixed;bottom:0;left:0;right:0;height:48px;background:rgba(4,8,14,.92);border-top:1px solid #1a2040;display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:100;}
@@ -264,6 +299,8 @@
     <div class="path-mini">
       <div class="pm-step done">1回戦<br>10-0 ✅</div>
       <div class="pm-arrow">▶</div>
+      <div class="pm-step done">2回戦<br>6-1 ✅</div>
+      <div class="pm-arrow">▶</div>
       <div class="pm-step done">準々決勝<br>6-1 ✅</div>
       <div class="pm-arrow">▶</div>
       <div class="pm-step next">準決勝<br>6/28 🔥</div>
@@ -287,7 +324,7 @@
   </div>
 
   <!-- 8: 鴨下クイズ -->
-  <div class="slide quiz-slide bg-dark">
+  <div class="slide quiz-slide bg-dark" id="slide-kamoshita-quiz">
     <div class="s-label">QUIZ</div>
     <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
     <div class="quiz-layout">
@@ -344,17 +381,13 @@
 
   <!-- 11: あるある -->
   <div class="slide">
+    <img src="photos/wada.jpg"      class="culprit-corner culprit-tl" alt="">
+    <img src="photos/yamaguchi.jpg" class="culprit-corner culprit-tr" alt="">
+    <img src="photos/takayama.jpg"  class="culprit-corner culprit-bl" alt="">
+    <img src="photos/yamamoto.jpg"  class="culprit-corner culprit-br" alt="">
     <div class="s-label">REASONS</div>
     <ul class="s-list red">
-      <li>
-        <span class="ico">🍺</span>前日に飲みすぎて<span style="color:#ff7755;">二日酔い・遅刻</span>
-        <div class="culprit-row">
-          <img src="photos/wada.jpg" alt="和田">
-          <img src="photos/yamaguchi.jpg" alt="山口">
-          <img src="photos/takayama.jpg" alt="高山">
-          <img src="photos/yamamoto.jpg" alt="山本">
-        </div>
-      </li>
+      <li><span class="ico">🍺</span>前日に飲みすぎて<span style="color:#ff7755;">二日酔い・遅刻</span></li>
       <li><span class="ico">😴</span><span style="color:#ff7755;">寝坊</span></li>
       <li><span class="ico">📅</span>予定を入れるのを<span style="color:#ff7755;">忘れていた</span></li>
       <li><span class="ico">🗓</span>カレンダーには入っていたけど、<span style="color:#ff7755;">心には入っていなかった</span></li>
@@ -363,14 +396,12 @@
   </div>
 
   <!-- 12: ナポレオン -->
-  <div class="slide bg-gold">
-    <div class="s-label">NAPOLEON</div>
-    <div class="s-body" style="margin-top:0;margin-bottom:18px;color:#7a6030;">ナポレオンもびっくりです。</div>
-    <div class="quote-card">
-      <div class="quote-text">「真に恐れるべきは<br>強い相手ではなく、<br><span style="font-size:1.15em;">無能な味方である」</span></div>
-      <div class="quote-src">— ナポレオン・ボナパルト</div>
+  <div class="slide" style="padding:0;overflow:hidden;">
+    <div class="napoleon-bg"></div>
+    <div class="napoleon-quote-box">
+      <div class="napoleon-quote-text">"真に恐れるべきは有能な敵ではなく<br>無能な味方である</div>
+      <div class="napoleon-quote-src">by ナポレオン</div>
     </div>
-    <div class="s-sub" style="margin-top:18px;">まさにそんな状態です。</div>
   </div>
 
   <!-- 13: 助っ人 -->
@@ -407,6 +438,13 @@
     <div class="s-sub" style="margin-top:18px;">次回練習：<span style="color:#aabbcc;">8月8日（土）</span></div>
   </div>
 
+</div>
+
+<!-- 鴨下フルスクリーンオーバーレイ -->
+<div id="fullscreen-overlay" onclick="this.style.display='none'">
+  <img src="photos/kamoshita.jpeg" alt="鴨下">
+  <div class="fo-name">鴨下　★465</div>
+  <div class="fo-close">タップ / クリックで閉じる</div>
 </div>
 
 <div class="nav-bar">
@@ -477,6 +515,10 @@ function go(d) {
           st.classList.add('shown');
           const m = nextAbil.querySelector('.qa-sub-line').textContent.match(/★\d+/);
           st.textContent = m ? m[0] : '★???';
+        }
+        // 鴨下スライドならフルスクリーン表示
+        if (s.id === 'slide-kamoshita-quiz') {
+          setTimeout(() => { document.getElementById('fullscreen-overlay').style.display = 'block'; }, 400);
         }
         const bar = s.querySelector('.quiz-hint-bar');
         if (bar) bar.textContent = '→ クリックで次へ';
