@@ -173,7 +173,7 @@
       display:none;position:fixed;inset:0;z-index:500;
       background:#000;cursor:pointer;
     }
-    #fullscreen-overlay img{width:100%;height:100%;object-fit:contain;display:block;}
+    #fullscreen-overlay img,#fullscreen-overlay video{width:100%;height:100%;object-fit:contain;display:block;background:#000;}
     #fullscreen-overlay .fo-name{
       position:absolute;bottom:60px;left:0;right:0;text-align:center;
       font-size:clamp(24px,5vw,48px);font-weight:900;
@@ -320,7 +320,7 @@
   </div>
 
   <!-- 8: 鴨下クイズ -->
-  <div class="slide quiz-slide bg-dark" id="slide-kamoshita-quiz">
+  <div class="slide quiz-slide bg-dark" id="slide-kamoshita-quiz" data-answer-video="videos/kamoshita.mp4" data-answer-name="鴨下　★465">
     <div class="s-label">QUIZ</div>
     <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
     <div class="quiz-layout">
@@ -359,7 +359,47 @@
     <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
   </div>
 
-  <!-- 9: 問題前フリ -->
+  <!-- 9: 和田クイズ -->
+  <div class="slide quiz-slide bg-dark" data-answer-video="videos/wada.mp4" data-answer-name="和田">
+    <div class="s-label">QUIZ</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,24px);">この選手は誰？</div>
+    <div class="quiz-layout">
+      <div class="qcard-wrap">
+        <div class="qcard-inner">
+          <img src="photos/wada.jpg" alt="和田">
+          <div class="qcard-pos-tag">内野手 / ムードメーカー</div>
+          <div class="qcard-name-area">
+            <div class="qcard-name-hidden">???</div>
+            <div class="qcard-name-revealed">和田</div>
+          </div>
+        </div>
+        <div class="qcard-star">★ ???</div>
+      </div>
+      <div class="qabil-list">
+        <div class="qabil qabil-graded">
+          <div class="qabil-top"><span class="qabil-ico">🍺</span><span class="qabil-name">宴会部長</span><span class="qabil-grade gs">S</span></div>
+          <div class="qabil-desc">飲み会の出席率100%。盛り上げは球界トップクラス</div>
+        </div>
+        <div class="qabil qabil-bool">
+          <div class="qabil-top"><span class="qabil-ico">🔥</span><span class="qabil-name">来れば主役○</span></div>
+          <div class="qabil-desc">グラウンドに立った日は大活躍。問題は「立てば」</div>
+        </div>
+        <div class="qabil qabil-neg">
+          <div class="qabil-top"><span class="qabil-ico">😵</span><span class="qabil-name">二日酔い遅刻</span></div>
+          <div class="qabil-desc">前日の宴会力が翌朝の集合時間を侵食する</div>
+        </div>
+        <div class="qabil qanswer">
+          <div class="qa-label-line">ANSWER</div>
+          <div class="qa-big-name">和田</div>
+          <div class="qa-sub-line">内野手 ／ チームの太陽 ／ ★宴会MVP</div>
+          <div class="qa-phrase-line" style="color:#f0c800;">「来た日は、必ずやる男。」</div>
+        </div>
+      </div>
+    </div>
+    <div class="quiz-hint-bar">▼ クリックで能力を表示</div>
+  </div>
+
+  <!-- 10: 問題前フリ -->
   <div class="slide">
     <div class="s-label">CHALLENGE</div>
     <div class="s-title">こんな愉快なメンバーで活動する野球部ですが、<br>今後も勝ち続けるために、</div>
@@ -437,10 +477,10 @@
 
 </div>
 
-<!-- 鴨下フルスクリーンオーバーレイ -->
-<div id="fullscreen-overlay" onclick="this.style.display='none'">
-  <img src="photos/kamoshita.jpeg" alt="鴨下">
-  <div class="fo-name">鴨下　★465</div>
+<!-- 正解発表フルスクリーン動画オーバーレイ -->
+<div id="fullscreen-overlay" onclick="closeFullscreen()">
+  <video id="fo-video" playsinline controls></video>
+  <div class="fo-name" id="fo-name"></div>
   <div class="fo-close">タップ / クリックで閉じる</div>
 </div>
 
@@ -469,6 +509,25 @@ function startVideo(id) {
 }
 function stopVideo() { document.getElementById('yt-iframe').src = ''; }
 function switchVideo(id) { startVideo(id); }
+
+/* ── 正解発表フルスクリーン動画 ── */
+function openFullscreen(src, name) {
+  const ov = document.getElementById('fullscreen-overlay');
+  const v  = document.getElementById('fo-video');
+  document.getElementById('fo-name').textContent = name;
+  v.src = src;
+  v.currentTime = 0;
+  ov.style.display = 'block';
+  v.play().catch(() => {});
+}
+function closeFullscreen() {
+  const ov = document.getElementById('fullscreen-overlay');
+  const v  = document.getElementById('fo-video');
+  v.pause();
+  v.removeAttribute('src');
+  v.load();
+  ov.style.display = 'none';
+}
 
 /* ── スライド表示 ── */
 function show(n) {
@@ -513,9 +572,9 @@ function go(d) {
           const m = nextAbil.querySelector('.qa-sub-line').textContent.match(/★\d+/);
           st.textContent = m ? m[0] : '★???';
         }
-        // 鴨下スライドならフルスクリーン表示
-        if (s.id === 'slide-kamoshita-quiz') {
-          setTimeout(() => { document.getElementById('fullscreen-overlay').style.display = 'block'; }, 400);
+        // 正解動画が設定されていればフルスクリーン再生
+        if (s.dataset.answerVideo) {
+          setTimeout(() => openFullscreen(s.dataset.answerVideo, s.dataset.answerName || ''), 400);
         }
         const bar = s.querySelector('.quiz-hint-bar');
         if (bar) bar.textContent = '→ クリックで次へ';
@@ -539,6 +598,10 @@ function go(d) {
 
 /* ── キーボード ── */
 document.addEventListener('keydown', e => {
+  // フルスクリーン動画が開いている間はそれを閉じるだけ
+  if (document.getElementById('fullscreen-overlay').style.display === 'block') {
+    e.preventDefault(); closeFullscreen(); return;
+  }
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); go(-1); }
 });
