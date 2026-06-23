@@ -149,16 +149,12 @@
     /* 四隅の犯人顔写真 */
     .culprit-corner{
       position:absolute;
-      width:clamp(64px,9vw,110px);height:clamp(64px,9vw,110px);
+      width:clamp(70px,9vw,120px);height:clamp(70px,9vw,120px);
       border-radius:50%;object-fit:cover;object-position:top;
-      border:3px solid rgba(255,80,40,.6);
-      opacity:.85;z-index:2;
-      filter:drop-shadow(0 0 8px rgba(255,60,20,.4));
+      border:3px solid rgba(255,80,40,.55);
+      opacity:.82;z-index:2;
+      filter:drop-shadow(0 0 10px rgba(255,60,20,.35));
     }
-    .culprit-tl{top:56px;left:14px;}
-    .culprit-tr{top:56px;right:14px;}
-    .culprit-bl{bottom:60px;left:14px;}
-    .culprit-br{bottom:60px;right:14px;}
 
     /* ナポレオンスライド */
     .napoleon-bg{position:absolute;inset:0;background-image:url('photos/napoleon.jpg');background-size:cover;background-position:center top;z-index:0;}
@@ -381,10 +377,10 @@
 
   <!-- 11: あるある -->
   <div class="slide">
-    <img src="photos/wada.jpg"      class="culprit-corner culprit-tl" alt="">
-    <img src="photos/yamaguchi.jpg" class="culprit-corner culprit-tr" alt="">
-    <img src="photos/takayama.jpg"  class="culprit-corner culprit-bl" alt="">
-    <img src="photos/yamamoto.jpg"  class="culprit-corner culprit-br" alt="">
+    <img src="photos/wada.jpg"      class="culprit-corner" style="top:52px;left:16px;transform:rotate(-6deg);" alt="">
+    <img src="photos/yamaguchi.jpg" class="culprit-corner" style="top:52px;right:16px;transform:rotate(5deg);" alt="">
+    <img src="photos/takayama.jpg"  class="culprit-corner" style="bottom:56px;left:16px;transform:rotate(7deg);" alt="">
+    <img src="photos/yamamoto.jpg"  class="culprit-corner" style="bottom:56px;right:16px;transform:rotate(-4deg);" alt="">
     <div class="s-label">REASONS</div>
     <ul class="s-list red">
       <li><span class="ico">🍺</span>前日に飲みすぎて<span style="color:#ff7755;">二日酔い・遅刻</span></li>
