@@ -201,6 +201,13 @@
       text-align:center;
     }
     .napoleon-quote-text{font-size:clamp(13px,2.2vw,22px);font-weight:900;color:#1a0808;line-height:1.65;}
+    /* 「無能」にギリギリ見えるモザイク */
+    .mosaic-word{
+      filter:blur(3.5px);
+      letter-spacing:1px;
+      -webkit-text-fill-color:#1a0808;
+      display:inline-block;
+    }
     .napoleon-quote-src{font-size:clamp(11px,1.5vw,16px);color:#554433;margin-top:8px;}
 
     /* 鴨下フルスクリーンオーバーレイ */
@@ -480,7 +487,7 @@
   <div class="slide" style="padding:0;overflow:hidden;">
     <div class="napoleon-bg"></div>
     <div class="napoleon-quote-box">
-      <div class="napoleon-quote-text">"真に恐れるべきは有能な敵ではなく<br>無能な味方である</div>
+      <div class="napoleon-quote-text">"真に恐れるべきは有能な敵ではなく<br><span class="mosaic-word">無能</span>な味方である</div>
       <div class="napoleon-quote-src">by ナポレオン</div>
     </div>
   </div>
