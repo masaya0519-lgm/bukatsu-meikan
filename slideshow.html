@@ -267,31 +267,15 @@
     <div class="s-sub" style="margin-top:20px;">クリック / → キー / スワイプで次へ</div>
   </div>
 
-  <!-- 2: 試合動画 — 自動再生 -->
-  <div class="slide bg-dark" id="slide-video">
-    <div class="s-label">MATCH VIDEO</div>
-    <div class="s-title" style="font-size:clamp(16px,2.5vw,26px);margin-bottom:0;">試合動画</div>
-    <div class="vplayer-full">
-      <div class="vplayer-wrap">
-        <iframe id="yt-iframe" allow="autoplay;encrypted-media" allowfullscreen></iframe>
-      </div>
-      <div class="vswitch-row">
-        <div class="vswitch-btn active" data-vid="SvyPrLPiGRI" onclick="switchVideo('SvyPrLPiGRI',this)">
-          <img src="https://img.youtube.com/vi/SvyPrLPiGRI/mqdefault.jpg" alt="1回戦">
-          <div class="vswitch-label">1回戦 10-0 ✅</div>
-        </div>
-        <div class="vswitch-btn" data-vid="mrQnw3IgpVM" onclick="switchVideo('mrQnw3IgpVM',this)">
-          <img src="https://img.youtube.com/vi/mrQnw3IgpVM/mqdefault.jpg" alt="2回戦">
-          <div class="vswitch-label">2回戦 ✅</div>
-        </div>
-        <div class="vswitch-btn" data-vid="HdGvaSpry9s" onclick="switchVideo('HdGvaSpry9s',this)">
-          <img src="https://img.youtube.com/vi/HdGvaSpry9s/mqdefault.jpg" alt="準々決勝①">
-          <div class="vswitch-label">準々決勝 ① ✅</div>
-        </div>
-        <div class="vswitch-btn" data-vid="UMaTME3S_M8" onclick="switchVideo('UMaTME3S_M8',this)">
-          <img src="https://img.youtube.com/vi/UMaTME3S_M8/mqdefault.jpg" alt="準々決勝②">
-          <div class="vswitch-label">準々決勝 ② ✅</div>
-        </div>
+  <!-- 2: 名場面集 — 自動再生（冒頭） -->
+  <div class="slide bg-dark" id="slide-meibamen">
+    <div class="s-label">HIGHLIGHT</div>
+    <div class="s-title" style="font-size:clamp(16px,2.5vw,26px);margin-bottom:0;">名場面集</div>
+    <div class="local-video-wrap">
+      <video id="vid-meibamen" src="videos/meibamen.mp4" playsinline loop controls></video>
+      <div class="video-telop" id="meiba-telop">
+        <div class="vt-label">PLAYER</div>
+        <div class="vt-name" id="meiba-telop-name"></div>
       </div>
     </div>
   </div>
@@ -547,12 +531,27 @@ const slides = document.querySelectorAll('.slide');
 const TOTAL = slides.length;
 let cur = 0;
 
-const DEFAULT_VID = 'SvyPrLPiGRI';
-const slideVideo  = document.getElementById('slide-video');
 const slideShin   = document.getElementById('slide-shinsenryoku');
 const localVid    = document.getElementById('vid-shinsenryoku');
+const slideMeiba  = document.getElementById('slide-meibamen');
+const meibaVid    = document.getElementById('vid-meibamen');
 
-/* ── 新戦力動画 テロップ（秒数で名前を表示） ── */
+/* ── 動画テロップ共通（秒数で名前を表示） ── */
+function attachTelop(videoEl, telopEl, telopNameEl, telops) {
+  if (!videoEl) return;
+  videoEl.addEventListener('timeupdate', () => {
+    const t = videoEl.currentTime;
+    const hit = telops.find(x => t >= x.start && t < x.end);
+    if (hit) {
+      if (telopNameEl.textContent !== hit.name) telopNameEl.textContent = hit.name;
+      telopEl.classList.add('show');
+    } else {
+      telopEl.classList.remove('show');
+    }
+  });
+}
+
+/* ── 新戦力動画 テロップ ── */
 const SHIN_TELOPS = [
   {start:0,  end:2,  name:'福田'},
   {start:3,  end:4,  name:'津金沢'},
@@ -561,30 +560,13 @@ const SHIN_TELOPS = [
   {start:10, end:11, name:'津金沢'},
   {start:12, end:14, name:'福田'},
 ];
-if (localVid) {
-  const telopEl  = document.getElementById('shin-telop');
-  const telopName = document.getElementById('shin-telop-name');
-  localVid.addEventListener('timeupdate', () => {
-    const t = localVid.currentTime;
-    const hit = SHIN_TELOPS.find(x => t >= x.start && t < x.end);
-    if (hit) {
-      if (telopName.textContent !== hit.name) telopName.textContent = hit.name;
-      telopEl.classList.add('show');
-    } else {
-      telopEl.classList.remove('show');
-    }
-  });
-}
+attachTelop(localVid, document.getElementById('shin-telop'), document.getElementById('shin-telop-name'), SHIN_TELOPS);
 
-/* ── YouTube制御 ── */
-function startVideo(id) {
-  document.getElementById('yt-iframe').src =
-    'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0';
-  document.querySelectorAll('.vswitch-btn').forEach(btn =>
-    btn.classList.toggle('active', btn.dataset.vid === id));
-}
-function stopVideo() { document.getElementById('yt-iframe').src = ''; }
-function switchVideo(id) { startVideo(id); }
+/* ── 名場面集 テロップ（あとで秒数・名前を追加） ── */
+const MEIBA_TELOPS = [
+  // 例: {start:0, end:3, name:'〇〇'},
+];
+attachTelop(meibaVid, document.getElementById('meiba-telop'), document.getElementById('meiba-telop-name'), MEIBA_TELOPS);
 
 /* ── 正解発表フルスクリーン動画 ── */
 function openFullscreen(src, name) {
@@ -608,17 +590,20 @@ function closeFullscreen() {
 /* ── スライド表示 ── */
 function show(n) {
   const leaving = slides[cur];
-  if (leaving === slideVideo) stopVideo();
   if (leaving === slideShin && localVid) localVid.pause();
+  if (leaving === slideMeiba && meibaVid) meibaVid.pause();
 
   slides[cur].classList.remove('active');
   cur = Math.max(0, Math.min(TOTAL - 1, n));
   slides[cur].classList.add('active');
 
-  if (slides[cur] === slideVideo) startVideo(DEFAULT_VID);
   if (slides[cur] === slideShin && localVid) {
     localVid.currentTime = 0;
     localVid.play().catch(() => {});
+  }
+  if (slides[cur] === slideMeiba && meibaVid) {
+    meibaVid.currentTime = 0;
+    meibaVid.play().catch(() => {});
   }
 
   document.getElementById('counter').textContent = (cur + 1) + ' / ' + TOTAL;
