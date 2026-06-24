@@ -98,13 +98,29 @@
     .vswitch-label{padding:2px 4px;font-size:9px;font-weight:700;color:#556677;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 
     /* ════════════ 動画スライド — 新戦力 ════════════ */
-    .local-video-wrap{width:100%;max-width:760px;margin-top:10px;flex-shrink:0;}
+    .local-video-wrap{width:100%;max-width:760px;margin-top:10px;flex-shrink:0;position:relative;}
     .local-video-wrap video{
       width:100%;border-radius:6px;
       border:2px solid rgba(255,255,255,.12);
       display:block;
       background:#000;
     }
+    /* 打席テロップ（正解発表風） */
+    .video-telop{
+      position:absolute;left:50%;bottom:clamp(40px,8%,70px);
+      transform:translateX(-50%) translateY(10px);
+      display:flex;flex-direction:column;align-items:center;gap:2px;
+      padding:8px clamp(20px,4vw,40px);
+      background:linear-gradient(135deg,rgba(120,80,0,.82),rgba(40,26,0,.82));
+      border:2px solid #f0c800;border-radius:6px;
+      box-shadow:0 0 24px rgba(240,200,0,.45);
+      opacity:0;pointer-events:none;
+      transition:opacity .3s ease,transform .3s ease;
+      z-index:3;white-space:nowrap;
+    }
+    .video-telop.show{opacity:1;transform:translateX(-50%) translateY(0);}
+    .video-telop .vt-label{font-size:clamp(8px,1.2vw,11px);letter-spacing:4px;color:#ffe9a0;font-weight:900;}
+    .video-telop .vt-name{font-size:clamp(20px,4vw,38px);font-weight:900;color:#f0c800;letter-spacing:4px;text-shadow:0 0 14px rgba(240,200,0,.7);}
 
     /* ════════════ 選手クイズ ════════════ */
     .quiz-layout{
@@ -303,6 +319,10 @@
     </div>
     <div class="local-video-wrap">
       <video id="vid-shinsenryoku" src="videos/shinsenryoku.mp4" playsinline loop controls></video>
+      <div class="video-telop" id="shin-telop">
+        <div class="vt-label">NEW FACE</div>
+        <div class="vt-name" id="shin-telop-name"></div>
+      </div>
     </div>
   </div>
 
@@ -524,6 +544,30 @@ const DEFAULT_VID = 'SvyPrLPiGRI';
 const slideVideo  = document.getElementById('slide-video');
 const slideShin   = document.getElementById('slide-shinsenryoku');
 const localVid    = document.getElementById('vid-shinsenryoku');
+
+/* ── 新戦力動画 テロップ（秒数で名前を表示） ── */
+const SHIN_TELOPS = [
+  {start:0,  end:2,  name:'福田'},
+  {start:3,  end:4,  name:'津金沢'},
+  {start:5,  end:7,  name:'山本'},
+  {start:8,  end:9,  name:'奥村'},
+  {start:10, end:11, name:'津金沢'},
+  {start:12, end:14, name:'福田'},
+];
+if (localVid) {
+  const telopEl  = document.getElementById('shin-telop');
+  const telopName = document.getElementById('shin-telop-name');
+  localVid.addEventListener('timeupdate', () => {
+    const t = localVid.currentTime;
+    const hit = SHIN_TELOPS.find(x => t >= x.start && t < x.end);
+    if (hit) {
+      if (telopName.textContent !== hit.name) telopName.textContent = hit.name;
+      telopEl.classList.add('show');
+    } else {
+      telopEl.classList.remove('show');
+    }
+  });
+}
 
 /* ── YouTube制御 ── */
 function startVideo(id) {
